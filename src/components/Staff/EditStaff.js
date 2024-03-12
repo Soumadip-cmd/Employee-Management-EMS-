@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useHistory} from "react-router-dom";
 
 export default function EditStaff() {
   const { id } = useParams();
-  const navigate = useNavigate();
+  const navigate = useHistory();
 
   // Define formData state
   const [formData, setFormData] = useState({
@@ -92,7 +92,7 @@ export default function EditStaff() {
         console.log(res);
         // Navigate to the staff list page after successful addition
         alert("Data Successfully Updated");
-        navigate("/staffList");
+        navigate.push("/staffList");
       })
       .catch((err) => console.log(err));
 

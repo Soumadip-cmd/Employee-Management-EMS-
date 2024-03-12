@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 export default function NewDepartment() {
@@ -7,7 +8,7 @@ export default function NewDepartment() {
     deptName: "",
     deptID: "",
   });
-  
+  const navigate=useHistory();
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -171,7 +172,7 @@ export default function NewDepartment() {
               <button
                 type="button"
                 className="btn btn-success btn-lg ms-3"
-                // onClick={() => navigate("/manageDepartment")}
+                onClick={() => navigate.push("/manageDepartment")}
               >
                 Manage Department
               </button>

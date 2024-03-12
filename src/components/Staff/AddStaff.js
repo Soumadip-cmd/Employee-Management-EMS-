@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function AddStaff() {
+  const navigate=useHistory()
   const [formData, setFormData] = useState({
     user_name: "",
     user_email: "",
@@ -46,6 +48,7 @@ export default function AddStaff() {
           // Navigate to the staff list page after successful addition
           alert("Data Succesfully added");
         //   navigate("/staffList");
+            navigate.push('/staffList');
         } else {
           alert("Error adding staff member");
         }
