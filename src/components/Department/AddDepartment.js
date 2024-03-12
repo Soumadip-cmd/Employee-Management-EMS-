@@ -75,7 +75,7 @@ export default function AddDepartment() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" style={{color:"#000"}} href="/departments">
+                <a className="nav-link" style={{color:"#000"}} >
                   Departments
                 </a>
               </li>
