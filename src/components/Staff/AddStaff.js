@@ -580,15 +580,12 @@ const navigate =useHistory()
       errors.user_district = "District is required";
       document.getElementById("district").focus();
     }
-    else if( user_docx.size> 150 * 1024){
-      errors.user_docx = "File size should be less than or equal to 150KB"
+    else if (user_docx && user_docx.size > 150 * 1024) {
+      errors.user_docx = "File size should be less than or equal to 150KB";
       document.getElementById('user_docx').focus();
-
-    }
-    else if(!user_docx){
-      errors.user_docx = "Please upload your photo here .The photo size must be less than or equals to 150KB "
+    } else if (!user_docx) {
+      errors.user_docx = "Please upload your photo here. The photo size must be less than or equals to 150KB";
       document.getElementById('user_docx').focus();
-
     }
 
     if (Object.keys(errors).length === 0) {
@@ -790,6 +787,7 @@ const navigate =useHistory()
                 onChange={handleChange}
                 onSubmit={handleSubmit}
                 style={{ border: "1px solid" }}
+                required
               />
             </div>
           </div>
