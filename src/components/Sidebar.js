@@ -169,7 +169,7 @@ export default function Sidebar() {
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/manageStaff">
+                      <Link className="dropdown-item" to="/staffList">
                         Manage Staff
                       </Link>
                     </li>
