@@ -527,14 +527,7 @@ const navigate =useHistory()
     let oldUserdata = [...user, currentUserFormData];
     setUser(oldUserdata);
     console.log(formData);
-    // if(setUser(oldUserdata)){
-
-    // alert("Form Submitted ")
-    // }
-    // else
-    // {
-    //     alert("Please Fill the form before submitting")
-    // }
+    
     // To empty the input field after adding/getting the data
     setFormData({
       user_name: "",
@@ -555,7 +548,7 @@ const navigate =useHistory()
       index: "",
     });
   };
-  //ends here
+  
   const validateForm = () => {
     const {
       user_name,
@@ -564,6 +557,7 @@ const navigate =useHistory()
       user_birthday,
       user_zip,
       user_district,
+      user_docx
     } = formData;
     const errors = {};
 
@@ -585,6 +579,16 @@ const navigate =useHistory()
     } else if (!user_district.trim()) {
       errors.user_district = "District is required";
       document.getElementById("district").focus();
+    }
+    else if( user_docx.size> 150 * 1024){
+      errors.user_docx = "File size should be less than or equal to 150KB"
+      document.getElementById('user_docx').focus();
+
+    }
+    else if(!user_docx){
+      errors.user_docx = "Please upload your photo here .The photo size must be less than or equals to 150KB "
+      document.getElementById('user_docx').focus();
+
     }
 
     if (Object.keys(errors).length === 0) {
