@@ -18,13 +18,19 @@ export default function StaffList() {
   };
 
   const navigate = useHistory();
-
+  
   useEffect(() => {
     axios
       .get("http://localhost:3001/staffList")
       .then((result) => {
         setUsers(result.data);
         setLoading(false);
+        console.log(result.data);
+        // result.data.map((user, index) => {
+        //   console.log(`${index}. ${user._id}`);
+        // });
+        
+
       })
       .catch((err) => setError(err.message)); // Handle errors
   }, []);
