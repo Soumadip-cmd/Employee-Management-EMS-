@@ -41,6 +41,7 @@ const Dashboard = () => {
               number={deptCount} 
               category="Department"
               cardbgcolor="blue"
+              pageLink="/manageDepartment"
             />
           </div>
           <div className="col-sm-12 col-md-6 col-lg-3">
@@ -48,6 +49,7 @@ const Dashboard = () => {
               number={staffCount} 
               category="Staff"
               cardbgcolor="rgb(88 13 51)"
+              pageLink="/manageStaff/:id"
             />
           </div>
           <div className="col-sm-12 col-md-6 col-lg-3">
@@ -55,6 +57,7 @@ const Dashboard = () => {
               number="0" 
               category="Leave Requests"
               cardbgcolor="#c70d0d"
+              pageLink="/leavehistory"
             />
           </div>
           <div className="col-sm-12 col-md-6 col-lg-3">
@@ -62,6 +65,7 @@ const Dashboard = () => {
               number="$39640" 
               category="Salary Paid"
               cardbgcolor="green"
+              pageLink="/managesalary"
             />
           </div>
         </div>
