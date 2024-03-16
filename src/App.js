@@ -90,9 +90,7 @@ function App() {
           <Route exact path="/managesalary">
             <Managesalary />
           </Route>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
+
           {isAuthenticated ? (
             <>
               <Sidebar />
