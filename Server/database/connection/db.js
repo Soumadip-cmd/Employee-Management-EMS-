@@ -4,14 +4,16 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const Connection = async () => {
-  const { DB_USERNAME, DB_PASSWORD } = process.env;
+  // const { DB_USERNAME, DB_PASSWORD } = process.env;
   
-  const URL = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster.i2vdnrs.mongodb.net/curd_ems?retryWrites=true&w=majority&appName=Cluster`;
+  const URL = `mongodb+srv://pyqplatform:4lvW8IbQPvKRETfB@cluster0.3tzpejq.mongodb.net/curd_ems?retryWrites=true&w=majority&appName=Cluster0`;
+  // const URL=`mongodb://127.0.0.1:27017/curd_ems`
+ 
 
   try {
     await mongoose.connect(URL, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
+      // useUnifiedTopology: true,
+      // useNewUrlParser: true,
     });
     console.log("Db Connection Successfully");
   } catch (error) {
