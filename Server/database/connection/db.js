@@ -12,8 +12,6 @@ const Connection = async () => {
   // const { DB_USERNAME, DB_PASSWORD } = process.env;
   // console.log(DB_PASSWORD);
   const URL = `mongodb+srv://pyqplatform:4lvW8IbQPvKRETfB@cluster0.3tzpejq.mongodb.net/curd_ems?retryWrites=true&w=majority&appName=Cluster0`;
-  // const URL = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.3tzpejq.mongodb.net/curd_ems?retryWrites=true&w=majority&appName=Cluster0`;
-  // const URL=`mongodb://127.0.0.1:27017/curd_ems`
 
 
   try {

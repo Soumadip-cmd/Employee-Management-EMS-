@@ -1,10 +1,15 @@
 import React from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
-import { useEffect, useState } from 'react';
-import { auth } from './components/firebase';
+import { useEffect, useState } from "react";
+import { auth } from "./components/firebase";
 import Dashboard from "./components/Dashboard";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Myleave from "./components/Myleave";
 import ApplyLeave from "./components/ApplyLeave";
 import Addsalary from "./components/Addsalary";
@@ -15,17 +20,18 @@ import AddStaff from "./components/Staff/AddStaff";
 import ManageStaff from "./components/Staff/ManageStaff";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
-import Error from './components/Login/Error'
+import Error from "./components/Login/Error";
 import StaffList from "./components/Staff/StaffList";
 import EditStaff from "./components/Staff/EditStaff";
-
+import { useHistory } from "react-router-dom";
 
 function App() {
   const [userName, setUserName] = useState("");
 
   //--------------------Auth Handeling-----------------------
+  let history = useHistory();
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUserName(user.displayName);
       } else {
@@ -45,6 +51,7 @@ function App() {
   return (
     <>
       <Router>
+        <Sidebar />
         <Switch>
           <Route exact path="/login">
             <Login />
@@ -52,55 +59,43 @@ function App() {
 
           <Route exact path="/signup">
             <Signup />
-            
           </Route>
           <Route exact path="/error">
-           <Error/>
-            
+            <Error />
           </Route>
           <Route exact path="/staffList">
-          <StaffList/>
-            
+            <StaffList />
           </Route>
-          {isAuthenticated ? (
-            <>
-              <Sidebar />
-              <Switch>
-                <Route exact path="/Applyleave">
-                  <ApplyLeave />
-                </Route>
-                <Route exact path="/addDepartment">
-                  <AddDepartment />
-                </Route>
-                <Route exact path="/manageDepartment">
-                  <ManageDepartment />
-                </Route>
-                <Route exact path="/addStaff">
-                  <AddStaff />
-                </Route>
-                <Route exact path="/manageStaff/:id">
-                  <ManageStaff />
-                </Route>
-                <Route exact path="/editStaff/:id">
-                <EditStaff/>
-                </Route>
-                <Route exact path="/leavehistory">
-                  <Myleave />
-                </Route>
-                <Route exact path="/addsalary">
-                  <Addsalary />
-                </Route>
-                <Route exact path="/managesalary">
-                  <Managesalary />
-                </Route>
-                <Route exact path="/">
-                  <Dashboard />
-                </Route>
-              </Switch>
-            </>
-          ) : (
-            <Redirect to="/login" />
-          )}
+          <Route exact path="/Applyleave">
+            <ApplyLeave />
+          </Route>
+          <Route exact path="/addDepartment">
+            <AddDepartment />
+          </Route>
+          <Route exact path="/manageDepartment">
+            <ManageDepartment />
+          </Route>
+          <Route exact path="/addStaff">
+            <AddStaff />
+          </Route>
+          <Route exact path="/manageStaff/:id">
+            <ManageStaff />
+          </Route>
+          <Route exact path="/editStaff/:id">
+            <EditStaff />
+          </Route>
+          <Route exact path="/leavehistory">
+            <Myleave />
+          </Route>
+          <Route exact path="/addsalary">
+            <Addsalary />
+          </Route>
+          <Route exact path="/managesalary">
+            <Managesalary />
+          </Route>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
         </Switch>
       </Router>
     </>

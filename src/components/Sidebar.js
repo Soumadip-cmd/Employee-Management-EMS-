@@ -3,7 +3,7 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 export default function Sidebar() {
   return (
-    <div style={{height:'56px'}} >
+    <div style={{ height: "56px" }}>
       <nav className="navbar navbar-dark bg-dark fixed-top">
         <div className="container-fluid">
           <Link className="navbar-brand align-items-center" to="/">
@@ -11,6 +11,25 @@ export default function Sidebar() {
               Employee<span style={{ color: "green" }}>Management</span>
             </span>
           </Link>
+          {/* adding login signup button */}
+          <form class="d-flex" style={{ position: "absolute", right: "78px" }}>
+            <Link
+              to="/login"
+              class="btn btn-outline-light mx-1"
+              role="button"
+              style={{ borderRadius: "4px" }}
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              class="btn btn-danger mx-1"
+              role="button"
+              style={{ borderRadius: "4px" }}
+            >
+              SignUp
+            </Link>
+          </form>
           <button
             className="navbar-toggler"
             type="button"
@@ -21,7 +40,7 @@ export default function Sidebar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          
+
           <div
             className="offcanvas offcanvas-start text-bg-dark"
             tabIndex="-1"
