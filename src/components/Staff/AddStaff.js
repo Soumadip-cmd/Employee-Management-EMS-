@@ -49,7 +49,7 @@ const navigate =useHistory()
         if (response.status === 201) {
           // Navigate to the staff list page after successful addition
           alert("Data Successfully added");
-          navigate.push("/manageStaff/:id");
+          navigate.push("/manageStaff");
         } else {
           alert("Error adding staff member");
         }
