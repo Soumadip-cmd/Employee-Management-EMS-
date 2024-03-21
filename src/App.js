@@ -62,9 +62,9 @@ function App() {
           <Route exact path="/error">
             <Error />
           </Route>
-          <Route exact path="/staffList">
+          {/* <Route exact path="/staffList">
             <StaffList />
-          </Route>
+          </Route> */}
           <Route exact path="/Applyleave">
             <ApplyLeave />
           </Route>
@@ -77,10 +77,10 @@ function App() {
           <Route exact path="/addStaff">
             <AddStaff />
           </Route>
-          <Route exact path="/manageStaff/:id">
+          <Route exact path="/manageStaff">
             <ManageStaff />
           </Route>
-          <Route exact path="/editStaff/:id">
+          <Route exact path="/editStaff">
             <EditStaff />
           </Route>
           <Route exact path="/leavehistory">

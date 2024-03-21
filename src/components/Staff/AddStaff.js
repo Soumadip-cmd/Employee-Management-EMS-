@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Footer from "../Footer";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export default function AddStaff() {
 const navigate =useHistory()
@@ -28,7 +28,7 @@ const navigate =useHistory()
     index: "",
   });
   
-  //handelChange is a function where user can type the value and we can get the value of all the input fields
+  //handelChange is Link function where user can type the value and we can get the value of all the input fields
   //on chnage and event are adding for this  here to type
   let [user, setUser] = useState([]);
 
@@ -49,7 +49,7 @@ const navigate =useHistory()
         if (response.status === 201) {
           // Navigate to the staff list page after successful addition
           alert("Data Successfully added");
-          navigate.push("/staffList");
+          navigate.push("/manageStaff/:id");
         } else {
           alert("Error adding staff member");
         }
@@ -133,7 +133,7 @@ const navigate =useHistory()
       errors.user_email = "Email is required";
       document.getElementById("email").focus();
     } else if (!user_phone.trim() || user_phone.length !== 10) {
-      errors.user_phone = "Enter a valid 10-digit phone number";
+      errors.user_phone = "Enter Link valid 10-digit phone number";
       document.getElementById("phone").focus();
     } else if (!user_birthday.trim()) {
       errors.user_birthday = "Date of Birth is required";
@@ -170,15 +170,15 @@ const navigate =useHistory()
   return (
     <>
       <nav
-        class="navbar navbar-expand-lg"
+        className="navbar navbar-expand-lg"
         style={{backgroundColor: "rgb(0 77 255 / 65%)",color:"white"}}
       >
-        <div class="container">
-          <a class="navbar-brand" href="/" style={{fontSize:"25px",color:"white",letterSpacing:".05125em"}}>
+        <div className="container">
+          <Link className="navbar-brand" to="/" style={{fontSize:"25px",color:"white",letterSpacing:".05125em"}}>
             Staff
-          </a>
+          </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="/navbarSupportedContent"
@@ -186,32 +186,32 @@ const navigate =useHistory()
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/" style={{color:"white"}}>
-                  <span class="ms-2">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/" style={{color:"white"}}>
+                  <span className="ms-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="14"
                       fill="white"
-                      class="bi bi-house"
+                      className="bi bi-house"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"></path>
                     </svg>
                   </span>
                   Home
-                  <span class="ms-2">
+                  <span className="ms-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
                       fill="currentColor"
-                      class="bi bi-arrow-left-short"
+                      className="bi bi-arrow-left-short"
                       viewBox="0 0 16 16"
                     >
                       <path
@@ -220,21 +220,21 @@ const navigate =useHistory()
                       ></path>
                     </svg>
                   </span>
-                </a>
+                </Link>
               </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="/addStaff"
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/manageStaff"
                   style={{color:"white"}}
                 >
-                  Add Staff
-                </a>
+                  Staff-List
+                </Link>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" style={{color:"white"}}>
+              <li className="nav-item">
+                <Link className="nav-link" style={{color:"white"}} to="/addStaff">
                   Staff
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
