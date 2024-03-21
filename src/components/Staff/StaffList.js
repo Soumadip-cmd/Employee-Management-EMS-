@@ -39,111 +39,230 @@ export default function StaffList() {
   }
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <div
-        style={{
-          width: "400px",
-          padding: "20px",
-          border: "1px solid #ccc",
-          borderRadius: "10px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-          marginBottom: "20px",
-        }}
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        className="bi bi-eye mx-2"
+        viewBox="0 0 16 16"
+        data-bs-target="#seeDetails"
+        data-bs-toggle="modal"
+        style={{ cursor: "pointer" }}
       >
-        {user.user_docx && (
-          <img
-            src={user.user_docx}
-            style={{
-              width: "200px",
-              height: "200px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              marginBottom: "20px",
-            }}
-            alt="UserImage"
-          />
-        )}
-        {!user.user_docx && (
-          <div>
-            User Image Not Available in the server.Please try again after
-            sometime.
-          </div>
-        )}
-        <div
-          style={{
-            fontSize: "24px",
-            fontWeight: "bold",
-            marginBottom: "10px",
-            textAlign: "center",
-          }}
-        >
-          Details of Staffs
-        </div>
-        <div>
-          <div>
-            <strong>User Name:</strong> {user.user_name}
-          </div>
-          <div>
-            <strong>User Email:</strong> {user.user_email}
-          </div>
-          <div>
-            <strong>User Age:</strong> {user.user_age}
-          </div>
-          <div>
-            <strong>User Sex:</strong> {user.user_sex}
-          </div>
-          <div>
-            <strong>User Job Title:</strong> {user.user_jobtitle}
-          </div>
-          <div>
-            <strong>User Address:</strong> {user.user_address}
-          </div>
-          <div>
-            <strong>User Zip:</strong> {user.user_zip}
-          </div>
-          <div>
-            <strong>User City:</strong> {user.user_city}
-          </div>
-          <div>
-            <strong>User State:</strong> {user.user_state}
-          </div>
-          <div>
-            <strong>User District:</strong> {user.user_district}
-          </div>
-          <div>
-            <strong>User Phone:</strong> {user.user_phone}
-          </div>
-          <div>
-            <strong>User Birthday:</strong> {formatDate(user.user_birthday)}
-          </div>
-          <div>
-            <strong>User Department:</strong> {user.user_department}
-          </div>
-          <div>
-            <strong>User Working Type:</strong> {user.user_workingtype}
-          </div>
-          <div>
-            <strong>User Date of Joining:</strong> {formatDate(user.user_doj)}
-          </div>
-          <div>
-            <strong>User Emergency Phone Number:</strong>{" "}
-            {user.user_emergencyphneno}
-          </div>
-          <div>
-            <strong>User Emergency Contact Name:</strong>{" "}
-            {user.user_emergency_contact_name}
+        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+      </svg>
+      <div
+        class="modal fade text-start"
+        id="seeDetails"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                View Department
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label
+                  for="departmentName"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Name:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_name}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Email:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_email}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Gender:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_sex}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Address:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_address}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  ZIP:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_zip}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  City:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_city}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  State:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_state}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  District:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_district}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Phone-Number.:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_phone}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Birth:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {formatDate(user.user_birthday)}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Department:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_department}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Working Type:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_workingtype}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Date of Joining:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {formatDate(user.user_doj)}
+                  </i>
+                </label>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="departmentId"
+                  class="form-label"
+                  style={{ fontWeight: "600" }}
+                >
+                  Optional Mobile-Number:{" "}
+                  <i style={{ fontWeight: "500", color: "brown" }}>
+                  {user.user_emergencyphneno}
+                  </i>
+                </label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                className="btn btn-success"
+                onClick={() => window.print()}
+                
+              >
+                Print Your Info
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <button
-        className="btn btn-success"
-        onClick={() => window.print()}
-        style={{ marginBottom: "20px" }}
-      >
-        Print Your Info
-      </button>
-    </div>
+    </>
   );
 }

@@ -1,7 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import "./ManageStaff.css";
 import { Container } from "react-bootstrap";
+import EditStaff from "./EditStaff";
+import StaffList from "./StaffList";
+import Footer from "../Footer";
 
 export default function ManageStaff() {
   const [users, setUsers] = useState([]);
@@ -54,13 +58,21 @@ export default function ManageStaff() {
   };
 
   return (
-    <div className="" style={{ minHeight: "100%" }}>
+    <div className="" style={{ minHeight: "105%" }}>
       <nav
         className="navbar navbar-expand-lg"
-        style={{backgroundColor: "rgb(0 77 255 / 65%)" }}
+        style={{ backgroundColor: "rgb(0 77 255 / 65%)" }}
       >
         <div className="container">
-          <Link className="navbar-brand" style={{ fontSize: "25px",color:'white',letterSpacing:".05125em"}} to="/">
+          <Link
+            className="navbar-brand"
+            style={{
+              fontSize: "25px",
+              color: "white",
+              letterSpacing: ".05125em",
+            }}
+            to="/"
+          >
             Staff
           </Link>
           <button
@@ -77,7 +89,7 @@ export default function ManageStaff() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link className="nav-link" style={{ color:'white' }} to="/">
+                <Link className="nav-link" style={{ color: "white" }} to="/">
                   <span className="ms-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -111,14 +123,18 @@ export default function ManageStaff() {
               <li className="nav-item">
                 <Link
                   className="nav-link"
-                  style={{ color:'white' }}
+                  style={{ color: "white" }}
                   to="/addStaff"
                 >
                   Add Staff
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" style={{ color:'white' }} to='/managestaff'>
+                <Link
+                  className="nav-link"
+                  style={{ color: "white" }}
+                  to="/managestaff"
+                >
                   Staff
                 </Link>
               </li>
@@ -127,7 +143,6 @@ export default function ManageStaff() {
         </div>
       </nav>
       <Container className="mt-10">
-        
         {error && <div className="alert alert-danger">{error}</div>}
         {loading ? (
           <p>Loading...</p>
@@ -175,147 +190,140 @@ export default function ManageStaff() {
                 </option>
               </select>
               entries
-              <form class="d-flex float-end">
+              <form className="d-flex float-end">
                 <input
-                  class="form-control me-2"
+                  className="form-control me-2"
                   type="search"
                   placeholder="Search.."
                   aria-label="Search"
                 />
-                <button class="btn btn-outline-danger" type="submit">
+                <button className="btn btn-outline-danger" type="submit">
                   Search
                 </button>
               </form>
               <div className="container m-2 table-responsive">
-                <div className="row">
+                <div className="row d-flex flex-column">
                   <table className="table table-striped">
                     <thead>
-                      <tr>
-                        <th className="col-1  p-1 px-2 tablestyle text-center">
+                      <tr className="tablestyle2">
+                        <th
+                          className="col   text-center tablestyle1"
+                          
+                        >
                           #
                         </th>
 
-                        <th className="col  p-1 px-2 tablestyle">Full Name</th>
-                        <th className="col  p-1 px-2 tablestyle">Email</th>
-                        <th className="col  p-1 px-2 tablestyle">Sex</th>
+                        <th className="col  p-1 px-2 tablestyle1">Full Name</th>
+                        <th className="col  p-1 px-2 tablestyle1">Email</th>
+                        <th className="col  p-1 px-2 tablestyle1">Sex</th>
 
                         <th
-                          className="col  p-1 px-2 tablestyle"
+                          className="col  p-1 px-2 tablestyle1"
                           style={{ width: "25px" }}
                         >
                           Address
                         </th>
-                        <th className="col  p-1 px-2 tablestyle">Zip</th>
-                        <th className="col  p-1 px-2 tablestyle">City</th>
-                        <th className="col  p-1 px-2 tablestyle">State</th>
-                        <th className="col  p-1 px-2 tablestyle">District</th>
-                        <th className="col  p-1 px-2 tablestyle">Phone</th>
-                        <th className="col  p-1 px-2 tablestyle">Birthday</th>
-                        <th className="col  p-1 px-2 tablestyle">Document</th>
-                        <th className="col  p-1 px-2 tablestyle">Department</th>
-                        <th className="col  p-1 px-2 tablestyle">
+                        <th className="col  p-1 px-2 tablestyle1">Zip</th>
+                        <th className="col  p-1 px-2 tablestyle1">City</th>
+                        <th className="col  p-1 px-2 tablestyle1">State</th>
+                        <th className="col  p-1 px-2 tablestyle1">District</th>
+                        <th className="col  p-1 px-2 tablestyle1">Phone</th>
+                        <th className="col  p-1 px-2 tablestyle1">Birthday</th>
+                        <th className="col  p-1 px-2 tablestyle1">Document</th>
+                        <th className="col  p-1 px-2 tablestyle1">
+                          Department
+                        </th>
+                        <th className="col  p-1 px-2 tablestyle1">
                           Working Type
                         </th>
-                        <th className="col  p-1 px-2 tablestyle">Start Date</th>
-                        <th className="col  p-1 px-2 tablestyle">
+                        <th className="col  p-1 px-2 tablestyle1">
+                          Start Date
+                        </th>
+                        <th className="col  p-1 px-2 tablestyle1">
                           Emergency Contact
                         </th>
-                        <th className="col  p-1 px-2 tablestyle">Action</th>
+                        <th
+                          className="col  p-1 px-2 tablestyle1 d-flex justify-content-center"
+                          style={{ height: "59px", width: "120px" }}
+                        >
+                          Action
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {users.map((user, index) => (
-                        <tr key={user._id}>
-                          <td className="col  p-1 px-2 tablestyle">
+                        <tr key={user._id} className="tablestyle1">
+                          <td className="col mx-3 px-2 tablestyle1 ">
                             {index + 1}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_name}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_email}
                           </td>
 
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_sex}
                           </td>
 
                           <td
-                            className="col  p-1 px-2 tablestyle"
+                            className="col  p-1 px-2 tablestyle1"
                             style={{ width: "20px" }}
                           >
                             {user.user_address}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_zip}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_city}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_state}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_district}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_phone}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {formatDate(user.user_birthday)}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             <img src={user.user_docx} alt="UserPhoto" />
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_department}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_workingtype}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {formatDate(user.user_doj)}
                           </td>
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td className="col  p-1 px-2 tablestyle1">
                             {user.user_emergencyphneno}
                           </td>
 
-                          <td className="col  p-1 px-2 tablestyle">
+                          <td
+                            className="col  p-1 px-2 tablestyle1 text-center"
+                            width={"50px"}
+                          >
                             {/* Update button */}
 
                             {/* <Button onClick={() => navigate(`/editStaff/${user._id}`)} variant='success'>Update</Button>{' '} */}
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-pencil-square "
-                              viewBox="0 0 16 16"
-                              onClick={() =>
-                                navigate.push(`/editStaff/${user._id}`)
-                              }
-                            >
-                              <path
-                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805
-                                             2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 
-
-                                             .196-.12l6.813-6.814z"
-                                style={{ cursor: "pointer" }}
-                              />
-                              <path
-                                fill-rule="evenodd"
-                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
-                              />
-                            </svg>
+                            <EditStaff />
 
                             {/* Delete Button */}
                             {/* <Button variant='primary' onClick={() => handelDelete(user._id)}>Delete</Button> */}
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-trash3"
+                              width="20"
+                              height="20"
+                              fill="brown"
+                              className="bi bi-trash3 mx-1"
                               viewBox="0 0 16 16"
                               onClick={() => handelDelete(user._id)}
                             >
@@ -329,22 +337,7 @@ export default function ManageStaff() {
                               />
                             </svg>
                             {/* View details button  */}
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-eye "
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
-                              <path
-                                d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"
-                                onClick={() =>
-                                  navigate.push(`/manageStaff/${user._id}`)
-                                }
-                              />
-                            </svg>
+                            <StaffList />
                           </td>
                         </tr>
                       ))}
@@ -358,18 +351,21 @@ export default function ManageStaff() {
               >
                 <p className="float-start my-2">Showing 1 to2 of 2 entries</p>
                 <div
-                  class="btn-group float-end my-2"
+                  className="btn-group float-end my-2"
                   role="group"
                   aria-label="Basic outlined example"
                   // style={}
                 >
-                  <button type="button" class="btn btn-outline-primary">
+                  <button type="button" className="btn btn-outline-primary">
                     &#11164;
                   </button>
-                  <button type="button" class="btn btn-outline-primary active">
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary active"
+                  >
                     1
                   </button>
-                  <button type="button" class="btn btn-outline-primary">
+                  <button type="button" className="btn btn-outline-primary">
                     &#11166;
                   </button>
                 </div>
@@ -377,6 +373,8 @@ export default function ManageStaff() {
             </div>
           </>
         )}
+        <Footer footerstyle="fixed-bottom"/>
+        
       </Container>
     </div>
   );

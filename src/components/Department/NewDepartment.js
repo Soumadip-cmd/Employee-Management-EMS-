@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Footer from "../Footer";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
@@ -89,11 +90,11 @@ export default function NewDepartment() {
 
       <div className="container my-10" style={{ textAlign: "center" }}>
         <h2
-          style={{ color: "#007bff", marginBottom: "20px", fontWeight: "bold" }}
+          style={{ marginBottom: "20px" }}
         >
           Add Department
         </h2>
-        <hr style={{ borderTop: "3px solid #007bff" }} />
+        <hr style={{ borderTop: "3px solid black" }} />
       </div>
 
       <div
@@ -180,6 +181,8 @@ export default function NewDepartment() {
           </div>
         </form>
       </div>
+      <Footer footerstyle="fixed-bottom"/>
+      
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import "./ManageDepartment.css";
 import EditDepartment from "./EditDepartment";
 import ViewDepartment from "./ViewDepartment";
+import Footer from "../Footer";
 import { Link } from "react-router-dom";
 
 export default function ManageDepartment() {
@@ -290,6 +291,7 @@ export default function ManageDepartment() {
           </div>
         </div>
       )}
+      <Footer footerstyle="fixed-bottom"/>
     </div>
   );
 }
