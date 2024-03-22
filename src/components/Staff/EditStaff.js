@@ -83,6 +83,7 @@ export default function EditStaff() {
       }));
     }
   };
+  const refcls = useRef(null);
   //update the staff forms
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -121,15 +122,13 @@ export default function EditStaff() {
     };
     let oldUserdata = [...user, currentUserFormData];
     setUser(oldUserdata);
+    refcls.current.click();
     console.log(formData);
   };
 
-  const refcls = useRef(null);
+  
 
-  // const updateData = () => {
-  //   refcls.current.click();
-  //   // navigate.push(`/editStaff/${user._id}`)
-  // };
+  
   return (
     <>
       <svg
