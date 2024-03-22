@@ -7,7 +7,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  
+  Redirect,
 } from "react-router-dom";
 import Myleave from "./components/Myleave";
 import ApplyLeave from "./components/ApplyLeave";
@@ -20,6 +20,8 @@ import ManageStaff from "./components/Staff/ManageStaff";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Error from "./components/Login/Error";
+import StaffList from "./components/Staff/StaffList";
+import EditStaff from "./components/Staff/EditStaff";
 import { useHistory } from "react-router-dom";
 
 function App() {
@@ -78,7 +80,9 @@ function App() {
           <Route exact path="/manageStaff">
             <ManageStaff />
           </Route>
-          
+          <Route exact path="/editStaff">
+            <EditStaff />
+          </Route>
           <Route exact path="/leavehistory">
             <Myleave />
           </Route>
