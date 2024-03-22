@@ -71,7 +71,7 @@ export default function NewDepartment() {
           <span className="me-10" role="img" aria-label="Success">
             ✅
           </span>
-          <div>Department added Successfully!!!</div>
+          <div>Department added Successfully!!!!</div>
         </div>
       )}
 
