@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "./Footer";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import axios from "axios";
 
 export default function Addsalary() {
   let boxstyle = {
@@ -16,6 +17,14 @@ export default function Addsalary() {
     //  console.log(sum
     document.getElementById("total").value = sum;
   }
+  useEffect(()=>{
+    const fetchDepartment=async()=>{
+      try{
+        const res=axios.get("https://localhost:3001/manageDepartment")
+        
+      }
+    }
+  })
   return (
     <>
     {/* <div class="alert alert-success m-3" role="alert"  >
