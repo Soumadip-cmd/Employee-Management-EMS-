@@ -445,7 +445,7 @@ export default function EditStaff() {
                 className="btn btn-primary"
                 onClick={handleSubmit}
               >
-                Update Department
+                Update Details
               </button>
             </div>
           </div>
