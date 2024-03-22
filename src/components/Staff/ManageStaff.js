@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory,useParams } from "react-router-dom";
 import "./ManageStaff.css";
 import { Container } from "react-bootstrap";
 import EditStaff from "./EditStaff";
@@ -12,6 +12,7 @@ export default function ManageStaff() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [entries, setEntries] = useState([]);
+  const { id } = useParams();
   //Function to handeling Entries selection logic 
   const handleEntries = () => {
     const value = document.getElementById("selection_entries").value;
@@ -318,11 +319,14 @@ export default function ManageStaff() {
                           <td
                             className="col  p-1 px-2 tablestyle1 text-center"
                             width={"50px"}
+                            onClick={()=>{
+                              console.log("User id:-",user._id)
+                            }}
                           >
                             {/* Update button */}
 
                             
-                            <EditStaff />
+                            <EditStaff id={id} />
 
                             {/* Delete Button */}
                             

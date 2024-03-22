@@ -80,7 +80,7 @@ function App() {
           <Route exact path="/manageStaff">
             <ManageStaff />
           </Route>
-          <Route exact path="/editStaff">
+          <Route exact path="/editStaff/:id">
             <EditStaff />
           </Route>
           <Route exact path="/leavehistory">
