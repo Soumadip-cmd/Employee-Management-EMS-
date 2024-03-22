@@ -19,10 +19,10 @@ export default function Addsalary() {
   }
   useEffect(()=>{
     const fetchDepartment=async()=>{
-      try{
-        const res=axios.get("https://localhost:3001/manageDepartment")
+      // try{
+      //   const res=axios.get("https://localhost:3001/manageDepartment")
         
-      }
+      // }
     }
   })
   return (
