@@ -29,6 +29,12 @@ app.get('/editStaff/:id', (req, res) => {
         .then(staffs => res.json(staffs))
         .catch(err => res.json(err))
 });
+app.get('/editDept/:id', (req, res) => {
+    const id = req.params.id;
+    DeptModel.findById({ _id: id })
+        .then(depts => res.json(depts))
+        .catch(err => res.json(err))
+});
 
 
 

@@ -1,11 +1,37 @@
-import React, { useRef } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams, useHistory} from "react-router-dom";
 
-const EditDepartment = () => {
-    const refcls=useRef(null)
+export default function EditDepartment() {
+  const { id } = useParams();
+  const navigate = useHistory();
 
-    const updateData=()=>{
-        refcls.current.click()
-    }
+  // Define formData state
+  const [formData, setFormData] = useState({
+    deptid:"",
+    deptname:""
+  });
+
+  // Define user state
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/editDept/${id}`)
+      .then((response) => {
+        const userData = response.data;
+        console.log(userData);
+        
+
+        setFormData({
+         deptid:userData.deptid,
+         deptname:userData.deptname
+        });
+      })
+      .catch((err) => console.error(err));
+  }, [id]);
+
+
   return (
     <>
       <svg
@@ -26,68 +52,89 @@ const EditDepartment = () => {
           style={{ cursor: "pointer" }}
         />
         <path
-          fill-rule="evenodd"
+          fillRule="evenodd"
           d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
         />
       </svg>
 
       <div
-        class="modal fade text-start"
+        className="modal fade text-start"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Edit Department
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
-              <div class="mb-3">
-                <label for="departmentName" class="form-label" style={{fontWeight:"500"}}>
-                  Department Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="departmentName"
-                  placeholder="Department Name"
-                />
+            <form >
+              <div className="modal-body">
+                <div className="mb-3">
+                  <label
+                    htmlFor="departmentName"
+                    className="form-label"
+                    style={{ fontWeight: "500" }}
+                  >
+                    Department Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="departmentName"
+                    name="deptname"
+                    placeholder="Department Name"
+                    value={formData.deptname}
+                    onChange={(e) =>
+                      setFormData({ ...formData, deptname: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="departmentId"
+                    className="form-label"
+                    style={{ fontWeight: "500" }}
+                  >
+                    Department Id
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="departmentId"
+                    name="deptid"
+                    placeholder="Department Id"
+                    value={formData.deptid}
+                    onChange={(e) =>
+                      setFormData({ ...formData, deptid: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="departmentId" class="form-label" style={{fontWeight:"500"}}>
-                  Department Id
-                </label>
-                <input
-                  type="text"
-                  class="form-control "
-                  id="departmentId"
-                  placeholder="Department Id"
-                />
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn
+                  -secondary"
+                  data-bs-dismiss="modal"
+                  // ref={refcls}
+                >
+                  Close
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Update Department
+                </button>
               </div>
-              
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal" ref={refcls}
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary" onClick={updateData}>
-                Update Department
-              </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -95,4 +142,4 @@ const EditDepartment = () => {
   );
 };
 
-export default EditDepartment;
+

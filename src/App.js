@@ -22,7 +22,9 @@ import Signup from "./components/Signup/Signup";
 import Error from "./components/Login/Error";
 import StaffList from "./components/Staff/StaffList";
 import EditStaff from "./components/Staff/EditStaff";
+import EditDepartment from "./components/Department/EditDepartment";
 import { useHistory } from "react-router-dom";
+import ViewDepartment from "./components/Department/ViewDepartment";
 
 function App() {
   const [userName, setUserName] = useState("");
@@ -73,6 +75,12 @@ function App() {
           </Route>
           <Route exact path="/manageDepartment">
             <ManageDepartment />
+          </Route>
+          <Route exact path="/editDept">
+          <EditDepartment />
+          </Route>
+          <Route exact path="/viewDept/:id">
+          <ViewDepartment/>
           </Route>
           <Route exact path="/addStaff">
             <AddStaff />
