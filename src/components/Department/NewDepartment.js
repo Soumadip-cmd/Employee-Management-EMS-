@@ -92,7 +92,7 @@ export default function NewDepartment() {
         <h2
           style={{ marginBottom: "20px" }}
         >
-          Add Department
+          Add Departments
         </h2>
         <hr style={{ borderTop: "3px solid black" }} />
       </div>
