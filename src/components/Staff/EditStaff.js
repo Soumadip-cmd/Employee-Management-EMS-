@@ -126,10 +126,10 @@ export default function EditStaff() {
 
   const refcls = useRef(null);
 
-  const updateData = () => {
-    refcls.current.click();
-    // navigate.push(`/editStaff/${user._id}`)
-  };
+  // const updateData = () => {
+  //   refcls.current.click();
+  //   // navigate.push(`/editStaff/${user._id}`)
+  // };
   return (
     <>
       <svg
@@ -444,7 +444,7 @@ export default function EditStaff() {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={updateData}
+                onClick={handleSubmit}
               >
                 Update Department
               </button>
