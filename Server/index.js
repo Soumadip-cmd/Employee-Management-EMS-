@@ -7,7 +7,8 @@ const UserModel = require('./database/model/User');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const app = express();
-const DeptModel=require('./database/model/Dept')
+const DeptModel=require('./database/model/Dept');
+const SalaryModel = require('./database/model/Salary');
 app.use(cors());
 
 dotenv.config();
@@ -17,11 +18,20 @@ const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 Connection(username, password);
 
+
+
+// get the staff lists
+
 app.get('/staffList', (req, res) => {
     UserModel.find({})
         .then(staffs => res.json(staffs))
         .catch(err => res.json(err))
 });
+
+
+
+
+//edit staff 
 
 app.get('/editStaff/:id', (req, res) => {
     const id = req.params.id;
@@ -29,6 +39,12 @@ app.get('/editStaff/:id', (req, res) => {
         .then(staffs => res.json(staffs))
         .catch(err => res.json(err))
 });
+
+
+
+// edit department 
+
+
 app.get('/editDept/:id', (req, res) => {
     const id = req.params.id;
     DeptModel.findById({ _id: id })
@@ -36,6 +52,10 @@ app.get('/editDept/:id', (req, res) => {
         .catch(err => res.json(err))
 });
 
+
+
+
+// Add staff members
 
 
 app.post('/addStaff', upload.single('userPhoto'), async (req, res) => {
@@ -80,6 +100,12 @@ app.post('/addStaff', upload.single('userPhoto'), async (req, res) => {
         res.status(500).json({ error: 'Failed to add staff member' });
     }
 });
+
+
+
+// Dashboard count for staff depts etc
+
+
 app.get('/dashboardCount', async (req, res) => {
     try {
         const staffcount = await UserModel.countDocuments();
@@ -91,6 +117,10 @@ app.get('/dashboardCount', async (req, res) => {
     }
 });
 
+
+
+
+//new department add 
 
 
 app.post('/adddept', (req, res) => {
@@ -137,11 +167,41 @@ app.post('/adddept', (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     });
 });
+
+
+
+
+// get the department list 
+
+
 app.get('/manageDepartment', (req, res) => {
     DeptModel.find({})
         .then(depts => res.json(depts))
         .catch(err => res.json(err))
 });
+
+
+
+
+// adding the slaary details of the staffs
+
+
+app.post('/addSalary', (req, res) => {
+    const salaryData = req.body;
+    SalaryModel.create(salaryData)
+        .then(newSalary => {
+            // Return the newly created salary with status code 201 (Created)
+            res.status(201).json(newSalary);
+        })
+        .catch(error => {
+            // Handle any errors during salary creation
+            res.status(500).json({ error: 'Failed to add Salary' });
+        });
+});
+
+
+
+// update the staff details
 
 
 app.put('/updateStaffs/:id', (req, res) => {
@@ -154,13 +214,22 @@ app.put('/updateStaffs/:id', (req, res) => {
 });
 
 
+
+//delete the staff data
+
+
 app.delete('/deleteStaff/:id', (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndDelete({ _id: id })
         .then(staff => res.json(staff))
         .catch(err => res.status(500).json({ error: err.message }));
 });
+
+
+
 //delete department
+
+
 app.delete('/deletedept/:id', (req, res) => {
     const id = req.params.id;
     DeptModel.findByIdAndDelete({ _id: id })
