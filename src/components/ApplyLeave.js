@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useState} from "react";
 import Footer from "./Footer";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link ,useHistory} from "react-router-dom/cjs/react-router-dom.min";
+import axios from "axios";
 
 export default function ApplyLeave() {
   let boxstyle={
@@ -9,11 +10,118 @@ export default function ApplyLeave() {
     borderTop: '5px solid #004dffe8',
     borderRadius: '5px',
   }
-  // function call()
-  // {
-  //   let reason=document.getElementById('reason').value;
-  //   localStorage.setItem("coz",reason)
-  // }
+  const navigate=useHistory();
+  const [formData, setFormData] = useState({
+   reason:"",
+   user_id:"",
+   leave_startdate:"",
+   leave_enddate:"",
+   leave_description:"",
+  });
+
+  //handelChange is Link function where user can type the value and we can get the value of all the input fields
+  //on chnage and event are adding for this  here to type
+  let [user, setUser] = useState([]);
+
+  const handleChange = (event) => {
+    let oldData = { ...formData };
+    let inputName = event.target.name;
+    let inputValue = event.target.value;
+    oldData[inputName] = inputValue;
+    setFormData(oldData);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      try {
+        // API call to add staff member
+        const response = await axios.post("http://localhost:3001/applyLeave", formData);
+        if (response.status === 201) {
+          // Navigate to the staff list page after successful addition
+          alert("Leave applied Succesfully!!! Wait for approval :-)");
+          navigate.push("/manageleave");
+        } else {
+          alert("Error applying Leave ");
+        }
+      } catch (error) {
+        // Handle error response
+        if (error.response && error.response.status === 400) {
+          alert(error.response.data.error); // Display the error message to the user
+          alert("Error adding staffs for duplicate value. Try again with updated Data");
+        } else {
+          console.error("Error adding staff:", error);
+        }
+      }
+    }
+  
+  
+
+    // Handle form submission
+    let currentUserFormData = {
+    reason:formData.reason,
+    leave_startdate:formData.leave_startdate,
+    leave_enddate:formData.leave_enddate,
+    leave_description:formData.leave_description,
+    user_id:formData.user_id
+    };
+    let oldUserdata = [...user, currentUserFormData];
+    setUser(oldUserdata);
+    console.log(formData);
+    
+    // To empty the input field after adding/getting the data
+    setFormData({
+      reason:"",
+      
+      leave_description:"",
+      leave_startdate:"",
+      leave_enddate:"",
+      user_id:""
+    });
+  };
+  
+  const validateForm = () => {
+    const {
+     reason,
+     leave_startdate,
+     leave_enddate,
+     leave_description,
+     user_id
+    } = formData;
+    const errors = {};
+
+    if (!reason.trim()) {
+      errors.reason = "Reason is required";
+      document.getElementById("reason").focus();
+    } else if (!leave_description.trim()) {
+      errors.leave_description = "Description is required";
+      document.getElementById("leave_description").focus();
+    } else if (!leave_enddate.trim() ) {
+      errors.leave_enddate = "Leave End Date is required";
+      document.getElementById("leave_enddate").focus();
+    } else if (!leave_startdate.trim()) {
+      errors.leave_startdate = " Leave Start Date  is required";
+      document.getElementById("leave_startdate").focus();
+    } else if (!leave_description.trim()) {
+      errors.leave_description = " Describe your Leave Reason  is required";
+      document.getElementById("leave_description").focus();
+    }
+    else if (!user_id.trim()) {
+      errors.user_id = " Your Employee ID is required";
+      document.getElementById("user_id").focus();
+    }
+    if (Object.keys(errors).length === 0) {
+      return true;
+    } else {
+      alert(Object.values(errors)[0]);
+      return false;
+    }
+  };
+
+
+
+
+
   return (
     <>
     <nav
@@ -94,14 +202,31 @@ export default function ApplyLeave() {
           <div className="row d-flex justify-content-evenly" style={boxstyle}>
             <h5 style={{fontSize:'20px',}} className="px-2">Apply Leave</h5>
             <hr/>
-            <div className="col-sm-12 col-md-6 col-lg-5">
+            <div className="col-sm-12 col-md-4 col-lg-5">
               
+                <div className="mb-3">
+                  <b>Enter Your Employee ID</b>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="user_id"
+                    name="user_id"
+                    value={formData.user_id}
+                    onChange={handleChange}
+                    onSubmit={handleSubmit}
+                    placeholder="Employee ID" style={{border: '1px solid'}}
+                  />
+                </div>
                 <div className="mb-3">
                   <b>Reason</b>
                   <input
                     type="text"
                     className="form-control"
                     id="reason"
+                    name="reason"
+                    value={formData.reason}
+                    onChange={handleChange}
+                    onSubmit={handleSubmit}
                     placeholder="Reason" style={{border: '1px solid'}}
                   />
                 </div>
@@ -110,7 +235,11 @@ export default function ApplyLeave() {
                   <input
                     type="date"
                     className="form-control"
-                    id="startdate" style={{border: '1px solid'}}
+                    id="leave_startdate" style={{border: '1px solid'}}
+                    name="leave_startdate"
+                    value={formData.leave_startdate}
+                    onChange={handleChange}
+                    onSubmit={handleSubmit}
                   />
                 </div>
               
@@ -122,16 +251,33 @@ export default function ApplyLeave() {
                   <input
                     type="date"
                     className="form-control"
-                    id="enddate"
-                     style={{border: '1px solid'}}
+                    id="leave_enddate"
+                    name="leave_enddate"
+                    value={formData.leave_enddate}
+                    onChange={handleChange}
+                    onSubmit={handleSubmit}
+                    style={{border: '1px solid'}}
                   />
                 </div>
                 <div className="mb-3">
                   <b>Description</b>
-                  <textarea  className="form-control" placeholder="Description" id="description" style={{border: '1px solid'}}/>
+                  <textarea  
+                  className="form-control" 
+                  placeholder="Description" 
+                  id="leave_description" 
+                  name="leave_description"
+                  value={formData.leave_description}
+                  onChange={handleChange}
+                  onSubmit={handleSubmit}
+                  style={{border: '1px solid'}}/>
                   
                 </div>
-                <button type="submit" className="btn btn-primary float-end" id="applyleave" >
+                <button type="submit"
+                 className="btn btn-primary float-end"
+                  id="applyleave" 
+                  onClick={handleSubmit}
+                  onSubmit={handleSubmit}
+                  >
                   Submit
                 </button>
               
