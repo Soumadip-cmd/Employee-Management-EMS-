@@ -1,6 +1,6 @@
 import React from "react";
 import "./Myleave.css";
-import Footer from "./Footer";
+import Footer from "../Footer";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 export default function Myleave() {
   let boxstyle = {

@@ -9,10 +9,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Myleave from "./components/Myleave";
-import ApplyLeave from "./components/ApplyLeave";
-import Addsalary from "./components/Addsalary";
-import Managesalary from "./components/Managesalary";
+import Myleave from "./components/Leave/Myleave";
+import ApplyLeave from "./components/Leave/ApplyLeave";
+import Addsalary from "./components/Salary/Addsalary";
+import Managesalary from "./components/Salary/Managesalary";
 import AddDepartment from "./components/Department/AddDepartment";
 import ManageDepartment from "./components/Department/ManageDepartment";
 import AddStaff from "./components/Staff/AddStaff";

@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import Footer from "./Footer";
+import Footer from "../Footer";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 

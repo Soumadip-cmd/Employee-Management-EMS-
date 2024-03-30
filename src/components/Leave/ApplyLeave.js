@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import Footer from "./Footer";
+import Footer from "../Footer";
 import { Link ,useHistory} from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 
