@@ -17,7 +17,7 @@ export default function AddSalary() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/staffList");
+        const res = await axios.get("http://localhost:8001/staffList");
         setUsers(res.data);
       } catch (err) {
         console.log("Error fetching details", err);
@@ -54,7 +54,7 @@ export default function AddSalary() {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post("http://localhost:3001/addSalary", users);
+        const response = await axios.post("http://localhost:8001/addSalary", users);
         if (response.status === 201) {
           alert("Salary Added Successfully!!!");
           navigate.push('/manageSalary');

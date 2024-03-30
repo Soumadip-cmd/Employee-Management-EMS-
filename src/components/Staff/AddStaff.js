@@ -49,7 +49,7 @@ const navigate =useHistory()
       }
       try {
         // API call to add staff member
-        const response = await axios.post("http://localhost:3001/addStaff", formDataToSend);
+        const response = await axios.post("http://localhost:8001/addStaff", formDataToSend);
         if (response.status === 201) {
           // Navigate to the staff list page after successful addition
           alert("Data Successfully added");

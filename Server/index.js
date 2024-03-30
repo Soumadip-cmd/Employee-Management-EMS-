@@ -9,7 +9,7 @@ const path=require('path');
 const app = express();
 const DeptModel=require('./database/model/Dept');
 const SalaryModel = require('./database/model/Salary');
-
+const LeaveModel=require('./database/model/Leave');
 app.use(cors());
 
 dotenv.config();
@@ -263,13 +263,29 @@ app.delete('/deletedept/:id', (req, res) => {
         .catch(err => res.status(500).json({ error: err.message }));
 });
 
-// Leave Application
+// New Leave Application
 
-app.post("/applyLeave", LeaveApplication.single('leave_docx') ,(req, res)=>{
-    console.log(req.file)
+app.post("/applyLeave", LeaveApplication.single('leave_docx'), async (req, res) => {
+    // console.log(req.file);
+    const leaveData = req.body;
+    try {
+        const newLeave = await LeaveModel.create({
+            ...leaveData,
+            leave_docx: req.file.filename
+        });
+        // Return the newly created leave application with status code 201 (Created)
+        res.status(201).json({
+            message: "New leave request added successfully",
+            newLeave
+        });
+    } catch (error) {
+        // Handle any errors during leave application creation
+        console.error("Error adding leave request:", error);
+        res.status(500).json({ error: 'Failed to add leave Application' });
+    }
+});
 
-})
 
-app.listen(3001, () => {
-    console.log('Server is running on port 3001');
+app.listen(8001, () => {
+    console.log('Server is running on port 8001');
 });

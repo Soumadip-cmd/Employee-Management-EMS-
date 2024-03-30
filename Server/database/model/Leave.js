@@ -5,11 +5,11 @@ const LeaveSchema=new mongoose.Schema({
         required:true
     },
     leave_startdate:{
-        type:Date,
+        type:String,
         required:true
     },
     leave_enddate:{
-        type:Date,
+        type:String,
         required:true
 
     },

@@ -42,7 +42,7 @@ export default function ApplyLeave() {
       }
       try {
         // API call to add staff member
-        const response = await axios.post("http://localhost:3001/applyLeave", formDataToSend);
+        const response = await axios.post("http://localhost:8001/applyLeave", formDataToSend);
         if (response.status === 201) {
           // Navigate to the staff list page after successful addition
           alert("Leave applied Succesfully!!! Wait for approval :-)");
@@ -54,9 +54,10 @@ export default function ApplyLeave() {
         // Handle error response
         if (error.response && error.response.status === 400) {
           alert(error.response.data.error); // Display the error message to the user
-          alert("Error adding staffs for duplicate value. Try again with updated Data");
+          alert("Error adding new leave request for duplicate value. Try again with updated Data");
         } else {
-          console.error("Error adding staff:", error);
+          console.error("Error adding leave request:", error);
+          alert("Error adding new leave request",error);
         }
       }
     }

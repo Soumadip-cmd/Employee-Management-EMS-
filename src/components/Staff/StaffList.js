@@ -21,7 +21,7 @@ export default function StaffList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/staffList")
+      .get("http://localhost:8001/staffList")
       .then((result) => {
         setUsers(result.data);
         setLoading(false);
@@ -36,7 +36,7 @@ export default function StaffList() {
     // If confirmed, proceed with deletion
     if (confirmed) {
       axios
-        .delete("http://localhost:3001/deleteStaff/" + id)
+        .delete("http://localhost:8001/deleteStaff/" + id)
         .then((res) => {
           console.log(res);
           alert("Record Deleted successfully");
