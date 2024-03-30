@@ -53,7 +53,7 @@ const navigate =useHistory()
         if (response.status === 201) {
           // Navigate to the staff list page after successful addition
           alert("Data Successfully added");
-          navigate.push("/manageStaff");
+          navigate.push("/staffList");
         } else {
           alert("Error adding staff member");
         }
@@ -349,7 +349,7 @@ const navigate =useHistory()
               <input
                 className="form-control"
                 type="file"
-                accept="image/png"
+                accept="image/png/jpg/jpeg"
                 id="user_docx"
                 name="user_docx"
                
