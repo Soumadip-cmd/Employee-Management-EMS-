@@ -15,6 +15,8 @@ app.use(cors());
 dotenv.config();
 app.use(express.json());
 app.use('/Server/public', express.static(path.join(__dirname, 'public')));
+
+//leave application folder creation
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'Server/public/LeaveApplicationDocuments');
@@ -23,7 +25,7 @@ const storage = multer.diskStorage({
         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
     }
 });
-
+//Connect with multer with leave application
 const LeaveApplication = multer({
     storage: storage
 });

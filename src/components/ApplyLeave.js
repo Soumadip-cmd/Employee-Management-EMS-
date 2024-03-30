@@ -48,7 +48,7 @@ export default function ApplyLeave() {
           alert("Leave applied Succesfully!!! Wait for approval :-)");
           navigate.push("/manageleave");
         } else {
-          alert("Error applying Leave :-|");
+          alert("Error applying Leave :-(");
         }
       } catch (error) {
         // Handle error response
