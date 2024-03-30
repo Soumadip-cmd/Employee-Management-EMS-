@@ -26,39 +26,23 @@ export default function ApplyLeave() {
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;
-    let oldData = { ...formData };
-  
-    if (type === "file") {
-      const file = event.target.files[0];
-      const maxSizeInBytes = 150 * 1024;
-      if (file) {
-        // Check file size
-        if (file.size > maxSizeInBytes) {
-          alert("File size exceeds the maximum limit of 150KB.");
-          // Clear the input field
-         
-          return;
-        }
-        
-        oldData[name] = file;
-      }
-    } else {
-      // If it's not a file input, update the state with the regular value
-      oldData[name] = value;
-    }
-  
-    // Update the state with the modified data
-    setFormData(oldData);
-   
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "file" ? event.target.files[0] : value
+    }));
   };
   
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
       try {
         // API call to add staff member
-        const response = await axios.post("http://localhost:3001/applyLeave", formData);
+        const response = await axios.post("http://localhost:3001/applyLeave", formDataToSend);
         if (response.status === 201) {
           // Navigate to the staff list page after successful addition
           alert("Leave applied Succesfully!!! Wait for approval :-)");
@@ -313,7 +297,7 @@ export default function ApplyLeave() {
                     accept="png/pdf"
                    
                     onChange={handleChange}
-                    onSubmit={handleSubmit}
+                    
                     style={{border: '1px solid'}}
                   />
                 </div>

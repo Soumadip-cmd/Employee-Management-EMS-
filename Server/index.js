@@ -5,14 +5,40 @@ const dotenv = require('dotenv');
 const Connection = require('./database/connection/db');
 const UserModel = require('./database/model/User');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const path=require('path');
 const app = express();
 const DeptModel=require('./database/model/Dept');
 const SalaryModel = require('./database/model/Salary');
+
 app.use(cors());
 
 dotenv.config();
 app.use(express.json());
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Server/public/LeaveApplicationDocuments');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const LeaveApplication = multer({
+    storage: storage
+});
+
+//Multer instance for add staff user photo
+
+const StaffPhotoStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Server/public/StaffPhotos');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage:StaffPhotoStorage });
+
 
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
@@ -58,9 +84,9 @@ app.get('/editDept/:id', (req, res) => {
 // Add staff members
 
 
-app.post('/addStaff', upload.single('userPhoto'), async (req, res) => {
+app.post('/addStaff', upload.single('user_docx'), async (req, res) => {
     const userData = req.body;
-
+    console.log(req.file)
     try {
         // Check if a department with similar details already exists
         const existingUser = await UserModel.findOne({
@@ -239,8 +265,9 @@ app.delete('/deletedept/:id', (req, res) => {
 
 // Leave Application
 
-app.post("/applyLeave", (req, res)=>{
-    
+app.post("/applyLeave", LeaveApplication.single('leave_docx') ,(req, res)=>{
+    console.log(req.file)
+
 })
 
 app.listen(3001, () => {

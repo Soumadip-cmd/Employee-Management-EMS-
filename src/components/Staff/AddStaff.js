@@ -33,19 +33,23 @@ const navigate =useHistory()
   let [user, setUser] = useState([]);
 
   const handleChange = (event) => {
-    let oldData = { ...formData };
-    let inputName = event.target.name;
-    let inputValue = event.target.value;
-    oldData[inputName] = inputValue;
-    setFormData(oldData);
+    const { name, value, type } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "file" ? event.target.files[0] : value
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
       try {
         // API call to add staff member
-        const response = await axios.post("http://localhost:3001/addStaff", formData);
+        const response = await axios.post("http://localhost:3001/addStaff", formDataToSend);
         if (response.status === 201) {
           // Navigate to the staff list page after successful addition
           alert("Data Successfully added");
@@ -348,9 +352,9 @@ const navigate =useHistory()
                 accept="image/png"
                 id="user_docx"
                 name="user_docx"
-                value={formData.user_docx}
+               
                 onChange={handleChange}
-                onSubmit={handleSubmit}
+                
                 style={{ border: "1px solid" }}
                 required
               />
