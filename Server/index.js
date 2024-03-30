@@ -14,6 +14,7 @@ app.use(cors());
 
 dotenv.config();
 app.use(express.json());
+app.use('/Server/public', express.static(path.join(__dirname, 'public')));
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'Server/public/LeaveApplicationDocuments');
@@ -86,9 +87,9 @@ app.get('/editDept/:id', (req, res) => {
 
 app.post('/addStaff', upload.single('user_docx'), async (req, res) => {
     const userData = req.body;
-    console.log(req.file)
+    console.log(req.file);
     try {
-        // Check if a department with similar details already exists
+        // Check if a user with similar details already exists
         const existingUser = await UserModel.findOne({
             $or: [
                 { user_email: userData.user_email },
@@ -101,24 +102,21 @@ app.post('/addStaff', upload.single('user_docx'), async (req, res) => {
             if (existingUser.user_email === userData.user_email) {
                 duplicateFields.push('Email');
             }
-
             if (existingUser.user_phone === userData.user_phone) {
                 duplicateFields.push('Phone number');
             }
-
             const errorMessage = `User with the same ${duplicateFields.join(' and ')} already exists`;
             return res.status(400).json({ error: errorMessage });
         }
 
         // Create a new staff member
-        const newStaff = await UserModel.create(userData);
-
-
-       
+        const newStaff = await UserModel.create({
+            ...userData,
+            user_docx: req.file.filename // Attach filename to user data
+        });
 
         res.status(201).json({
             message: 'Staff member added successfully',
-            
             newStaff
         });
     } catch (error) {
@@ -126,6 +124,7 @@ app.post('/addStaff', upload.single('user_docx'), async (req, res) => {
         res.status(500).json({ error: 'Failed to add staff member' });
     }
 });
+
 
 
 

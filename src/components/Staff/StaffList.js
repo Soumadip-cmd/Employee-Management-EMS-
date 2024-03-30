@@ -7,7 +7,7 @@ export default function StaffList() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  
   // Function to format ISO date to MM/DD/YYYY format
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
@@ -24,7 +24,9 @@ export default function StaffList() {
       .get("http://localhost:8001/staffList")
       .then((result) => {
         setUsers(result.data);
+        
         setLoading(false);
+        console.log(result.data)
       })
       .catch((err) => setError(err.message)); // Handle errors
   }, []);
@@ -103,7 +105,12 @@ export default function StaffList() {
                     <td>{user.user_phone}</td>
                     <td>{formatDate(user.user_birthday)}</td>
                     <td>
-                      <img src={user.user_docx} alt="UserPhoto" />
+                      <img src={`http://localhost:8001/Server/public/StaffPhotos/${user.user_docx}`} 
+                      alt="UserPhoto" 
+                      height="111px"
+                      width="149px"
+
+                      />
                     </td>
                     <td>{user.user_department}</td>
                     <td>{user.user_workingtype}</td>
