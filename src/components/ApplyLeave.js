@@ -36,7 +36,7 @@ export default function ApplyLeave() {
         if (file.size > maxSizeInBytes) {
           alert("File size exceeds the maximum limit of 150KB.");
           // Clear the input field
-          event.target.value = null;
+         
           return;
         }
         
@@ -49,6 +49,7 @@ export default function ApplyLeave() {
   
     // Update the state with the modified data
     setFormData(oldData);
+   
   };
   
   
@@ -90,7 +91,8 @@ export default function ApplyLeave() {
     let oldUserdata = [...user, currentUserFormData];
     setUser(oldUserdata);
     console.log(formData);
-    
+
+  
     // To empty the input field after adding/getting the data
     setFormData({
       reason:"",
@@ -99,7 +101,7 @@ export default function ApplyLeave() {
       leave_startdate:"",
       leave_enddate:"",
       user_id:"",
-      leave_docx:""
+      leave_docx:"",
     });
   };
   

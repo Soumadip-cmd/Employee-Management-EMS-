@@ -237,6 +237,12 @@ app.delete('/deletedept/:id', (req, res) => {
         .catch(err => res.status(500).json({ error: err.message }));
 });
 
+// Leave Application
+
+app.post("/applyLeave", (req, res)=>{
+    
+})
+
 app.listen(3001, () => {
     console.log('Server is running on port 3001');
 });
