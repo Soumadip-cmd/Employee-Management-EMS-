@@ -1,13 +1,13 @@
 import React from "react";
 import Sidebar from "./components/Sidebar";
-import { useEffect, useState } from "react";
-import { auth } from "./components/firebase";
+// import { useEffect, useState } from "react";
+// import { auth } from "./components/firebase";
 import Dashboard from "./components/Dashboard";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
+ 
 } from "react-router-dom";
 import Myleave from "./components/Leave/Myleave";
 import ApplyLeave from "./components/Leave/ApplyLeave";
@@ -23,29 +23,29 @@ import Error from "./components/Login/Error";
 import StaffList from "./components/Staff/StaffList";
 import EditStaff from "./components/Staff/EditStaff";
 import EditDepartment from "./components/Department/EditDepartment";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import ViewDepartment from "./components/Department/ViewDepartment";
 
 function App() {
-  const [userName, setUserName] = useState("");
+  // const [userName, setUserName] = useState("");
 
   //--------------------Auth Handeling-----------------------
-  let history = useHistory();
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUserName(user.displayName);
-      } else {
-        setUserName("");
-      }
-    });
+  // let history = useHistory();
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       setUserName(user.displayName);
+  //     } else {
+  //       setUserName("");
+  //     }
+  //   });
 
-    return () => {
-      unsubscribe();
-    };
-  }, []); // Empty dependency array to run the effect only once on mount
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []); // Empty dependency array to run the effect only once on mount
 
-  const isAuthenticated = userName !== "";
+  // const isAuthenticated = userName !== "";
 
   //------Authentication Complete -------------------------------------------
 
