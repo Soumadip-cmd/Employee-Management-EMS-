@@ -17,20 +17,45 @@ export default function ApplyLeave() {
    leave_startdate:"",
    leave_enddate:"",
    leave_description:"",
+   leave_docx:""
   });
 
   //handelChange is Link function where user can type the value and we can get the value of all the input fields
   //on chnage and event are adding for this  here to type
   let [user, setUser] = useState([]);
 
-  const handleChange = (event) => {
-    let oldData = { ...formData };
-    let inputName = event.target.name;
-    let inputValue = event.target.value;
-    oldData[inputName] = inputValue;
-    setFormData(oldData);
-  };
 
+  const handleChange = (event) => {
+    const { name, value, type } = event.target;
+  
+    if (type === "file") {
+      const file = event.target.files[0];
+      const maxSizeInBytes = 150 * 1024; 
+      
+      
+      if (file) {
+       
+        if (file.size > maxSizeInBytes) {
+          alert("File size exceeds the maximum limit of 150KB.");
+          // Clear the input field
+          event.target.value = null;
+          return;
+        }
+        // If file size is within limit, update the state with the file
+        setFormData({
+          ...formData,
+          [name]: file,
+        });
+      }
+    } else {
+      // If it's not a file input, update the state with the regular value as before
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
@@ -42,7 +67,7 @@ export default function ApplyLeave() {
           alert("Leave applied Succesfully!!! Wait for approval :-)");
           navigate.push("/manageleave");
         } else {
-          alert("Error applying Leave ");
+          alert("Error applying Leave :-|");
         }
       } catch (error) {
         // Handle error response
@@ -63,7 +88,8 @@ export default function ApplyLeave() {
     leave_startdate:formData.leave_startdate,
     leave_enddate:formData.leave_enddate,
     leave_description:formData.leave_description,
-    user_id:formData.user_id
+    user_id:formData.user_id,
+    leave_docx:formData.leave_docx,
     };
     let oldUserdata = [...user, currentUserFormData];
     setUser(oldUserdata);
@@ -76,7 +102,8 @@ export default function ApplyLeave() {
       leave_description:"",
       leave_startdate:"",
       leave_enddate:"",
-      user_id:""
+      user_id:"",
+      leave_docx:""
     });
   };
   
@@ -86,7 +113,8 @@ export default function ApplyLeave() {
      leave_startdate,
      leave_enddate,
      leave_description,
-     user_id
+     user_id,
+     
     } = formData;
     const errors = {};
 
@@ -206,6 +234,7 @@ export default function ApplyLeave() {
               
                 <div className="mb-3">
                   <b>Enter Your Employee ID</b>
+                  <span style={{ color: 'red' }}>*</span>
                   <input
                     type="text"
                     className="form-control"
@@ -219,6 +248,7 @@ export default function ApplyLeave() {
                 </div>
                 <div className="mb-3">
                   <b>Reason</b>
+                  <span style={{ color: 'red' }}>*</span>
                   <input
                     type="text"
                     className="form-control"
@@ -232,6 +262,7 @@ export default function ApplyLeave() {
                 </div>
                 <div className="mb-3">
                   <b>Leave From</b>
+                  <span style={{ color: 'red' }}>*</span>
                   <input
                     type="date"
                     className="form-control"
@@ -248,6 +279,7 @@ export default function ApplyLeave() {
               
                 <div className="mb-3">
                   <b>Leave To</b>
+                  <span style={{ color: 'red' }}>*</span>
                   <input
                     type="date"
                     className="form-control"
@@ -261,6 +293,7 @@ export default function ApplyLeave() {
                 </div>
                 <div className="mb-3">
                   <b>Description</b>
+                  <span style={{ color: 'red' }}>*</span>
                   <textarea  
                   className="form-control" 
                   placeholder="Description" 
@@ -271,6 +304,20 @@ export default function ApplyLeave() {
                   onSubmit={handleSubmit}
                   style={{border: '1px solid'}}/>
                   
+                </div>
+                <div className="mb-3">
+                  <b>Upload Supporting Documents (Optional, Except for Urgent Cases)</b>
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="leave_docx"
+                    name="leave_docx"
+                    accept="png/pdf"
+                   
+                    onChange={handleChange}
+                    onSubmit={handleSubmit}
+                    style={{border: '1px solid'}}
+                  />
                 </div>
                 <button type="submit"
                  className="btn btn-primary float-end"
