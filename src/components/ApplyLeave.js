@@ -24,37 +24,33 @@ export default function ApplyLeave() {
   //on chnage and event are adding for this  here to type
   let [user, setUser] = useState([]);
 
-
   const handleChange = (event) => {
     const { name, value, type } = event.target;
+    let oldData = { ...formData };
   
     if (type === "file") {
       const file = event.target.files[0];
-      const maxSizeInBytes = 150 * 1024; 
-      
-      
+      const maxSizeInBytes = 150 * 1024;
       if (file) {
-       
+        // Check file size
         if (file.size > maxSizeInBytes) {
           alert("File size exceeds the maximum limit of 150KB.");
           // Clear the input field
           event.target.value = null;
           return;
         }
-        // If file size is within limit, update the state with the file
-        setFormData({
-          ...formData,
-          [name]: file,
-        });
+        
+        oldData[name] = file;
       }
     } else {
-      // If it's not a file input, update the state with the regular value as before
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+      // If it's not a file input, update the state with the regular value
+      oldData[name] = value;
     }
+  
+    // Update the state with the modified data
+    setFormData(oldData);
   };
+  
   
   const handleSubmit = async (e) => {
     e.preventDefault();
