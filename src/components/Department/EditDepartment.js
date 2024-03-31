@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory} from "react-router-dom";
+import { useParams} from "react-router-dom";
 
 export default function EditDepartment() {
   const { id } = useParams();
-  const navigate = useHistory();
+  // const navigate = useHistory();
 
   // Define formData state
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ export default function EditDepartment() {
   });
 
   // Define user state
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
 
   useEffect(() => {
     axios

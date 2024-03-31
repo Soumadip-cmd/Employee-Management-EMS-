@@ -5,19 +5,19 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 export default function AddDepartment() {
-  const navStyle = {
-    backgroundColor: "/4b6cb7",
-    backgroundImage: "linear-gradient(to right, /ff6b6b, /556270)",
-    color: "/fff",
-    padding: "10px",
-  };
+  // const navStyle = {
+  //   backgroundColor: "/4b6cb7",
+  //   backgroundImage: "linear-gradient(to right, /ff6b6b, /556270)",
+  //   color: "/fff",
+  //   padding: "10px",
+  // };
 
-  const linkStyle = {
-    fontSize: "1.5rem",
-    color: "/fff",
-    cursor: "pointer",
-    marginLeft: "20px",
-  };
+  // const linkStyle = {
+  //   fontSize: "1.5rem",
+  //   color: "/fff",
+  //   cursor: "pointer",
+  //   marginLeft: "20px",
+  // };
   
   return (
     <>
