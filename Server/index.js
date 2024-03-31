@@ -130,19 +130,21 @@ app.post('/addStaff', upload.single('user_docx'), async (req, res) => {
 
 
 
-// Dashboard count for staff depts etc
+// Dashboard count for staff depts,leaveRequest etc
 
 
 app.get('/dashboardCount', async (req, res) => {
     try {
         const staffcount = await UserModel.countDocuments();
         const deptcount = await DeptModel.countDocuments();
-        res.json({ staffcount, deptcount });
+        const leaveRequestCount = await LeaveModel.countDocuments();
+        res.json({ staffcount, deptcount,leaveRequestCount });
     } catch (error) {
         console.error('Error fetching counts:', error);
         res.status(500).json({ error: 'Failed to fetch counts' });
     }
 });
+
 
 
 

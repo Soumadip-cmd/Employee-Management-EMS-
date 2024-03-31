@@ -24,6 +24,9 @@ const LeaveSchema=new mongoose.Schema({
     leave_docx:{
         type:String,
         required:true
+    },
+    leaveCount:{
+        type:String,
     }
    
 });

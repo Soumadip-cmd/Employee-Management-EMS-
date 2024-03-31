@@ -6,7 +6,7 @@ import axios from "axios";
 const Dashboard = () => {
   const [staffCount, setStaffCount] = useState(0);
   const [deptCount, setDeptCount] = useState(0);
-
+  const [leaveRequest, setLeaveRequest] = useState(0)
   useEffect(() => {
     fetchDashboardCount();
   }, []);
@@ -17,6 +17,7 @@ const Dashboard = () => {
       console.log(response.data);
       setStaffCount(response.data.staffcount); 
       setDeptCount(response.data.deptcount); 
+      setLeaveRequest(response.data.leaveRequestCount);
     } catch (error) {
       console.error("Error fetching counts:", error);
     }
@@ -54,7 +55,7 @@ const Dashboard = () => {
           </div>
           <div className="col-sm-12 col-md-6 col-lg-3">
             <Card
-              number="0" 
+              number={leaveRequest} 
               category="Leave Requests"
               cardbgcolor="#c70d0d"
               pageLink="/leavehistory"
