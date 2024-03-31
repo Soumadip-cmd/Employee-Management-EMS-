@@ -1,90 +1,94 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import "./Myleave.css";
 import Footer from "../Footer";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
 export default function Myleave() {
-  let boxstyle = {
-    background: "white",
-    padding: "21px",
-    borderTop: "5px solid #004dffe8",
-    borderRadius: "5px",
-    height: "auto",
-  };
-  
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8001/staffList").then((result) => {
+      setUsers(result.data[0]);
+      console.log(result.data);
+    });
+  }, []);
+
   return (
     <>
-      <div style={{minHeight:'100%'}}>
-      <nav
-        className="navbar navbar-expand-lg"
-        style={{backgroundColor: "rgb(0 77 255 / 65%)" }}
-      >
-        <div className="container">
-          <Link className="navbar-brand" style={{ fontSize: "25px",color:'white',letterSpacing:".05125em"}} to="/">
-            Leave
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="/navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          > 
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <Link className="nav-link" style={{ color:'white' }} to="/">
-                  <span className="ms-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="14"
-                      fill="currentColor"
-                      className="bi bi-house"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
-                    </svg>
-                  </span>
-                  Home
-                  <span className="ms-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="bi bi-arrow-left-short"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  style={{ color:'white' }}
-                  to="/Applyleave"
-                >
-                  Apply Leave
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" style={{ color:'white' }} to='/leavehistory'>
-                  Leave
-                </Link>
-              </li>
-            </ul>
+      <div style={{ minHeight: "100%" }}>
+        <nav
+          className="navbar navbar-expand-lg"
+          style={{ backgroundColor: "rgb(0 77 255 / 65%)" }}
+        >
+          <div className="container">
+            <Link
+              className="navbar-brand"
+              style={{ fontSize: "25px", color: "white", letterSpacing: ".05125em" }}
+              to="/"
+            >
+              Leave
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="/navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" style={{ color: "white" }} to="/">
+                    <span className="ms-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="14"
+                        fill="currentColor"
+                        className="bi bi-house"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                      </svg>
+                    </span>
+                    Home
+                    <span className="ms-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-arrow-left-short"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"
+                        />
+                      </svg>
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" style={{ color: "white" }} to="/Applyleave">
+                    Apply Leave
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" style={{ color: "white" }} to="/leavehistory">
+                    Leave
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
         <div className="container my-2 pt-3">
           <h2>Leave Management</h2>
         </div>
@@ -93,108 +97,76 @@ export default function Myleave() {
           <br />
           Show
           <select className="p-2 m-1 px-3">
-            <option value={1} id="num1">
-              1
-            </option>
-            <option value={2} id="num2">
-              2
-            </option>
-            <option value={3} id="num3">
-              3
-            </option>
-            <option value={4} id="num4">
-              4
-            </option>
-            <option value={5} id="num5">
-              5
-            </option>
-            <option value={6} id="num6">
-              6
-            </option>
-            <option value={7} id="num7">
-              7
-            </option>
-            <option value={8} id="num8">
-              8
-            </option>
-            <option value={9} id="num9">
-              9
-            </option>
-            <option value={10} id="num10">
-              10
-            </option>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
           </select>
           entries
-          <form class="d-flex float-end">
+          <form className="d-flex float-end">
             <input
-              class="form-control me-2"
+              className="form-control me-2"
               type="search"
               placeholder="Search.."
               aria-label="Search"
             />
-            <button class="btn btn-outline-danger" type="submit">
+            <button className="btn btn-outline-danger" type="submit">
               Search
             </button>
           </form>
           <div className="container m-2">
             <div className="row">
-              <table>
+              <table className="table table-bordered">
                 <thead>
                   <tr>
-                    <th className="col-1 bg- p-1 px-2 tablestyle text-center">
-                      #
-                    </th>
-                    <th className="col bg- p-1 px-2 tablestyle">Reason</th>
-                    <th className="col bg- p-1 px-2 tablestyle">From</th>
-                    <th className="col bg- p-1 px-2 tablestyle">To</th>
-                    <th className="col bg- p-1 px-2 tablestyle">Status</th>
-                    <th className="col-5 bg- p-1 px-2 tablestyle">
-                      Description
-                    </th>
-                    <th className="col bg- p-1 px-2 tablestyle">Applied On</th>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Reason</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Applied On</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="col-1 bg- p-1 px-2 tablestyle text-center">
-                      1
+                    <td>1</td>
+                    <td>{users.user_name}</td>
+                    <td>22-01-2024</td>
+                    <td>01-02-2024</td>
+                    <td>
+                      <span className="badge bg-success">Approved</span>
                     </td>
-                    <td className="col bg- p-1 px-2 tablestyle">Somereason</td>
-                    <td className="col bg- p-1 px-2 tablestyle">22-1-24</td>
-                    <td className="col bg- p-1 px-2 tablestyle">1-2-24</td>
-                    <td className="col bg- p-1 px-2 tablestyle">
-                      <span class="badge bg-success">Approved</span>
+                    <td>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, earum
+                      laborum minus aliquid atque quod beatae fuga magnam a explicabo nesciunt iste
+                      saepe placeat dicta possimus amet architecto! Quia?
                     </td>
-                    <td className="col-5 bg- p-1 px-2 tablestyle">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Vitae rerum, earum laborum minus aliquid atque quod beatae
-                      fuga magnam a explicabo nesciunt iste saepe placeat dicta
-                      possimus amet architecto! Quia?
-                    </td>
-                    <td className="col bg- p-1 px-2 tablestyle">20-12-23</td>
+                    <td>20-12-2023</td>
+                    <td>20-12-2023</td> {/* Assuming this is the Applied On date */}
+                    <td>Action buttons here</td>
                   </tr>
-                  
                 </tbody>
               </table>
             </div>
           </div>
-          <div
-            className="container m-2"
-            style={{ background: "white", height: "25px" }}
-          >
-            <p className="float-start my-2">Showing 1 to2 of 2 entries</p>
+          <div className="container m-2" style={{ background: "white", height: "25px" }}>
+            <p className="float-start my-2">Showing 1 to 2 of 2 entries</p>
             <div
-              class="btn-group float-end my-2"
+              className="btn-group float-end my-2"
               role="group"
               aria-label="Basic outlined example"
             >
-              <button type="button" class="btn btn-outline-primary">
+              <button type="button" className="btn btn-outline-primary">
                 &#11164;
               </button>
-              <button type="button" class="btn btn-outline-primary active">
+              <button type="button" className="btn btn-outline-primary active">
                 1
               </button>
-              <button type="button" class="btn btn-outline-primary">
+              <button type="button" className="btn btn-outline-primary">
                 &#11166;
               </button>
             </div>
@@ -206,3 +178,11 @@ export default function Myleave() {
     </>
   );
 }
+
+const boxstyle = {
+  background: "white",
+  padding: "21px",
+  borderTop: "5px solid #004dffe8",
+  borderRadius: "5px",
+  height: "auto",
+};
