@@ -34,7 +34,7 @@ export default function NewDepartment() {
       return; // Prevent further execution of the function
     }
     try {
-      const res = await axios.post("http://localhost:3001/adddept", formData);
+      const res = await axios.post("http://localhost:8001/adddept", formData);
       if (res.status === 201) {
         setShowSuccessAlert(true);
         setShowErrorAlert(false); // Reset the error alert state
