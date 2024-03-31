@@ -147,7 +147,10 @@ export default function Myleave() {
                 <td>22-01-2024</td>
                 <td>01-02-2024</td>
                 <td>
-                <span className="badge bg-success">Approved</span>
+                <span className="badge bg-success"
+                style={{
+                  cursor:"not-allowed"
+                }}>Approved</span>
                 </td>
                 <td>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, earum
