@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import "./Myleave.css";
 import Footer from "../Footer";
@@ -10,7 +9,7 @@ export default function Myleave() {
 
   useEffect(() => {
     axios.get("http://localhost:8001/staffList").then((result) => {
-      setUsers(result.data[0]);
+      setUsers(result.data);
       console.log(result.data);
     });
   }, []);
@@ -122,6 +121,7 @@ export default function Myleave() {
                   <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Photo</th>
                     <th>From</th>
                     <th>To</th>
                     <th>Reason</th>
@@ -132,24 +132,54 @@ export default function Myleave() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>{users.user_name}</td>
-                    <td>22-01-2024</td>
-                    <td>01-02-2024</td>
-                    <td>
-                      <span className="badge bg-success">Approved</span>
-                    </td>
-                    <td>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, earum
-                      laborum minus aliquid atque quod beatae fuga magnam a explicabo nesciunt iste
-                      saepe placeat dicta possimus amet architecto! Quia?
-                    </td>
-                    <td>20-12-2023</td>
-                    <td>20-12-2023</td> {/* Assuming this is the Applied On date */}
-                    <td>Action buttons here</td>
-                  </tr>
-                </tbody>
+                {users.map((user, index) => (
+                <tr key={user._id}>
+                <td>{index + 1}</td>
+                <td>{user.user_name}</td>
+                <td>
+                <img src={`http://localhost:8001/Server/public/StaffPhotos/${user.user_docx}`} 
+                  alt="UserPhoto" 
+                  height="111px"
+                  width="149px"
+
+                />
+                </td>
+                <td>22-01-2024</td>
+                <td>01-02-2024</td>
+                <td>
+                <span className="badge bg-success">Approved</span>
+                </td>
+                <td>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, earum
+                laborum minus aliquid atque quod beatae fuga magnam a explicabo nesciunt iste
+                saepe placeat dicta possimus amet architecto! Quia?
+                </td>
+                <td>20-12-2023</td>
+                <td>20-12-2023</td> {/* Assuming this is the Applied On date */}
+                <td>
+                <span className="badge bg-success"
+                style={{
+                  margin:"5px",
+                  pading:"30px",
+                  width:"65px",
+                  height:"25px",
+                  cursor:"pointer"
+                }}>Approve</span>
+                <span className="badge bg-danger"
+                style={{
+                  margin:"5px",
+                  pading:"30px",
+                  width:"65px",
+                  height:"23px",
+                  cursor:"pointer"
+                }}
+                >Reject</span>
+
+                </td>
+                </tr>
+              ))}
+            </tbody>
+
               </table>
             </div>
           </div>
