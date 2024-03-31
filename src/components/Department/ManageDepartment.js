@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./ManageDepartment.css";
-import EditDepartment from "./EditDepartment";
-import ViewDepartment from "./ViewDepartment";
+// import EditDepartment from "./EditDepartment";
+// import ViewDepartment from "./ViewDepartment";
 import Footer from "../Footer";
 import { Link } from "react-router-dom";
 
 export default function ManageDepartment() {
-  const tableStyle = {
-    background: "linear-gradient(135deg, #2980b9, #6dd5fa)", // Gradient background
-    color: "#fff", // Text color
-  };
+  // const tableStyle = {
+  //   background: "linear-gradient(135deg, #2980b9, #6dd5fa)", // Gradient background
+  //   color: "#fff", // Text color
+  // };
 
   const navigate = useHistory();
 
@@ -27,7 +27,7 @@ export default function ManageDepartment() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [user, setUser] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Maintain authentication state
+  // const [isAuthenticated, setIsAuthenticated] = useState(false); // Maintain authentication state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +36,7 @@ export default function ManageDepartment() {
           "http://localhost:8001/manageDepartment"
         );
         setUser(response.data);
-        setIsAuthenticated(true); // Set isAuthenticated to true when data is fetched successfully
+        // setIsAuthenticated(true); // Set isAuthenticated to true when data is fetched successfully
       } catch (error) {
         setError(error.message);
       } finally {
