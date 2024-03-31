@@ -15,7 +15,7 @@
     "concurrently": "^8.2.2",
     "create-react-app": "^5.0.1",
     "firebase": "^10.9.0",
-    "html2pdf.js": "^0.10.1",
+    "html2pdf.js": "^0.9.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",
