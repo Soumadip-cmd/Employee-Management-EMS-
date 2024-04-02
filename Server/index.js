@@ -10,11 +10,18 @@ const app = express();
 const DeptModel=require('./database/model/Dept');
 const SalaryModel = require('./database/model/Salary');
 const LeaveModel=require('./database/model/Leave');
+
 app.use(cors());
 
 dotenv.config();
 app.use(express.json());
 app.use('/Server/public', express.static(path.join(__dirname, 'public')));
+app.use(require(path.join(__dirname,'Routes/UserRoute.js')))
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
 
 //leave application folder creation
 const storage = multer.diskStorage({

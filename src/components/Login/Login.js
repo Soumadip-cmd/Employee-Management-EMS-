@@ -1,34 +1,39 @@
-import { useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Login = () => {
-	const [data, setData] = useState({ email: "", password: "" });
-	const [error, setError] = useState("");
+	const [login,setLogin]=useState({"email":"","password":""})
 
-	const handleChange = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.value });
-	};
-
-	const handleSubmit = async (e) => {
+	let history=useHistory(null)
+	const handleSubmit=async(e)=>{
 		e.preventDefault();
-		try {
-			const url = "http://localhost:8001/login";
-			const { data: res } = await axios.post(url, data);
-			localStorage.setItem("token", res.data);
-			window.location = "/";
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
+		let email = Array.isArray(login.email) ? login.email[0] : login.email;
+		let password = Array.isArray(login.password) ? login.password[0] : login.password;
+		const url="http://localhost:8001/login"
+		const response = await fetch(url, {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			body: JSON.stringify({email:email,password:password})
+		  });
+		  const json=await response.json()
+		//   console.log(json)
+		if(json.success)
+		{
+			localStorage.setItem('Tag-Number',json.Tag_Number)
+			history.push('/')
 		}
-	};
-
+		else{
+			alert('LOGIN FAILED..Check Again!')
+		}
+		
+	}
+	const changing=(e)=>{
+		setLogin({...login,[e.target.name]:[e.target.value]})
+	}
 	return (
 		<div className={styles.login_container}>
 			<div className={styles.login_form_container}>
@@ -39,8 +44,8 @@ const Login = () => {
 							type="email"
 							placeholder="Email"
 							name="email"
-							onChange={handleChange}
-							value={data.email}
+							onChange={changing}
+							value={login.email}
 							required
 							className={styles.input}
 						/>
@@ -48,14 +53,14 @@ const Login = () => {
 							type="password"
 							placeholder="Password"
 							name="password"
-							onChange={handleChange}
-							value={data.password}
+							onChange={changing}
+							value={login.password}
 							required
 							className={styles.input}
 						/>
-						{error && <div className={styles.error_msg}>{error}</div>}
+					 
 						<button type="submit" className={styles.green_btn}>
-							Sing In
+							Sign In
 						</button>
 					</form>
 				</div>
@@ -63,7 +68,7 @@ const Login = () => {
 					<h1>New Here ?</h1>
 					<Link to="/signup">
 						<button type="button" className={styles.white_btn}>
-							Sing Up
+							Sign Up
 						</button>
 					</Link>
 				</div>
