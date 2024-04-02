@@ -1,4 +1,4 @@
-const express = require('express')
+
 const jwt = require('jsonwebtoken')
 
 const JWT_SECRET = 'ems-ardent$3%67@Emgineers2024'

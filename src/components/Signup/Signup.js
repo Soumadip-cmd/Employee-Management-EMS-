@@ -30,7 +30,7 @@ const Signup = () => {
 		if(json.success)
 		{
 			localStorage.setItem('Tag-Number',json.Token)
-			history.push('/')
+			history.push('/login')
 		}
 		else{
 			alert('INVALID CREDENTIALS..Check Again!')

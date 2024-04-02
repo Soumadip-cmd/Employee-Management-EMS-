@@ -47,7 +47,7 @@ router.post('/signupAuth', [
         success=true
         var token = jwt.sign(data, JWT_SECRET)
         res.json({success:success, 'Token': token });
-          console.log(data)
+        //   console.log(data)
     } catch (error) {
         console.error(error.message)
         res.status(505).json({success:"success", error: 'Internal Server Error!!..' })
@@ -76,7 +76,7 @@ router.post('/login', [
             res.status(404).json({success:success, error: 'Login Failed..' })
         }
         const comparePass = await bcrypt.compare(password, user.password)
-        // console.log(user.password)
+        console.log(user.password)
         if (!comparePass) {
             console.log('password not valid');
             res.status(404).json({success:success, error: 'Login Failed..' })
