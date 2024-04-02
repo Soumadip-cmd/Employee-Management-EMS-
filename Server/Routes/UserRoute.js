@@ -47,10 +47,10 @@ router.post('/signupAuth', [
         success=true
         var token = jwt.sign(data, JWT_SECRET)
         res.json({success:success, 'Token': token });
-        //   console.log(data)
+          console.log(data)
     } catch (error) {
         console.error(error.message)
-        res.status(505).json({success:success, error: 'Internal Server Error!!..' })
+        res.status(505).json({success:"success", error: 'Internal Server Error!!..' })
     }
 
 })
