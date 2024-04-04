@@ -24,6 +24,7 @@ const Login = () => {
 				} if(response.data.role === "user") {
 					history.push('/user');
                     alert("You logged in as a User")
+                    localStorage.setItem('userEmail', response.data.email);
 				}
 			} else {
 				alert("Login failed. Please try again.");
