@@ -54,7 +54,7 @@ app.post('/login', (req, res) => {
             if (user) {
                 bcrypt.compare(password, user.password, (err, response) => {
                     if (response) {
-                        const token = jwt.sign({ email: user.email, userType: user.userType }, "jwt-secret-key", { expiresIn: '1d' });
+                        const token = jwt.sign({ email: user.email, userType: user.userType }, "emsSecureKey@2024#", { expiresIn: '1d' });
                         return res.json({ token: token, status: "Success", role: user.userType });
                     } else {
                         return res.json("The password is incorrect");
@@ -72,7 +72,7 @@ const verifyUser = (req, res, next) => {
     if (!token) {
         return res.json("Token is missing");
     } else {
-        jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+        jwt.verify(token, "emsSecureKey@2024#", (err, decoded) => {
             if (err) {
                 return res.json("Error verifying token");
             } else {
