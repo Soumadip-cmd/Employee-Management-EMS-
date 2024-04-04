@@ -129,7 +129,7 @@ Connection(username, password);
 app.get('/staffList', (req, res) => {
     const userEmail = req.query.user_email;
     if (userEmail) {
-        // If a user email is provided, find the corresponding user and send only that user's data
+        // If a user email is provided from any frontend request , find the corresponding user and send only that user's data
         UserModel.findOne({ user_email: userEmail })
             .then(user => {
                 if (user) {
