@@ -11,7 +11,7 @@ const Signup = () => {
         password: "",
         confirmPassword: "",
         userType: "user",
-        secretKey: "", // Add secretKey to state
+        secretKey: "", 
     });
     const [error, setError] = useState("");
     const history = useHistory();
