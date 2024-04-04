@@ -25,9 +25,9 @@ const Signup = () => {
             return;
         }
 
-        // Check if userType is "admin" and if secret key matches
+        
         if (data.userType === "admin") {
-            const secretKey = "ems-ardent@2024"; // Replace with actual secret key
+            const secretKey = "ems-ardent@2024";
             if (data.secretKey !== secretKey) {
                 setError("Secret key does not match");
                 return;
