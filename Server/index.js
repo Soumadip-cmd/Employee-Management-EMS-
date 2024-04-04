@@ -1,25 +1,93 @@
 const express = require('express');
-
 const cors = require('cors');
 const dotenv = require('dotenv');
 const Connection = require('./database/connection/db');
 const UserModel = require('./database/model/User');
 const multer = require('multer');
-const path=require('path');
+const path = require('path');
 const app = express();
-const DeptModel=require('./database/model/Dept');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const DeptModel = require('./database/model/Dept');
 const SalaryModel = require('./database/model/Salary');
-const LeaveModel=require('./database/model/Leave');
-
-app.use(cors());
+const LeaveModel = require('./database/model/Leave');
+const LoginModel = require('./database/model/LoginSchema');
 
 dotenv.config();
 app.use(express.json());
+app.use(cookieParser());
 app.use('/Server/public', express.static(path.join(__dirname, 'public')));
-app.use(require(path.join(__dirname,'Routes/UserRoute.js')))
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'GET, POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});
+
+//Login and signup Role Based
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ["GET", "POST"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+
+app.post('/register', (req, res) => {
+    const { firstname, lastname, email, password,userType,secretKey } = req.body;
+    bcrypt.hash(password, 10)
+        .then(hash => {
+            LoginModel.create({ firstname, lastname, email,secretKey, password: hash,userType })
+                .then(user => res.json("Success"))
+                .catch(err => res.json(err));
+        })
+        .catch(err => res.json(err));
+});
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    LoginModel.findOne({ email: email })
+        .then(user => {
+            if (user) {
+                bcrypt.compare(password, user.password, (err, response) => {
+                    if (response) {
+                        const token = jwt.sign({ email: user.email, userType: user.userType }, "jwt-secret-key", { expiresIn: '1d' });
+                        return res.json({ token: token, status: "Success", role: user.userType });
+                    } else {
+                        return res.json("The password is incorrect");
+                    }
+                });
+            } else {
+                return res.json("No record exists");
+            }
+        })
+        .catch(err => res.json(err));
+});
+
+const verifyUser = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.json("Token is missing");
+    } else {
+        jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+            if (err) {
+                return res.json("Error verifying token");
+            } else {
+                if (decoded.userType === "admin") {
+                    next();
+                } else {
+                    return res.json("Not admin");
+                }
+            }
+        });
+    }
+};
+
+app.get('/admin', verifyUser, (req, res) => {
+    res.json("Success");
 });
 
 
