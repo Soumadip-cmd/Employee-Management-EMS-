@@ -13,11 +13,11 @@ const DeptModel = require('./database/model/Dept');
 const SalaryModel = require('./database/model/Salary');
 const LeaveModel = require('./database/model/Leave');
 const LoginModel = require('./database/model/LoginSchema');
-
+const fs = require('fs');
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-app.use('/Server/public', express.static(path.join(__dirname, 'public')));
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -92,32 +92,53 @@ app.get('/admin', verifyUser, (req, res) => {
 
 
 //leave application folder creation
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'Server/public/LeaveApplicationDocuments');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
-    }
-});
-//Connect with multer with leave application
-const LeaveApplication = multer({
-    storage: storage
-});
+// Function to create directories if they don't exist
+const createDirectoriesIfNotExists = () => {
+    const directories = [
+        '/public/StaffPhotos',
+        '/public/LeaveApplicationDocuments'
+    ];
 
-//Multer instance for add staff user photo
+    directories.forEach(directory => {
+        // Create directory if it doesn't exist
+        if (!fs.existsSync(directory)) {
+            fs.mkdirSync(directory, { recursive: true });
+            console.log("Directory Created")
+        }
+        else
+        {
+            console.log("Directory already Exsists")
+        }
+    });
+};
 
+// Call the function to create directories before using Multer
+createDirectoriesIfNotExists();
+
+// Multer configuration for Staff Photos
 const StaffPhotoStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'Server/public/StaffPhotos');
+        cb(null, '/public/StaffPhotos');
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
     }
 });
-const upload = multer({ storage:StaffPhotoStorage });
 
+// Multer configuration for Leave Application Documents
+const LeaveApplicationStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, '/public/LeaveApplicationDocuments');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    }
+});
 
+const staffPhotoUpload = multer({ storage: StaffPhotoStorage });
+const leaveApplicationUpload = multer({ storage: LeaveApplicationStorage });
+
+app.use('/public', express.static(path.join(__dirname, 'public')));
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 Connection(username, password);
@@ -178,7 +199,7 @@ app.get('/editDept/:id', (req, res) => {
 // Add staff members
 
 
-app.post('/addStaff', upload.single('user_docx'), async (req, res) => {
+app.post('/addStaff', staffPhotoUpload.single('user_docx'), async (req, res) => {
     const userData = req.body;
     console.log(req.file);
     try {
@@ -359,7 +380,7 @@ app.delete('/deletedept/:id', (req, res) => {
 
 // New Leave Application
 
-app.post("/applyLeave", LeaveApplication.single('leave_docx'), async (req, res) => {
+app.post("/applyLeave", leaveApplicationUpload.single('leave_docx'), async (req, res) => {
     // console.log(req.file);
     const leaveData = req.body;
     try {

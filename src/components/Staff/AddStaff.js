@@ -98,24 +98,24 @@ const navigate =useHistory()
     console.log(formData);
     
     // To empty the input field after adding/getting the data
-    setFormData({
-      user_name: "",
-      user_email: "",
-      user_sex: "",
-      user_address: "",
-      user_zip: "",
-      user_city: "",
-      user_state: "",
-      user_district: "",
-      user_phone: "",
-      user_birthday: "",
-      user_docx: "",
-      user_department: "",
-      user_workingtype: "",
-      user_doj: "",
-      user_emergencyphneno: "",
-      index: "",
-    });
+    // setFormData({
+    //   user_name: "",
+    //   user_email: "",
+    //   user_sex: "",
+    //   user_address: "",
+    //   user_zip: "",
+    //   user_city: "",
+    //   user_state: "",
+    //   user_district: "",
+    //   user_phone: "",
+    //   user_birthday: "",
+    //   user_docx: "",
+    //   user_department: "",
+    //   user_workingtype: "",
+    //   user_doj: "",
+    //   user_emergencyphneno: "",
+    //   index: "",
+    // });
   };
   
   const validateForm = () => {
