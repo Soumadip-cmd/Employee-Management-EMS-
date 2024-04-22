@@ -479,7 +479,7 @@ app.post('/addSalary', async (req, res) => {
       const salaries = req.body;
     console.log(req.body)
    
-      await Salary.insertMany(salaries);
+      await SalaryModel.insertMany(salaries);
   
       // Respond with success status
       res.status(201).json({ message: 'Salary added successfully' });
