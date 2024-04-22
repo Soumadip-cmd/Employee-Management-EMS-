@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//Login and signup Role Based
+//Login and signup Role Based~
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: ["GET", "POST","PUT","DELETE"],
@@ -76,18 +76,8 @@ app.post('/login', (req, res) => {
             if (user) {
                 bcrypt.compare(password, user.password, (err, response) => {
                     if (response) {
-                        const tokenPayload = {
-                            email: user.email,
-                            userType: user.userType,
-                            name: `${user.firstname} ${user.lastname}` // Combine first name and last name
-                        };
-                        const token = jwt.sign(tokenPayload, "emsSecureKey@2024#", { expiresIn: '1d' });
-                        return res.json({ 
-                            token: token, 
-                            status: "Success", 
-                            role: user.userType,
-                            name: tokenPayload.name 
-                        });
+                        const token = jwt.sign({ email: user.email, userType: user.userType }, "emsSecureKey@2024#", { expiresIn: '1d' });
+                        return res.json({ token: token, status: "Success", role: user.userType ,email:user.email});
                     } else {
                         return res.json("The password is incorrect");
                     }
@@ -245,26 +235,10 @@ Connection(username, password);
 // get the staff lists
 
 app.get('/staffList', (req, res) => {
-    const userEmail = req.query.user_email;
-    if (userEmail) {
-        // If a user email is provided from any frontend request , find the corresponding user and send only that user's data
-        UserModel.findOne({ user_email: userEmail })
-            .then(user => {
-                if (user) {
-                    res.json([user]);
-                } else {
-                    res.json([]);
-                }
-            })
-            .catch(err => res.json(err));
-    } else {
-        // If no user email is provided, retrieve the entire list of staff members
-        UserModel.find({})
-            .then(staffList => res.json(staffList))
-            .catch(err => res.json(err));
-    }
+    UserModel.find({})
+        .then(staffs => res.json(staffs))
+        .catch(err => res.json(err))
 });
-
 
 
 
