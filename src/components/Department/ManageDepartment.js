@@ -100,7 +100,7 @@ export default function ManageDepartment() {
                       width="16"
                       height="14"
                       fill="currentColor"
-                      className="bi bi-house"
+                      className="bi bi-house "
                       viewBox="0 0 16 16"
                     >
                       <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
@@ -240,10 +240,10 @@ export default function ManageDepartment() {
                           {/* Update button */}
                           <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="20"
+                        height="20"
                         fill="currentColor"
-                        class="bi bi-pencil-square "
+                        class="bi bi-pencil-square  mx-1"
                         viewBox="0 0 16 16"
                         onClick={() => navigate.push(`/editDept/${userData._id}`)}
                       >
@@ -267,7 +267,7 @@ export default function ManageDepartment() {
                             width="20"
                             height="20"
                             fill="red"
-                            className="bi bi-trash3mx-2"
+                            className="bi bi-trash3mx-2 mx-1"
                             viewBox="0 0 16 16"
                             onClick={() => handleDelete(userData._id)}
                           >
@@ -283,10 +283,10 @@ export default function ManageDepartment() {
                           {/* View details button */}
                           <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="20"
+                        height="20"
                         fill="currentColor"
-                        class="bi bi-eye "
+                        class="bi bi-eye  mx-1"
                         viewBox="0 0 16 16"
                       >
                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />

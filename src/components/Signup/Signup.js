@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "./styles.module.css";
 import axios from "axios";
 
+
 const Signup = () => {
     const [data, setData] = useState({
         firstname: "",
@@ -58,17 +59,17 @@ const Signup = () => {
     };
 
     return (
-        <div className={styles.signup_container}>
+        <div className={styles.signup_container} style={{background:'#c2b3b3db'}}>
             <div className={styles.signup_form_container}>
-                <div className={styles.left}>
+                <div className={styles.left } style={{background:'#073722'}}>
                     <h1>Welcome Back</h1>
                     <Link to="/login">
-                        <button type="button" className={styles.white_btn}>
+                        <button type="button" className={`${styles.white_btn}  `}>
                             Sign in
                         </button>
                     </Link>
                 </div>
-                <div className={styles.right}>
+                <div className={styles.right} style={{background:'#acacaf'}}>
                     <form className={styles.form_container} onSubmit={handleSubmit}>
                         <h1>Create Account</h1>
                         <input
@@ -136,7 +137,7 @@ const Signup = () => {
                                 className={styles.input}
                             />
                         )}
-                        <button type="submit" className={styles.green_btn}>
+                        <button type="submit" className={`${styles.green_btn} hover`} style={{background:'#073722'}}>
                             Sign Up
                         </button>
                     </form>
