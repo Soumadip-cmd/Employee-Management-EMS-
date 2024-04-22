@@ -12,6 +12,10 @@ const SalarySchema =new mongoose.Schema({
         type:String,
         required:true,
 
+    },
+    user_department:{
+        type:String,
+        required:true
     }
 })
 const SalaryModel=mongoose.model("salary",SalarySchema)
