@@ -42,7 +42,7 @@ export default function ManageStaff() {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <div
+      <div className="mt-4"
         style={{
           width: "400px",
           padding: "20px",
@@ -50,6 +50,7 @@ export default function ManageStaff() {
           borderRadius: "10px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           marginBottom: "20px",
+          background:'white'
         }}
       >
         {user.user_docx && (
@@ -77,6 +78,7 @@ export default function ManageStaff() {
             fontWeight: "bold",
             marginBottom: "10px",
             textAlign: "center",
+            color:'brown'
           }}
         >
           Details of Staffs
