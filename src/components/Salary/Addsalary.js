@@ -51,11 +51,53 @@ export default function AddSalary() {
     return isNaN(total) ? "" : total;
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (validateForm()) {
+  //     const formDataToSend = new FormData();
+  //     for (const key in formData) {
+  //       formDataToSend.append(key, formData[key]);
+  //     }
+  //     try {
+  //       const response = await axios.post("http://localhost:5050/addSalary", formDataToSend);
+  //       if (response.status === 201) {
+  //         alert("Salary Added Successfully!!!");
+  //         navigate.push("/manageSalary");
+  //       } else {
+  //         alert("Error adding salary details");
+  //       }
+  //     } catch (error) {
+  //       if (error.response && error.response.status === 400) {
+  //         alert(error.response.data.error);
+  //         alert("Error adding staffs for duplicate value. Try again with updated Data");
+  //       } else {
+  //         console.error("Error adding staff:", error);
+  //       }
+  //     }
+  //   }
+  //   //Handel form submission
+  //   let currntSalary={
+  //     basic_salary:formData.basic_salary,
+  //     allowance:formData.allowance,
+  //     total:formData.total,
+  //     user_department:formData.user_department
+
+
+  //   };
+  //   let oldSalary=[...users,currntSalary]
+  //   setUsers(oldSalary);
+  //   console.log(formData)
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
       try {
-        const response = await axios.post("http://localhost:5050/addSalary", users);
+        const response = await axios.post("http://localhost:5050/addSalary", formDataToSend);
         if (response.status === 201) {
           alert("Salary Added Successfully!!!");
           navigate.push("/manageSalary");
@@ -72,6 +114,7 @@ export default function AddSalary() {
       }
     }
   };
+  
   const handleUserChange = (event, userId) => {
     const { name, value } = event.target;
     // Update the corresponding user's data in the users state array
