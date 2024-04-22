@@ -17,7 +17,7 @@ export default function EditDepartment() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/editDept/${id}`)
+      .get(`http://localhost:5050/editDept/${id}`)
       .then((response) => {
         const userData = response.data;
         console.log(userData);

@@ -19,7 +19,7 @@ export default function ManageStaff() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/editStaff/${id}`)
+      .get(`http://localhost:5050/editStaff/${id}`)
       .then((response) => {
         setUser(response.data); // Assuming response.data contains the user details
         setLoading(false);

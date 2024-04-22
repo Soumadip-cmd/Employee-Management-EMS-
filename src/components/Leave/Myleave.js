@@ -8,7 +8,7 @@ export default function Myleave() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8001/staffList").then((result) => {
+    axios.get("http://localhost:5050/staffList").then((result) => {
       setUsers(result.data);
       console.log(result.data);
     });
@@ -137,7 +137,7 @@ export default function Myleave() {
                 <td>{index + 1}</td>
                 <td>{user.user_name}</td>
                 <td>
-                <img src={`http://localhost:8001/Server/public/StaffPhotos/${user.user_docx}`} 
+                <img src={`http://localhost:5050/Server/public/StaffPhotos/${user.user_docx}`} 
                   alt="UserPhoto" 
                   height="111px"
                   width="149px"

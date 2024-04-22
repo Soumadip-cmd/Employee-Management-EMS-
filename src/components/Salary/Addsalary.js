@@ -1,15 +1,16 @@
-
 import React, { useEffect, useState } from "react";
 import Footer from "../Footer";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function AddSalary() {
+  const [allUsers, setAllUsers] = useState([]); // Maintain the original list of users
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({
     basic_salary: "",
     allowance: "",
-    total:""
+    total: "",
+    user_department: "" 
   });
   const [errors, setErrors] = useState({});
   const navigate = useHistory();
@@ -17,8 +18,9 @@ export default function AddSalary() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:8001/staffList");
-        setUsers(res.data);
+        const res = await axios.get("http://localhost:5050/staffList");
+        setAllUsers(res.data); // Store all users
+        setUsers(res.data); // Initialize users with all users
       } catch (err) {
         console.log("Error fetching details", err);
       }
@@ -27,23 +29,22 @@ export default function AddSalary() {
     fetchUsers();
   }, []);
 
-  const handleChange = (event, userId) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    const updatedUsers = users.map((user) => {
-      if (user._id === userId) {
-        return { ...user, [name]: value };
-      }
-      return user;
-    });
-    setUsers(updatedUsers);
-  
     // Update formData
-    setFormData(prevFormData => ({
+    setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value
     }));
+    
+    // Filter users based on selected department
+    if (value === "All Departments") {
+      setUsers(allUsers);
+    } else {
+      const filteredUsers = allUsers.filter((user) => user.user_department === value);
+      setUsers(filteredUsers);
+    }
   };
-  
 
   const calculateTotal = (basicSalary, allowance) => {
     const total = parseInt(basicSalary) + parseInt(allowance);
@@ -54,10 +55,10 @@ export default function AddSalary() {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post("http://localhost:8001/addSalary", users);
+        const response = await axios.post("http://localhost:5050/addSalary", users);
         if (response.status === 201) {
           alert("Salary Added Successfully!!!");
-          navigate.push('/manageSalary');
+          navigate.push("/manageSalary");
         } else {
           alert("Error adding salary details");
         }
@@ -71,7 +72,18 @@ export default function AddSalary() {
       }
     }
   };
-
+  const handleUserChange = (event, userId) => {
+    const { name, value } = event.target;
+    // Update the corresponding user's data in the users state array
+    const updatedUsers = users.map((user) => {
+      if (user._id === userId) {
+        return { ...user, [name]: value };
+      }
+      return user;
+    });
+    setUsers(updatedUsers);
+  };
+  
   const validateForm = () => {
     const errors = {};
     users.forEach((user) => {
@@ -101,20 +113,24 @@ export default function AddSalary() {
             <h5 style={{ fontSize: "20px" }} className="px-2">Add Salary</h5>
             <hr />
             <div className="container">
-              <div className="row">                <div className="col-md-4">                   <div className="mb-3">
+              <div className="row">
+                <div className="col-md-4">
+                  <div className="mb-3">
                     <b className="">Department Name</b>
                     <select
                       className="form-control"
                       style={{ border: "1px solid" }}
+                      name="user_department"
+                      value={formData.user_department}
+                      onChange={handleChange}
                     >
-                      <option disabled defaultValue={"--Department Name--"}>
-                        --Department Name--
-                      </option>
-                      <option>Backend developement</option>
-                      <option>Designing</option>
-                      <option>Front-end developement</option>
-                      <option>Marketing</option>
-                      <option>Finance</option>
+                      <option value="All Departments">All Departments</option>
+                      {/* Map over unique department names from allUsers */}
+                      {[...new Set(allUsers.map((user) => user.user_department))].map((department, index) => (
+                        <option key={index} value={department}>
+                          {department}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -127,9 +143,9 @@ export default function AddSalary() {
                     <thead>
                       <tr>
                         <th className="col-md-3 text-center bg- p-1 px-2 tablestyle">Staff</th>
-                        <th className="col-md-3 text-center bg- p-1 px-2 tablestyle">Basic Salary($)</th>
-                        <th className="col-md-3 text-center bg- p-1 px-2 tablestyle">Allowance($)</th>
-                        <th className="col-md-3 text-center bg- p-1 px-2 tablestyle">Total($)</th>
+                        <th className="col-md-3 text-center bg- p-1 px-2 tablestyle">Basic Salary(₹)</th>
+                        <th className="col-md-3 text-center bg- p-1 px-2 tablestyle">Allowance(₹)</th>
+                        <th className="col-md-3 text-center bg- p-1 px-2 tablestyle">Total(₹)</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -140,11 +156,11 @@ export default function AddSalary() {
                             <input
                               type="text"
                               name="basic_salary"
-                              value={formData.basic_salary}
-                              id="basic_salary"
+                              value={user.basic_salary || ""}
                               placeholder="Enter Basic Amount (Number only)"
-                              onChange={(e) => handleChange(e, user._id)}
                               
+                              onChange={(e) => handleUserChange(e, user._id)}
+
                               style={{ width: "100%" }}
                             />
                             {errors[user._id]?.basic_salary && <div className="text-danger">{errors[user._id].basic_salary}</div>}
@@ -152,11 +168,11 @@ export default function AddSalary() {
                           <td className="col-md-3 bg- p-1 px-2 tablestyle">
                             <input
                               type="text"
-                              id="allowance"
                               name="allowance"
-                              value={formData.allowance}
-                              onChange={(e) => handleChange(e, user._id)}
+                              value={user.allowance || ""}
                               placeholder="Enter Allowance  Amount (Number only)"
+                              
+                              onChange={(e) => handleUserChange(e, user._id)}
                               style={{ width: "100%" }}
                             />
                             {errors[user._id]?.allowance && <div className="text-danger">{errors[user._id].allowance}</div>}
@@ -164,8 +180,6 @@ export default function AddSalary() {
                           <td className="col-md-3 bg- p-1 px-2 tablestyle">
                             <input
                               type="text"
-                              id="total"
-                              name="total"
                               value={calculateTotal(user.basic_salary, user.allowance)}
                               readOnly
                               style={{ width: "100%" }}
@@ -178,10 +192,7 @@ export default function AddSalary() {
                 </div>
               </div>
               <div className="container">
-                <button
-                  type="submit"
-                  className="btn btn-success float-end"
-                >
+                <button type="submit" className="btn btn-success float-end">
                   Submit
                 </button>
               </div>

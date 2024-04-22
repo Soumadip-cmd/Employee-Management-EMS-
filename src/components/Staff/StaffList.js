@@ -21,7 +21,7 @@ export default function StaffList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8001/staffList")
+      .get("http://localhost:5050/staffList")
       .then((result) => {
         setUsers(result.data);
         
@@ -38,7 +38,7 @@ export default function StaffList() {
     // If confirmed, proceed with deletion
     if (confirmed) {
       axios
-        .delete("http://localhost:8001/deleteStaff/" + id)
+        .delete("http://localhost:5050/deleteStaff/" + id)
         .then((res) => {
           console.log(res);
           alert("Record Deleted successfully");
@@ -105,7 +105,7 @@ export default function StaffList() {
                     <td>{user.user_phone}</td>
                     <td>{formatDate(user.user_birthday)}</td>
                     <td>
-                      <img src={`http://localhost:8001/Server/public/StaffPhotos/${user.user_docx}`} 
+                      <img src={`http://localhost:5050/public/StaffPhotos/${user.user_docx}`} 
                       alt="UserPhoto" 
                       height="111px"
                       width="149px"

@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const Connection = require('./database/connection/db');
-const UserModel = require('./database/model/User');
+const UserModel = require('./database/model/User');   
 const multer = require('multer');
 const path = require('path');
 const app = express();
@@ -13,11 +13,11 @@ const DeptModel = require('./database/model/Dept');
 const SalaryModel = require('./database/model/Salary');
 const LeaveModel = require('./database/model/Leave');
 const LoginModel = require('./database/model/LoginSchema');
-const fs = require('fs');
+
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -30,11 +30,14 @@ app.use((req, res, next) => {
 //Login and signup Role Based
 app.use(cors({
     origin: 'http://localhost:3000',
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST","PUT","DELETE"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
+app.get('/', (req, res) => {
+    res.json({ "message": "Hello server ... Update succesful" });
+});
 
 app.post('/register', (req, res) => {
     const { firstname, lastname, email, password,userType,secretKey } = req.body;
@@ -47,6 +50,25 @@ app.post('/register', (req, res) => {
         .catch(err => res.json(err));
 });
 
+// app.post('/login', (req, res) => {
+//     const { email, password } = req.body;
+//     LoginModel.findOne({ email: email })
+//         .then(user => {
+//             if (user) {
+//                 bcrypt.compare(password, user.password, (err, response) => {
+//                     if (response) {
+//                         const token = jwt.sign({ email: user.email, userType: user.userType }, "emsSecureKey@2024#", { expiresIn: '1d' });
+//                         return res.json({ token: token, status: "Success", role: user.userType ,email:user.email});
+//                     } else {
+//                         return res.json("The password is incorrect");
+//                     }
+//                 });
+//             } else {
+//                 return res.json("No record exists");
+//             }
+//         })
+//         .catch(err => res.json(err));
+// });
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     LoginModel.findOne({ email: email })
@@ -54,8 +76,18 @@ app.post('/login', (req, res) => {
             if (user) {
                 bcrypt.compare(password, user.password, (err, response) => {
                     if (response) {
-                        const token = jwt.sign({ email: user.email, userType: user.userType }, "emsSecureKey@2024#", { expiresIn: '1d' });
-                        return res.json({ token: token, status: "Success", role: user.userType ,email:user.email});
+                        const tokenPayload = {
+                            email: user.email,
+                            userType: user.userType,
+                            name: `${user.firstname} ${user.lastname}` // Combine first name and last name
+                        };
+                        const token = jwt.sign(tokenPayload, "emsSecureKey@2024#", { expiresIn: '1d' });
+                        return res.json({ 
+                            token: token, 
+                            status: "Success", 
+                            role: user.userType,
+                            name: tokenPayload.name 
+                        });
                     } else {
                         return res.json("The password is incorrect");
                     }
@@ -67,6 +99,21 @@ app.post('/login', (req, res) => {
         .catch(err => res.json(err));
 });
 
+const verifyToken = (req, res, next) => {
+    const token = req.params.token;
+    if (!token) {
+        return res.status(401).json({ error: "Token is missing" });
+    } else {
+        jwt.verify(token, "emsSecureKey@2024#", (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ error: "Error verifying token" });
+            } else {
+                req.user = decoded; // Store decoded user information in request object
+                next();
+            }
+        });
+    }
+};
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
@@ -90,43 +137,68 @@ app.get('/admin', verifyUser, (req, res) => {
     res.json("Success");
 });
 
+// Route to fetch user's personal data
+// app.get('/user', verifyUser, (req, res) => {
+//     const userEmail = req.user.email; // Get user's email from JWT token
 
-//leave application folder creation
-// Function to create directories if they don't exist
-const createDirectoriesIfNotExists = () => {
-    const directories = [
-        '/public/StaffPhotos',
-        '/public/LeaveApplicationDocuments'
-    ];
+//     // Check if the user's email is stored in the admin panel
+//     UserModel.findOne({ user_email: userEmail })
+//         .then(admin => {
+//             if (admin) {
+//                 // If the user is an admin, send a message indicating they are not a regular user
+//                 return res.json({ message: "You are not a regular user. Please log in as a regular user to access your data." });
+//             } else {
+//                 // If the user is not an admin, fetch their personal data from the database using their email
+//                 UserModel.findOne({ user_email: userEmail })
+//                     .then(user => {
+//                         if (!user) {
+//                             return res.status(404).json({ error: "User not found" });
+//                         }
+//                         res.json(user);
+//                     })
+//                     .catch(err => {
+//                         console.error('Error fetching user:', err);
+//                         res.status(500).json({ error: 'Failed to fetch user data' });
+//                     });
+//             }
+//         })
+//         .catch(err => {
+//             console.error('Error checking admin panel:', err);
+//             res.status(500).json({ error: 'Failed to check admin panel' });
+//         });
+// });
 
-    directories.forEach(directory => {
-        // Create directory if it doesn't exist
-        if (!fs.existsSync(directory)) {
-            fs.mkdirSync(directory, { recursive: true });
-            console.log("Directory Created")
+// app.get('/user/:token/:name', verifyToken, (req, res) => {
+//     const userEmail = req.user.email; // Get user's email from decoded JWT token
+//     const userName = req.params.name; // Get user's name from URL parameters
+//     // You can use userEmail and userName to fetch user data or perform any other operations
+//     res.json({ email: userEmail, name: userName });
+// });
+app.get('/user/:token/:id', verifyToken, async (req, res) => {
+    try {
+        // Extract user email from the decoded token
+        const userEmail = req.user.email;
+        const id = req.params.id; // Get the database ID from URL parameters
+
+        // Fetch user details from the database using the email and ID
+        const user = await UserModel.findOne({ _id: id, email: userEmail });
+
+        if (!user) {
+            // If user not found, send an error response
+            return res.status(404).json({ error: 'User not found' });
         }
-        else
-        {
-            console.log("Directory already Exsists")
-        }
-    });
-};
 
-// Call the function to create directories before using Multer
-createDirectoriesIfNotExists();
-
-// Multer configuration for Staff Photos
-const StaffPhotoStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, '/public/StaffPhotos');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+        // If user is found, send the user data as a response
+        res.json(user);
+    } catch (error) {
+        // If an error occurs, send an error response
+        console.error('Error fetching user details:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-// Multer configuration for Leave Application Documents
-const LeaveApplicationStorage = multer.diskStorage({
+//leave application folder creation
+const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, '/public/LeaveApplicationDocuments');
     },
@@ -134,11 +206,36 @@ const LeaveApplicationStorage = multer.diskStorage({
         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
     }
 });
+const leaveApplicationStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/LeaveApplicationDocuments'); // Updated destination path
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    }
+});
 
-const staffPhotoUpload = multer({ storage: StaffPhotoStorage });
-const leaveApplicationUpload = multer({ storage: LeaveApplicationStorage });
+// Connect Multer with Leave Application
+const leaveApplicationUpload = multer({
+    storage: leaveApplicationStorage
+});
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
+// Multer configuration for Staff Photos
+const staffPhotoStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/StaffPhotos'); // Updated destination path
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    }
+});
+
+// Connect Multer with Staff Photos
+const staffPhotoUpload = multer({
+    storage: staffPhotoStorage
+});
+
+
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 Connection(username, password);
@@ -380,9 +477,10 @@ app.delete('/deletedept/:id', (req, res) => {
 
 // New Leave Application
 
-app.post("/applyLeave", leaveApplicationUpload.single('leave_docx'), async (req, res) => {
-    // console.log(req.file);
+app.post("/applyLeave", leaveApplicationUpload.single("leave_docx"), async (req, res) => {
+    console.log(req.file);
     const leaveData = req.body;
+    console.log(leaveData)
     try {
         const newLeave = await LeaveModel.create({
             ...leaveData,
@@ -400,7 +498,23 @@ app.post("/applyLeave", leaveApplicationUpload.single('leave_docx'), async (req,
     }
 });
 
-
-app.listen(8001, () => {
-    console.log('Server is running on port 8001');
+//Salary Add
+app.post('/addSalary', async (req, res) => {
+    try {
+      // Extract the salary data from the request body
+      const salaries = req.body;
+    console.log(req.body)
+   
+      await Salary.insertMany(salaries);
+  
+      // Respond with success status
+      res.status(201).json({ message: 'Salary added successfully' });
+    } catch (err) {
+      // Handle errors
+      console.error('Error adding salary:', err);
+      res.status(500).json({ error: 'Failed to add salary' });
+    }
+  });
+app.listen(5050, () => {
+    console.log('Server is running on port 5050');
 });

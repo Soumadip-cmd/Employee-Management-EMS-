@@ -49,7 +49,7 @@ const navigate =useHistory()
       }
       try {
         // API call to add staff member
-        const response = await axios.post("http://localhost:8001/addStaff", formDataToSend);
+        const response = await axios.post("http://localhost:5050/addStaff", formDataToSend);
         if (response.status === 201) {
           // Navigate to the staff list page after successful addition
           alert("Data Successfully added");
@@ -126,7 +126,8 @@ const navigate =useHistory()
       user_birthday,
       user_zip,
       user_district,
-      user_docx
+      user_docx,
+      user_department
     } = formData;
     const errors = {};
 
@@ -155,6 +156,9 @@ const navigate =useHistory()
     } else if (!user_docx) {
       errors.user_docx = "Please upload your photo here. The photo size must be less than or equals to 150KB";
       document.getElementById('user_docx').focus();
+    }else if (!user_department) {
+      errors.user_department = "Please Add Your Department";
+      document.getElementById('user_department').focus();
     }
 
     if (Object.keys(errors).length === 0) {
@@ -284,10 +288,10 @@ const navigate =useHistory()
                 <option disabled selcted value="">
                   ---Select Your Department----
                 </option>
-                <option value="FullTime">CSE1</option>
-                <option value="PartTime">CSE2</option>
-                <option value="Remote">CSE3</option>
-                <option value="Hybrid">CSE4</option>
+                <option value="CSE1">CSE1</option>
+                <option value="CSE2">CSE2</option>
+                <option value="CSE3">CSE3</option>
+                <option value="CSE4">CSE4</option>
               </select>
             </div>
           </div>
