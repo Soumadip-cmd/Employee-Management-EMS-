@@ -21,7 +21,7 @@ const Login = () => {
             if (response.data.status === "Success") {
                 if (response.data.role === "admin") {
                     history.push('/');
-                    alert("You logged in as an Admin");
+                    alert("You are logged in as an Admin");
                 } else if (response.data.role === "user") {
                     console.log(response.data)
                     history.push(`/dashboard`); 
