@@ -198,17 +198,31 @@ app.get('/user/:token/:id', verifyToken, async (req, res) => {
 });
 
 //leave application folder creation
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, '/public/LeaveApplicationDocuments');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, '/public/LeaveApplicationDocuments');
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+//     }
+// });
+// const leaveApplicationStorage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'public/LeaveApplicationDocuments'); // Updated destination path
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+//     }
+// });
+
+// // Connect Multer with Leave Application
+// const leaveApplicationUpload = multer({
+//     storage: leaveApplicationStorage
+// });
+
 const leaveApplicationStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/LeaveApplicationDocuments'); // Updated destination path
+        cb(null, 'Server/public/LeaveApplicationDocuments');
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
@@ -220,10 +234,31 @@ const leaveApplicationUpload = multer({
     storage: leaveApplicationStorage
 });
 
+app.post("/applyLeave", leaveApplicationUpload.single("leave_docx"), async (req, res) => {
+    console.log(req.file);
+    const leaveData = req.body;
+    console.log(leaveData)
+    try {
+        const newLeave = await LeaveModel.create({
+            ...leaveData,
+            leave_docx: req.file.filename
+        });
+        // Return the newly created leave application with status code 201 (Created)
+        res.status(201).json({
+            message: "New leave request added successfully",
+            newLeave
+        });
+    } catch (error) {
+        // Handle any errors during leave application creation
+        console.error("Error adding leave request:", error);
+        res.status(500).json({ error: 'Failed to add leave Application' });
+    }
+});
+
 // Multer configuration for Staff Photos
 const staffPhotoStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/StaffPhotos'); // Updated destination path
+        cb(null, 'Server/public/StaffPhotos'); // Updated destination path
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
@@ -477,26 +512,26 @@ app.delete('/deletedept/:id', (req, res) => {
 
 // New Leave Application
 
-app.post("/applyLeave", leaveApplicationUpload.single("leave_docx"), async (req, res) => {
-    console.log(req.file);
-    const leaveData = req.body;
-    console.log(leaveData)
-    try {
-        const newLeave = await LeaveModel.create({
-            ...leaveData,
-            leave_docx: req.file.filename
-        });
-        // Return the newly created leave application with status code 201 (Created)
-        res.status(201).json({
-            message: "New leave request added successfully",
-            newLeave
-        });
-    } catch (error) {
-        // Handle any errors during leave application creation
-        console.error("Error adding leave request:", error);
-        res.status(500).json({ error: 'Failed to add leave Application' });
-    }
-});
+// app.post("/applyLeave", leaveApplicationUpload.single("leave_docx"), async (req, res) => {
+//     console.log(req.file);
+//     const leaveData = req.body;
+//     console.log(leaveData)
+//     try {
+//         const newLeave = await LeaveModel.create({
+//             ...leaveData,
+//             leave_docx: req.file.filename
+//         });
+//         // Return the newly created leave application with status code 201 (Created)
+//         res.status(201).json({
+//             message: "New leave request added successfully",
+//             newLeave
+//         });
+//     } catch (error) {
+//         // Handle any errors during leave application creation
+//         console.error("Error adding leave request:", error);
+//         res.status(500).json({ error: 'Failed to add leave Application' });
+//     }
+// });
 
 //Salary Add
 app.post('/addSalary', async (req, res) => {
