@@ -41,7 +41,10 @@ const Signup = () => {
             const response = await axios.post('http://localhost:5050/register', data);
             console.log(response.data);
             alert("Registered successfully");
-            history.push('/login');
+            // localStorage.setItem('token',response.token)
+            // console.log(response.token)
+            history.push('/');
+
         } catch (error) {
             console.error("Error:", error.message);
             setError("Registration failed. Please try again.");
@@ -63,7 +66,7 @@ const Signup = () => {
             <div className={styles.signup_form_container}>
                 <div className={styles.left } style={{background:'#073722'}}>
                     <h1>Welcome Back</h1>
-                    <Link to="/login">
+                    <Link to="/">
                         <button type="button" className={`${styles.white_btn}  `}>
                             Sign in
                         </button>

@@ -24,7 +24,7 @@ const Login = () => {
                     alert("You logged in as an Admin");
                 } else if (response.data.role === "user") {
                     console.log(response.data)
-                    history.push(`/user/${response.data.token}/${encodeURIComponent(response.data.name)}`); 
+                    history.push(`/dashboard`); 
                     alert("You logged in as a User");
                 }
             } else {

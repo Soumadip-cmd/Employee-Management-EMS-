@@ -55,7 +55,7 @@ function App() {
       <Router>
         <Sidebar />
         <Switch>
-          <Route exact path="/login">
+          <Route exact path="/">
             <Login />
           </Route>
 
@@ -108,7 +108,7 @@ function App() {
           </Route>
 
 
-          <Route exact path="/">
+          <Route exact path="/dashboard">
             <Dashboard />
           </Route>
         </Switch>
