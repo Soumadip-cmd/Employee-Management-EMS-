@@ -17,16 +17,18 @@ import AddDepartment from "./components/Department/AddDepartment";
 import ManageDepartment from "./components/Department/ManageDepartment";
 import AddStaff from "./components/Staff/AddStaff";
 import ManageStaff from "./components/Staff/ManageStaff";
-import Login from "./components/Login/Login";
-import Signup from "./components/Signup/Signup";
-import Error from "./components/Login/Error";
+
+import CheckEmail from "./components/Pages/Login/CheckEmail";
+import CheckPassword from "./components/Pages/Login/CheckPassword";
+import Forgotpassword from "./components/Pages/Login/Forgotpassword";
+
 import StaffList from "./components/Staff/StaffList";
 import EditStaff from "./components/Staff/EditStaff";
 import EditDepartment from "./components/Department/EditDepartment";
 // import { useHistory } from "react-router-dom";
 import ViewDepartment from "./components/Department/ViewDepartment";
-import User from "./components/SignUpUser/User";
-import VerifyUser from "./components/SignUpUser/VerifyUser";
+
+import Register from "./components/Pages/Register/Register";
 function App() {
   // const [userName, setUserName] = useState("");
 
@@ -56,15 +58,21 @@ function App() {
         <Sidebar />
         <Switch>
           <Route exact path="/">
-            <Login />
+            <CheckEmail />
           </Route>
 
           <Route exact path="/signup">
-            <Signup />
+            <Register/>
           </Route>
-          <Route exact path="/error">
-            <Error />
+
+          <Route exact path="/password">
+            <CheckPassword/>
           </Route>
+
+          <Route exact path="/forgot-password">
+            <Forgotpassword/>
+          </Route>
+         
           <Route exact path="/staffList">
             <StaffList />
           </Route>
@@ -101,11 +109,7 @@ function App() {
           <Route exact path="/managesalary">
             <Managesalary />
           </Route>
-          <Route exact path="/user/:token/:id">
-            <VerifyUser>
-              <User />
-            </VerifyUser>
-          </Route>
+        
 
 
           <Route exact path="/dashboard">
