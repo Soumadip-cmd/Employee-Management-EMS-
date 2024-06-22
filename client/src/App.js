@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./components/Sidebar";
 // import { useEffect, useState } from "react";
 // import { auth } from "./components/firebase";
-import Dashboard from "./components/Dashboard";
+import AdminDashboard from "./components/AdminDashboard";
 import {
   BrowserRouter as Router,
   Switch,
@@ -109,7 +109,7 @@ function App() {
 
 
           <Route exact path="/dashboard">
-            <Dashboard />
+            <AdminDashboard />
           </Route>
         </Switch>
       </Router>

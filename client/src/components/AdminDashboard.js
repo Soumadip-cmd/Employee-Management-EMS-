@@ -3,7 +3,7 @@ import Card from "./Card";
 import Footer from "./Footer";
 import axios from "axios";
 
-const Dashboard = () => {
+const AdminDashboard = () => {
   const [staffCount, setStaffCount] = useState(0);
   const [deptCount, setDeptCount] = useState(0);
   const [leaveRequest, setLeaveRequest] = useState(0)
@@ -76,4 +76,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default AdminDashboard;
