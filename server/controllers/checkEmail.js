@@ -21,6 +21,7 @@ try {
             })
         }
 } catch (error) {
+    console.log("Error in Check Email Controler")
     return response.status(500).json({
         message: error.message || error,
         error: true
