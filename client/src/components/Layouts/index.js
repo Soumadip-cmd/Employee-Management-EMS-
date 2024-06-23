@@ -9,8 +9,8 @@ function AuthLayouts({ children }) {
           <img 
             src={Logo}
             alt='logo'
-            width={180}
-            height={60}
+            width={100}
+            height={100}
           />
         </div>
       </header>
