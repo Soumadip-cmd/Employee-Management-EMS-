@@ -4,7 +4,7 @@ import Logo from '../../assests/logo.png';
 function AuthLayouts({ children }) {
   return (
     <>
-      <header className='d-flex justify-content-center align-items-center py-3 h-20 shadow px-4 bg-white'>
+      <header className='d-flex justify-content-center align-items-center py-3 h-20 shadow px-4  bg-secondary-subtle '>
         <div>
           <img 
             src={Logo}
