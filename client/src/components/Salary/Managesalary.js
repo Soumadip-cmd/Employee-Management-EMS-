@@ -1,7 +1,7 @@
 import React from "react";
 import "./managesalary.css";
 import Footer from "../Footer";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 export default function Managesalary() {
   let boxstyle = {
     background: "white",

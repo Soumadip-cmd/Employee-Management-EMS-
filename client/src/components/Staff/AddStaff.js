@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Footer from "../Footer";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function AddStaff() {
-const navigate =useHistory()
+const navigate =useNavigate()
   const [formData, setFormData] = useState({
     user_name: "",
     user_email: "",

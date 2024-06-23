@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../Footer";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function AddSalary() {
@@ -13,7 +13,7 @@ export default function AddSalary() {
     user_department: "" 
   });
   const [errors, setErrors] = useState({});
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {

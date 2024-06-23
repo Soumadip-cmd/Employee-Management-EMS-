@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import Footer from "../Footer";
-import { Link ,useHistory} from "react-router-dom/cjs/react-router-dom.min";
+import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function ApplyLeave() {
@@ -10,7 +10,7 @@ export default function ApplyLeave() {
     borderTop: '5px solid #004dffe8',
     borderRadius: '5px',
   }
-  const navigate=useHistory();
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
    reason:"",
    user_id:"",

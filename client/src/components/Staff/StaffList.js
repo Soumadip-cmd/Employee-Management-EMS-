@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
 export default function StaffList() {
@@ -17,7 +17,7 @@ export default function StaffList() {
     return `${day}/${month}/${year}`;
   };
 
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios

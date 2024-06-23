@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Footer from "../Footer";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useNavigate } from "react-router-dom";
 
 
 export default function NewDepartment() {
@@ -9,7 +9,7 @@ export default function NewDepartment() {
     deptName: "",
     deptID: "",
   });
-  const navigate=useHistory();
+  const navigate=useNavigate();
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");

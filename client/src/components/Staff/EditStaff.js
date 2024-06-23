@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory} from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 
 export default function EditStaff() {
   const { id } = useParams();
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   // Define formData state
   const [formData, setFormData] = useState({

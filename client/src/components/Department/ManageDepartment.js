@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import "./ManageDepartment.css";
 // import EditDepartment from "./EditDepartment";
 // import ViewDepartment from "./ViewDepartment";
@@ -13,7 +13,7 @@ export default function ManageDepartment() {
   //   color: "#fff", // Text color
   // };
 
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   const loaderStyle = {
     width: "60px",

@@ -1,7 +1,7 @@
 import React from "react";
 
 import NewDepartment from "./NewDepartment";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 
 export default function AddDepartment() {
