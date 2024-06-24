@@ -5,6 +5,8 @@ const checkPassword = async (req, res) => {
     const { password, userId } = req.body
     const user = await UserModel.findById(userId);
     const verifyPassword = await bcrypt.compare(password, user.password)
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     if (verifyPassword) {
         try {
             if (!verifyPassword) {

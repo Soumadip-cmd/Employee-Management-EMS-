@@ -26,6 +26,7 @@ export default function CheckEmail() {
     try {
       const URL = "http://localhost:5800/api/email"; 
       const response = await axios.post(URL, data);
+      console.log('Response:', response.data); // Debugging line
       toast.success(response.data.message);
       if (response.data.success) {
         dispatch(setUser(response.data.data));
@@ -35,6 +36,7 @@ export default function CheckEmail() {
         });
       }
     } catch (error) {
+      console.error('Error:', error); // Debugging line
       toast.error(error.response.data.message || "Registration failed. Please try again.");
     }
   };
