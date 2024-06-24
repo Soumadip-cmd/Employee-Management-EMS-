@@ -1,20 +1,20 @@
 import React from 'react';
-import Logo from '../../assests/logo.png';
+import Logo from './../../assests/logo.png';
 
 function AuthLayouts({ children }) {
   return (
     <>
-      <header className='d-flex justify-content-center align-items-center py-3 h-20 shadow px-4  bg-secondary-subtle '>
+      <header className='flex justify-center items-center py-3 h-20 shadow-md px-4 bg-white'>
         <div>
           <img 
             src={Logo}
             alt='logo'
-            width={100}
-            height={100}
+            width={80}
+            height={20}
           />
         </div>
       </header>
-      <main className='d-flex justify-content-center align-items-center vh-100'>
+      <main className='flex justify-center items-center h-full'>
         {children}
       </main>
     </>
