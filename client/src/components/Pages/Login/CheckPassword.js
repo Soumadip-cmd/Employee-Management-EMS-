@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import Avatar from './Avatar';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
@@ -27,7 +29,8 @@ export default function CheckPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const URL = 'http://localhost:5800/api/password';
+      const isAdmin = data.email === 'admin@gmail.com' && data.password === 'admin123';
+      const URL = isAdmin ? 'http://localhost:5800/api/admin' : 'http://localhost:5800/api/password';
       const response = await axios.post(URL, {
         userId: data.userId,
         password: data.password,
@@ -36,7 +39,7 @@ export default function CheckPassword() {
       console.log('Response:', response.data); // Debugging line
 
       if (response.data.success) {
-        toast.success(response.data.message);
+        toast.success(isAdmin ? 'Admin Login Successfully' : response.data.message);
         dispatch(setToken(response.data.token));
         localStorage.setItem('Token', response.data.token);
         setData({ password: '', userId: '', email: '' });
