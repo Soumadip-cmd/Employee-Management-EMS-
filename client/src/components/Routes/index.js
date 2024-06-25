@@ -18,7 +18,7 @@ import ManageStaff from './../Staff/ManageStaff';
 import StaffList from './../Staff/StaffList';
 import EditStaff from './../Staff/EditStaff';
 import EditDepartment from './../Department/EditDepartment';
-
+import CheckAdminPassword from '../Pages/Login/CheckAdminLogin';
 
 import AuthLayouts from '../Layouts';
 import Home from '../Pages/Home/Home';
@@ -59,6 +59,15 @@ const router = createBrowserRouter([
         element: (
           <AuthLayouts>
             <Forgotpassword />
+          </AuthLayouts>
+        ),
+      },
+
+      {
+        path: 'admin',
+        element: (
+          <AuthLayouts>
+           <CheckAdminPassword/>
           </AuthLayouts>
         ),
       },
