@@ -32,8 +32,11 @@ const addStaff = async (req, res) => {
         });
 
         await newStaff.save();
-        res.status(201).json({ message: 'Staff added successfully' });
+        res.status(201).json({ message: 'Staff added successfully',
+            data:newStaff
+        });
     } catch (error) {
+        console.log("Error in addstaff controller",error)
         console.error(error);
         res.status(500).json({ error: 'Server error' });
     }

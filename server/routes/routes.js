@@ -4,7 +4,8 @@ const UserRegistration=require('../controllers/UserRegistration')
 const checkEmail=require('.././controllers/checkEmail')
 const checkPassword=require('.././controllers/checkPassword')
 const checkAdmin=require("../controllers/checkAdmin");
-const addStaff=require('../controllers/AddStaff/AddStaff')
+const addStaff=require('../controllers/AddStaff/AddStaff');
+const addDepartment=require('../controllers/AddDepartment/addDepartment')
 // Registration Controller
 router.post('/register',UserRegistration)
 //Email
@@ -14,6 +15,7 @@ router.post('/password',checkPassword)
 //check admin
 router.post('/admin',checkAdmin)
 //add staff
-router.post('/addstaff',addStaff)
-
+router.post('/add-staff',addStaff)
+//add department
+router.post('/add-dept',addDepartment)
 module.exports=router;
