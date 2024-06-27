@@ -11,7 +11,8 @@ const deleteStaffs=require('../controllers/Staffs/DeleteStaff')
 const addDepartment=require('../controllers/Departments/addDepartment');
 const getDepartment=require("../controllers/Departments/getDepartment");
 const editDepartment=require('../controllers/Departments/editDepartment')
-const deleteDepartment=require('../controllers/Departments/DeleteDepartment')
+const deleteDepartment=require('../controllers/Departments/DeleteDepartment');
+const leaveUserApply=require('../controllers/Leave/AddLeave');
 // Registration Controller
 router.post('/register',UserRegistration)
 //Email
@@ -39,5 +40,7 @@ router.get('/get-dept/:id',getDepartment);
 //edit department
 router.patch('/edit-dept/:id',editDepartment);
 //delete department
-router.delete('/delete-dept/:id',deleteDepartment)
+router.delete('/delete-dept/:id',deleteDepartment);
+//leave user Apply
+router.post('/apply-leave/:id',leaveUserApply)
 module.exports=router;
