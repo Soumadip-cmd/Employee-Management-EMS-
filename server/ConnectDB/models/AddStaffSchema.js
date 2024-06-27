@@ -52,5 +52,5 @@ const addStaffSchema=new mongoose.Schema({
         required:[true,"Provide Address"]
     }
 })
-const AddStaffModel=mongoose.model('addstaff',addStaffSchema);
+const AddStaffModel=mongoose.model('Staffs',addStaffSchema);
 module.exports=AddStaffModel
