@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./ConnectDB/db');
 const router = require('./routes/routes');
 const PORT = process.env.PORT || 5800;
-
 dotenv.config();
 
 // Update CORS configuration
