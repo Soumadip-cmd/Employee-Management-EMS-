@@ -1,25 +1,27 @@
 const AddDepartment = require('../../ConnectDB/models/AddDepartment');
 
 const getDepartment = async (req, res) => {
-    const deptreq = req.params.id;
+    const deptId = req.params.id;
 
     try {
-        if (deptreq) {
+        if (deptId) {
           
-            const dept = await AddDepartment.findById(deptreq);
+            const dept = await AddDepartment.findById(deptId);
             if (!dept) {
                 return res.status(404).json({ error: 'Department not found' });
             }   
             return res.json({
                 message:"This Department Found",
-                data:dept
+                data:dept,
+                success:true
             });
         } else {
             // Get all departments
             const allDepts = await AddDepartment.find();
             return res.json({
                 message:"All Departments Found",
-                data:allDepts
+                data:allDepts,
+                success:true
             });
         }
     } catch (error) {

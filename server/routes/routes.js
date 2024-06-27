@@ -5,10 +5,13 @@ const checkEmail=require('.././controllers/checkEmail')
 const checkPassword=require('.././controllers/checkPassword')
 const checkAdmin=require("../controllers/checkAdmin");
 const addStaff=require('../controllers/Staffs/AddStaff');
-const getStaffs=require('../controllers/Staffs/GetStaff')
+const getStaffs=require('../controllers/Staffs/GetStaff');
+const editStaffs=require('../controllers/Staffs/EditStaff');
+const deleteStaffs=require('../controllers/Staffs/DeleteStaff')
 const addDepartment=require('../controllers/Departments/addDepartment');
 const getDepartment=require("../controllers/Departments/getDepartment");
-
+const editDepartment=require('../controllers/Departments/editDepartment')
+const deleteDepartment=require('../controllers/Departments/DeleteDepartment')
 // Registration Controller
 router.post('/register',UserRegistration)
 //Email
@@ -22,11 +25,19 @@ router.post('/add-staff',addStaff);
 //get all staffs
 router.get('/get-staffs',getStaffs)
 //get particular staffs
-router.get('/get-staffs/:id',getStaffs)
+router.get('/get-staffs/:id',getStaffs);
+//edit staff
+router.patch('/edit-staffs/:id',editStaffs);
+//delete staffs
+router.delete('/delete-staffs/:id',deleteStaffs)
 //add department
 router.post('/add-dept',addDepartment);
 //get all department
 router.get('/get-dept',getDepartment);
 //get particular departments
-router.get('/get-dept/:id',getDepartment)
+router.get('/get-dept/:id',getDepartment);
+//edit department
+router.patch('/edit-dept/:id',editDepartment);
+//delete department
+router.delete('/delete-dept/:id',deleteDepartment)
 module.exports=router;

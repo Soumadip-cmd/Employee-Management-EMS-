@@ -8,7 +8,8 @@ const addDepartment = async (req, res) => {
 
         if (checkDepartment) {
             return res.status(400).json({
-                message: "Department already exists! Please add a new department."
+                message: "Department already exists! Please add a new department.",
+                error:true
             });
         }
 
@@ -23,7 +24,8 @@ const addDepartment = async (req, res) => {
         await newDept.save();
         return res.status(201).json({
             message: "Department added successfully",
-            data:newDept
+            data:newDept,
+            success:true
         });
     } catch (error) {
         console.log("Error in add department controller")
