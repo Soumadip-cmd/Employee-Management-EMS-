@@ -1,11 +1,17 @@
 const express=require('express')
 const router=express.Router()
-
+const bodyParser=require('body-parser')
 //login and registration user and admin
 const UserRegistration=require('../controllers/UserRegistration')
 const checkEmail=require('.././controllers/checkEmail')
 const checkPassword=require('.././controllers/checkPassword')
 const checkAdmin=require("../controllers/checkAdmin");
+
+
+//razorpay payment gateway
+const paymentController=require('../RazorPay-Payment-Gateway/paymentController')
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: false }));
 
 
 
@@ -134,4 +140,12 @@ router.delete('/delete-salary/:id', deleteSalary);
 router.get('/all-salary', getAllSalaries);
 router.get('/emp-salary/:id', getSalaryByEmployeeId);
 
+
+//razorpay gateway
+
+router.post('/createSalaryPayment', paymentController.createSalaryPayment);
+
 module.exports=router;
+
+// "_id": "667e392345872e70203db1da",
+// "employeeId": "667d605fe472f13047a00717",
