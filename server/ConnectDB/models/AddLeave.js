@@ -25,6 +25,16 @@ const AddLeaveModel = new mongoose.Schema({
     documentproof: {
         type: String,
         default: ""
+    },
+    status: {
+        type: String,
+        enum: ['Pending', 'Approved', 'Rejected'],
+        default: 'Pending'
+    },
+
+    approvalComments: {
+        type: String,
+        default: ""
     }
 });
 

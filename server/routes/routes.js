@@ -16,7 +16,10 @@ const leaveUserApply=require('../controllers/Leave/AddLeave');
 const getAllLeaves=require('../controllers/Leave/GetAllLeave');
 const EmployeeIDLeave=require('../controllers/Leave/getEmployeLeave');
 const EditLeaveRequest=require('../controllers/Leave/EditLeave');
-const deleteLeaveRequest =require('../controllers/Leave/DeleteLeave')
+const deleteLeaveRequest =require('../controllers/Leave/DeleteLeave');
+const ApproveLeave=require('../controllers/Leave/ApproveLeaveRequest');
+const rejectLeave=require('../controllers/Leave/RejectLeaveRequest');
+const OtherLeaveStatus=require('../controllers/Leave/OtherLeaveApproveStatus')
 // Registration Controller
 router.post('/register',UserRegistration)
 //Email
@@ -54,5 +57,11 @@ router.get('/get-leave/:id',EmployeeIDLeave)
 //edit leave request
 router.put('/edit-leave/:id',EditLeaveRequest)
 //delete leave request
-router.delete('/delete-leave/:id',deleteLeaveRequest)
+router.delete('/delete-leave/:id',deleteLeaveRequest);
+//approve leave
+router.put('/leave/approve/:id',ApproveLeave);
+//reject leave
+router.put('/leave/reject/:id',rejectLeave);
+//other leave status
+router.put('/leave/other-status/:id',OtherLeaveStatus)
 module.exports=router;
