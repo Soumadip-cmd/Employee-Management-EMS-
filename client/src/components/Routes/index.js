@@ -22,6 +22,7 @@ import CheckAdminPassword from '../Pages/Login/CheckAdminLogin';
 
 import AuthLayouts from '../Layouts';
 import Home from '../Pages/Home/Home';
+import Payments from "../Payments/Payment"
 
 
 
@@ -70,6 +71,14 @@ const router = createBrowserRouter([
            <CheckAdminPassword/>
           </AuthLayouts>
         ),
+      },
+      {
+        path:'payment',
+        element:(
+          <AuthLayouts>
+            <Payments/>
+          </AuthLayouts>
+        )
       },
      
       {
