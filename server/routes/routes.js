@@ -13,6 +13,10 @@ const getDepartment=require("../controllers/Departments/getDepartment");
 const editDepartment=require('../controllers/Departments/editDepartment')
 const deleteDepartment=require('../controllers/Departments/DeleteDepartment');
 const leaveUserApply=require('../controllers/Leave/AddLeave');
+const getAllLeaves=require('../controllers/Leave/GetAllLeave');
+const EmployeeIDLeave=require('../controllers/Leave/getEmployeLeave');
+const EditLeaveRequest=require('../controllers/Leave/EditLeave');
+const deleteLeaveRequest =require('../controllers/Leave/DeleteLeave')
 // Registration Controller
 router.post('/register',UserRegistration)
 //Email
@@ -42,5 +46,13 @@ router.patch('/edit-dept/:id',editDepartment);
 //delete department
 router.delete('/delete-dept/:id',deleteDepartment);
 //leave user Apply
-router.post('/apply-leave/:id',leaveUserApply)
+router.post('/apply-leave/:id',leaveUserApply);
+//get All Leaves
+router.get('/get-leave',getAllLeaves);
+//get leave with id
+router.get('/get-leave/:id',EmployeeIDLeave)
+//edit leave request
+router.put('/edit-leave/:id',EditLeaveRequest)
+//delete leave request
+router.delete('/delete-leave/:id',deleteLeaveRequest)
 module.exports=router;
