@@ -44,6 +44,15 @@ const OtherLeaveStatus=require('../controllers/Leave/OtherLeaveApproveStatus')
 
 
 
+//Salary Related Endpoints
+
+const addSalary = require('../controllers/Salary/AddSalary');
+const editSalary = require('../controllers/Salary/EditSalary');
+const deleteSalary = require('../controllers/Salary/DeleteSalary');
+const getAllSalaries = require('../controllers/Salary/getAllSalaray');
+const getSalaryByEmployeeId = require('../controllers/Salary/getSalaryId')
+
+
 //controllers
 
 
@@ -112,4 +121,17 @@ router.put('/leave/approve/:id',ApproveLeave);
 router.put('/leave/reject/:id',rejectLeave);
 //other leave status
 router.put('/leave/other-status/:id',OtherLeaveStatus)
+
+
+
+
+
+//salary endpoints
+
+router.post('/add-salary/:id', addSalary);
+router.put('/edit-salary/:id', editSalary);
+router.delete('/delete-salary/:id', deleteSalary);
+router.get('/all-salary', getAllSalaries);
+router.get('/emp-salary/:id', getSalaryByEmployeeId);
+
 module.exports=router;

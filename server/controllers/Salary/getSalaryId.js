@@ -1,21 +1,21 @@
 const SalaryModel = require('../../ConnectDB/models/AddSalaryModel');
 
-const deleteSalary = async (req, res) => {
-    const salaryId = req.params.id;
+const getSalaryByEmployeeId = async (req, res) => {
+    const employeeId = req.params.id;
     
     try {
-        const deletedSalary = await SalaryModel.findByIdAndDelete(salaryId);
+        const salaries = await SalaryModel.find({ employeeId });
 
-        if (!deletedSalary) {
+        if (salaries.length === 0) {
             return res.status(404).json({
-                message: 'Salary not found',
+                message: 'No salary records found for this employee',
                 error: true
             });
         }
 
         res.json({
-            message: 'Salary deleted successfully',
-            salary: deletedSalary
+            message: 'Salaries retrieved successfully for employee ID',
+            salaries
         });
     } catch (error) {
         console.error(error);
@@ -26,4 +26,4 @@ const deleteSalary = async (req, res) => {
     }
 };
 
-module.exports = deleteSalary;
+module.exports = getSalaryByEmployeeId;
