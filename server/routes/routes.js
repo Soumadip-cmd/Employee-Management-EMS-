@@ -1,17 +1,38 @@
 const express=require('express')
 const router=express.Router()
+
+//login and registration user and admin
 const UserRegistration=require('../controllers/UserRegistration')
 const checkEmail=require('.././controllers/checkEmail')
 const checkPassword=require('.././controllers/checkPassword')
 const checkAdmin=require("../controllers/checkAdmin");
+
+
+
+
+
+
+//staff related end points
 const addStaff=require('../controllers/Staffs/AddStaff');
 const getStaffs=require('../controllers/Staffs/GetStaff');
 const editStaffs=require('../controllers/Staffs/EditStaff');
 const deleteStaffs=require('../controllers/Staffs/DeleteStaff')
+
+
+
+
+
+
+//department related endpoints
 const addDepartment=require('../controllers/Departments/addDepartment');
 const getDepartment=require("../controllers/Departments/getDepartment");
 const editDepartment=require('../controllers/Departments/editDepartment')
 const deleteDepartment=require('../controllers/Departments/DeleteDepartment');
+
+
+
+
+//leave related endpoints
 const leaveUserApply=require('../controllers/Leave/AddLeave');
 const getAllLeaves=require('../controllers/Leave/GetAllLeave');
 const EmployeeIDLeave=require('../controllers/Leave/getEmployeLeave');
@@ -20,6 +41,12 @@ const deleteLeaveRequest =require('../controllers/Leave/DeleteLeave');
 const ApproveLeave=require('../controllers/Leave/ApproveLeaveRequest');
 const rejectLeave=require('../controllers/Leave/RejectLeaveRequest');
 const OtherLeaveStatus=require('../controllers/Leave/OtherLeaveApproveStatus')
+
+
+
+//controllers
+
+
 // Registration Controller
 router.post('/register',UserRegistration)
 //Email
@@ -28,6 +55,12 @@ router.post('/email',checkEmail)
 router.post('/password',checkPassword)
 //check admin
 router.post('/admin',checkAdmin)
+
+
+
+// Staff Endpoints Starts
+
+
 //add staff
 router.post('/add-staff',addStaff);
 //get all staffs
@@ -38,6 +71,14 @@ router.get('/get-staffs/:id',getStaffs);
 router.patch('/edit-staffs/:id',editStaffs);
 //delete staffs
 router.delete('/delete-staffs/:id',deleteStaffs)
+
+
+
+
+
+// Department Endpoints Starts
+
+
 //add department
 router.post('/add-dept',addDepartment);
 //get all department
@@ -48,6 +89,13 @@ router.get('/get-dept/:id',getDepartment);
 router.patch('/edit-dept/:id',editDepartment);
 //delete department
 router.delete('/delete-dept/:id',deleteDepartment);
+
+
+//leave Endpoits Starts
+
+
+
+
 //leave user Apply
 router.post('/apply-leave/:id',leaveUserApply);
 //get All Leaves
