@@ -1,7 +1,6 @@
 import React from "react";
 
 import NewDepartment from "./NewDepartment";
-import { Link } from "react-router-dom";
 
 
 export default function AddDepartment() {
@@ -18,15 +17,23 @@ export default function AddDepartment() {
   //   cursor: "pointer",
   //   marginLeft: "20px",
   // };
-  
+
   return (
     <>
-     <nav
+      <nav
         className="navbar navbar-expand-lg"
-        style={{backgroundColor: "rgb(0 77 255 / 65%)" }}
+        style={{ backgroundColor: "rgb(0 77 255 / 65%)" }}
       >
         <div className="container">
-          <Link className="navbar-brand" style={{ fontSize: "25px",color:'white',letterSpacing:".05125em"}} to="/">
+          <Link
+            className="navbar-brand"
+            style={{
+              fontSize: "25px",
+              color: "white",
+              letterSpacing: ".05125em",
+            }}
+            to="/"
+          >
             Department
           </Link>
           <button
@@ -43,7 +50,7 @@ export default function AddDepartment() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link className="nav-link" style={{ color:'white' }} to="/">
+                <Link className="nav-link" style={{ color: "white" }} to="/">
                   <span className="ms-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -77,14 +84,18 @@ export default function AddDepartment() {
               <li className="nav-item">
                 <Link
                   className="nav-link"
-                  style={{ color:'white' }}
+                  style={{ color: "white" }}
                   to="/managedepartment"
                 >
                   Manage Department
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" style={{ color:'white' }} to='/addDepartment'>
+                <Link
+                  className="nav-link"
+                  style={{ color: "white" }}
+                  to="/addDepartment"
+                >
                   Department
                 </Link>
               </li>

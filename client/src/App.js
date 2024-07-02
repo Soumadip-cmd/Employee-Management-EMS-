@@ -1,22 +1,12 @@
-import React from 'react';
+import React from 'react'
+import AddDepartment from './components/Department/AddDepartment'
 
-import './App.css';
-import {Outlet} from "react-router-dom"
-import {Toaster} from "react-hot-toast"
-
-
-
-
- export default  function App() {
-    
-    return (
-      <>
-      <Toaster/>
-      <header>
-      <Outlet/>
-      </header> 
-      </>
-    );
+function App() {
+  return (
+    <>
+      <AddDepartment/>
+    </>
+  )
 }
 
-
+export default App
