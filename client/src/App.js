@@ -13,11 +13,11 @@ function App() {
   const router = createBrowserRouter([
     
     {
-      path: "/ssk",
+      path: "/",
       element: <><SlideNavbar/><NavBar/><Dashboard/></>,
     },
     {
-      path: "/",
+      path: "/test",
       element: <><Test/></>,
     },
   ]);
