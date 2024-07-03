@@ -6,13 +6,14 @@ import {
 } from "react-router-dom";
 import Test from './components/Test';
 import SlideNavbar from './components/SlideNavbar';
+import NavBar from './NavBar';
 
 function App() {
   const router = createBrowserRouter([
     
     {
       path: "/ssk",
-      element: <><SlideNavbar/><Test/></>,
+      element: <><SlideNavbar/><NavBar/></>,
     },
     {
       path: "/",

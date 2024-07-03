@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./SlideNavBar.css";
 import { NavLink } from "react-router-dom";
 
+
 export default function SlideNavbar() {
   useEffect(() => {
     const hamBurger = document.querySelector(".toggle-btn");
@@ -38,6 +39,7 @@ export default function SlideNavbar() {
     <>
       <div className="wrapper">
         <div className="backdrop"></div>
+    
         <aside id="sidebar">
           <div className="d-flex">
             <button className="toggle-btn" type="button">
@@ -66,7 +68,7 @@ export default function SlideNavbar() {
           </form>
           <div
             className="px-4 py-2 text-capitalize text-white text-opacity-50 main-navigation"
-            style={{ background: "#586682b0" }}
+            style={{ background: "#586682b0" ,whiteSpace:'nowrap'}}
           >
             main navigation
           </div>

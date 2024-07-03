@@ -34,7 +34,28 @@
     display: flex;
     flex-direction: column;
     list-style: none;
+    top: 50px;
 }
+@media screen and (max-width: 765px) {
+    #sidebar {
+      height: 94.7%; /* Adjust height for smaller screens */
+    }
+  }
+  
+  /* Media query for medium screens */
+  @media screen and (min-width: 766px) and (max-width: 1019px) {
+    #sidebar {
+      height: 96.2%; /* Adjust height for medium screens */
+    }
+  }
+  
+  /* Media query for larger screens */
+  @media screen and (min-width: 1020px) {
+    #sidebar {
+      height: 93.5%; /* Adjust height for larger screens */
+    }
+  }
+  
 
 #sidebar.expand {
     width: 260px;
@@ -103,6 +124,7 @@ a.sidebar-link:hover {
 
 .sidebar-item {
     position: relative;
+    list-style: none;
 }
 
 #sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
