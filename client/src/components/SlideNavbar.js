@@ -82,7 +82,7 @@ export default function SlideNavbar() {
 
             <li className="sidebar-item">
               <NavLink
-                to="/"
+                
                 className="NavBody sidebar-link collapsed has-dropdown"
                 data-bs-toggle="collapse"
                 data-bs-target="#Department"
@@ -98,12 +98,12 @@ export default function SlideNavbar() {
                 data-bs-parent="#sidebar"
               >
                 <li className="sidebar-item">
-                  <NavLink to="/" className="NavBody sidebar-link">
+                  <NavLink to="/addDepartment" className="NavBody sidebar-link">
                     Add Department
                   </NavLink>
                 </li>
                 <li className="sidebar-item">
-                  <NavLink to="/" className="NavBody sidebar-link">
+                  <NavLink to="/manageDepartment" className="NavBody sidebar-link">
                     Manage Department
                   </NavLink>
                 </li>
@@ -112,7 +112,7 @@ export default function SlideNavbar() {
 
             <li className="sidebar-item">
               <NavLink
-                to="/"
+                
                 className="NavBody sidebar-link collapsed has-dropdown"
                 data-bs-toggle="collapse"
                 data-bs-target="#Staff"
@@ -128,12 +128,12 @@ export default function SlideNavbar() {
                 data-bs-parent="#sidebar"
               >
                 <li className="sidebar-item">
-                  <NavLink to="/" className="NavBody sidebar-link">
+                  <NavLink to="/addStaff" className="NavBody sidebar-link">
                     Add Staff
                   </NavLink>
                 </li>
                 <li className="sidebar-item">
-                  <NavLink to="/" className="NavBody sidebar-link">
+                  <NavLink to="/manageStaff" className="NavBody sidebar-link">
                     Manage Staff
                   </NavLink>
                 </li>
@@ -142,7 +142,7 @@ export default function SlideNavbar() {
 
             <li className="sidebar-item">
               <NavLink
-                to="/"
+                
                 className="NavBody sidebar-link collapsed has-dropdown"
                 data-bs-toggle="collapse"
                 data-bs-target="#Salary"
@@ -158,12 +158,12 @@ export default function SlideNavbar() {
                 data-bs-parent="#sidebar"
               >
                 <li className="sidebar-item">
-                  <NavLink to="/" className="NavBody sidebar-link">
+                  <NavLink to="/addSalary" className="NavBody sidebar-link">
                     Add Salary
                   </NavLink>
                 </li>
                 <li className="sidebar-item">
-                  <NavLink to="/" className="NavBody sidebar-link">
+                  <NavLink to="/manageSalary" className="NavBody sidebar-link">
                     Manage Salary
                   </NavLink>
                 </li>
@@ -172,7 +172,7 @@ export default function SlideNavbar() {
 
             <li className="sidebar-item">
               <NavLink
-                to="/"
+                
                 className="NavBody sidebar-link collapsed has-dropdown"
                 data-bs-toggle="collapse"
                 data-bs-target="#Leave"
@@ -188,12 +188,12 @@ export default function SlideNavbar() {
                 data-bs-parent="#sidebar"
               >
                 <li className="sidebar-item">
-                  <NavLink to="/" className="NavBody sidebar-link">
+                  <NavLink to="/applyLeave" className="NavBody sidebar-link">
                     Apply Leave
                   </NavLink>
                 </li>
                 <li className="sidebar-item">
-                  <NavLink to="/" className="NavBody sidebar-link">
+                  <NavLink to="/leaveHistory" className="NavBody sidebar-link">
                     Leave History
                   </NavLink>
                 </li>
@@ -202,7 +202,7 @@ export default function SlideNavbar() {
           </ul>
           <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
           <div className="sidebar-footer">
-            <NavLink to="/" className="NavBody sidebar-link">
+            <NavLink to="/login" className="NavBody sidebar-link">
               <i className="lni lni-exit"></i>
               <span>Logout</span>
             </NavLink>
