@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import './SlideNavBar.css';
+import "./SlideNavBar.css";
 import { NavLink } from "react-router-dom";
 
 export default function SlideNavbar() {
@@ -7,16 +7,19 @@ export default function SlideNavbar() {
     const hamBurger = document.querySelector(".toggle-btn");
     const backdrop = document.querySelector(".backdrop");
     const sidebar = document.querySelector("#sidebar");
+    const mainNavigation = document.querySelector(".main-navigation");
 
     const handleToggle = () => {
       sidebar.classList.toggle("expand");
       backdrop.classList.toggle("show");
+      mainNavigation.classList.toggle("visible");
     };
 
     const handleCloseSidebar = (e) => {
       if (!sidebar.contains(e.target) && sidebar.classList.contains("expand")) {
         sidebar.classList.remove("expand");
         backdrop.classList.remove("show");
+        mainNavigation.classList.remove("visible");
       }
     };
 
@@ -38,75 +41,168 @@ export default function SlideNavbar() {
         <aside id="sidebar">
           <div className="d-flex">
             <button className="toggle-btn" type="button">
-              <i className="lni lni-grid-alt"></i>
+              <i class="fa-solid fa-compact-disc"></i>
             </button>
             <div className="sidebar-logo">
-              <NavLink  to="/" className="NavBody ">CodzSword</NavLink>
+              <NavLink to="/" className="NavBody">
+                Administrator
+              </NavLink>
             </div>
+          </div>
+          <form className="d-flex px-2 pb-4 position-relative" role="search">
+            <input
+              className="form-control text-white border-0 pl-6"
+              style={{ background: "#586682b0" }}
+              type="search"
+              placeholder=" Search . . . "
+              aria-label="Search"
+            />
+            <button
+              className="position-absolute rounded-pill border-0"
+              style={{ right: "20px", top: "5px" }}
+            >
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+          <div
+            className="px-4 py-2 text-capitalize text-white text-opacity-50 main-navigation"
+            style={{ background: "#586682b0" }}
+          >
+            main navigation
           </div>
           <ul className="sidebar-nav">
             <li className="sidebar-item ">
-              <NavLink  to="/" className="NavBody sidebar-link">
-                <i className="lni lni-user"></i>
-                <span>Profile</span>
+              <NavLink to="/" className="NavBody pt-2 sidebar-link">
+              <i class="fa-solid fa-shop"></i>
+                <span>Dashboard</span>
               </NavLink>
             </li>
+            <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
             <li className="sidebar-item ">
-              <NavLink  to="/" className="NavBody sidebar-link">
-                <i className="lni lni-agenda"></i>
-                <span>Task</span>
+              <NavLink
+                to="/"
+                className="NavBody sidebar-link collapsed has-dropdown"
+                data-bs-toggle="collapse"
+                data-bs-target="#Department"
+                aria-expanded="false"
+                aria-controls="Department"
+              >
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>Department</span>
               </NavLink>
-            </li>
-            <li className="sidebar-item ">
-              <NavLink  to="/" className="NavBody sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                <i className="lni lni-protection"></i>
-                <span>Auth</span>
-              </NavLink>
-              <ul id="auth" className="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+              {/* <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/> */}
+              <ul
+                id="Department"
+                className="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
                 <li className="sidebar-item ">
-                  <NavLink  to="/" className="NavBody sidebar-link">Login</NavLink>
-                </li>
-                <li className="sidebar-item ">
-                  <NavLink  to="/" className="NavBody sidebar-link">Register</NavLink>
-                </li>
-              </ul>
-            </li>
-            <li className="sidebar-item ">
-              <NavLink  to="/" className="NavBody sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                <i className="lni lni-layout"></i>
-                <span>Multi Level</span>
-              </NavLink>
-              <ul id="multi" className="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                <li className="sidebar-item ">
-                  <NavLink  to="/" className="NavBody sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                    Two Links
+                  <NavLink to="/" className="NavBody sidebar-link">
+                    Add Department
                   </NavLink>
-                  <ul id="multi-two" className="sidebar-dropdown list-unstyled collapse">
-                    <li className="sidebar-item ">
-                      <NavLink  to="/" className="NavBody sidebar-link">Link 1</NavLink>
-                    </li>
-                    <li className="sidebar-item ">
-                      <NavLink  to="/" className="NavBody sidebar-link">Link 2</NavLink>
-                    </li>
-                  </ul>
+                </li>
+                <li className="sidebar-item ">
+                  <NavLink to="/" className="NavBody sidebar-link">
+                    Manage Department
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+
+            <li className="sidebar-item ">
+              <NavLink
+                to="/"
+                className="NavBody sidebar-link collapsed has-dropdown"
+                data-bs-toggle="collapse"
+                data-bs-target="#Staff"
+                aria-expanded="false"
+                aria-controls="Staff"
+              >
+                <i class="fa-solid fa-users"></i>
+                <span>Staff</span>
+              </NavLink>
+              <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
+              <ul
+                id="Staff"
+                className="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li className="sidebar-item ">
+                  <NavLink to="/" className="NavBody sidebar-link">
+                    Add Staff
+                  </NavLink>
+                </li>
+                <li className="sidebar-item ">
+                  <NavLink to="/" className="NavBody sidebar-link">
+                    Manage Staff
+                  </NavLink>
                 </li>
               </ul>
             </li>
             <li className="sidebar-item ">
-              <NavLink  to="/" className="NavBody sidebar-link">
-                <i className="lni lni-popup"></i>
-                <span>Notification</span>
+              <NavLink
+                to="/"
+                className="NavBody sidebar-link collapsed has-dropdown"
+                data-bs-toggle="collapse"
+                data-bs-target="#Salary"
+                aria-expanded="false"
+                aria-controls="Salary"
+              >
+                <i class="fa-solid fa-sack-dollar"></i>
+                <span>Salary</span>
               </NavLink>
+              <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
+              <ul
+                id="Salary"
+                className="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li className="sidebar-item ">
+                  <NavLink to="/" className="NavBody sidebar-link">
+                    Add Salary
+                  </NavLink>
+                </li>
+                <li className="sidebar-item ">
+                  <NavLink to="/" className="NavBody sidebar-link">
+                    Manage Salary
+                  </NavLink>
+                </li>
+              </ul>
             </li>
             <li className="sidebar-item ">
-              <NavLink  to="/" className="NavBody sidebar-link">
-                <i className="lni lni-cog"></i>
-                <span>Setting</span>
+              <NavLink
+                to="/"
+                className="NavBody sidebar-link collapsed has-dropdown"
+                data-bs-toggle="collapse"
+                data-bs-target="#Leave"
+                aria-expanded="false"
+                aria-controls="Leave"
+              >
+                <i class="fa-solid fa-share"></i>
+                <span>Leave</span>
               </NavLink>
+              <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
+              <ul
+                id="Leave"
+                className="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li className="sidebar-item ">
+                  <NavLink to="/" className="NavBody sidebar-link">
+                    Apply Leave
+                  </NavLink>
+                </li>
+                <li className="sidebar-item ">
+                  <NavLink to="/" className="NavBody sidebar-link">
+                    Leave History
+                  </NavLink>
+                </li>
+              </ul>
             </li>
           </ul>
           <div className="sidebar-footer">
-            <NavLink  to="/" className="NavBody sidebar-link">
+          <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
+            <NavLink to="/" className="NavBody sidebar-link">
               <i className="lni lni-exit"></i>
               <span>Logout</span>
             </NavLink>

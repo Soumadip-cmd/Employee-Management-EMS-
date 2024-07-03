@@ -67,14 +67,23 @@
 #sidebar:not(.expand) a.sidebar-link span {
     display: none;
 }
-
+/* Add this CSS rule to initially hide the main navigation */
+.main-navigation {
+    display: none;
+  }
+  
+  /* Add this CSS rule to show the main navigation when the sidebar is expanded */
+  .visible {
+    display: block;
+  }
+  
 .sidebar-nav {
-    padding: 2rem 0;
+    padding: 1rem 0;
     flex: 1 1 auto;
 }
 
 a.sidebar-link {
-    padding: .625rem 1.625rem;
+    padding: .995rem 1.625rem;
     color: #FFF;
     display: block;
     font-size: 0.9rem;
@@ -145,3 +154,7 @@ a.sidebar-link:hover {
 .backdrop.show {
     display: block;
 }
+.form-control::placeholder {
+    color: #ffffff; /* Change this to your desired color */
+    opacity: 1; /* Ensures the color is fully applied */
+  }

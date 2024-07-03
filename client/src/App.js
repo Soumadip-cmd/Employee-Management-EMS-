@@ -11,11 +11,11 @@ function App() {
   const router = createBrowserRouter([
     
     {
-      path: "/",
+      path: "/ssk",
       element: <><SlideNavbar/><Test/></>,
     },
     {
-      path: "/test",
+      path: "/",
       element: <><Test/></>,
     },
   ]);
