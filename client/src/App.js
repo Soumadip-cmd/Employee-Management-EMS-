@@ -12,7 +12,7 @@ function App() {
     
     {
       path: "/",
-      element: <><SlideNavbar/></>,
+      element: <><SlideNavbar/><Test/></>,
     },
     {
       path: "/test",
