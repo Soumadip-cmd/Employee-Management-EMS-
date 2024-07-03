@@ -41,7 +41,7 @@ export default function SlideNavbar() {
         <aside id="sidebar">
           <div className="d-flex">
             <button className="toggle-btn" type="button">
-              <i class="fa-solid fa-compact-disc"></i>
+              <i className="fa-solid fa-compact-disc"></i>
             </button>
             <div className="sidebar-logo">
               <NavLink to="/" className="NavBody">
@@ -71,14 +71,14 @@ export default function SlideNavbar() {
             main navigation
           </div>
           <ul className="sidebar-nav">
-            <li className="sidebar-item ">
+            <li className="sidebar-item">
               <NavLink to="/" className="NavBody pt-2 sidebar-link">
-              <i class="fa-solid fa-shop"></i>
+                <i className="fa-solid fa-shop"></i>
                 <span>Dashboard</span>
               </NavLink>
             </li>
-            <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
-            <li className="sidebar-item ">
+
+            <li className="sidebar-item">
               <NavLink
                 to="/"
                 className="NavBody sidebar-link collapsed has-dropdown"
@@ -87,21 +87,20 @@ export default function SlideNavbar() {
                 aria-expanded="false"
                 aria-controls="Department"
               >
-                <i class="fa-solid fa-boxes-stacked"></i>
+                <i className="fa-solid fa-boxes-stacked"></i>
                 <span>Department</span>
               </NavLink>
-              {/* <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/> */}
               <ul
                 id="Department"
                 className="sidebar-dropdown list-unstyled collapse"
                 data-bs-parent="#sidebar"
               >
-                <li className="sidebar-item ">
+                <li className="sidebar-item">
                   <NavLink to="/" className="NavBody sidebar-link">
                     Add Department
                   </NavLink>
                 </li>
-                <li className="sidebar-item ">
+                <li className="sidebar-item">
                   <NavLink to="/" className="NavBody sidebar-link">
                     Manage Department
                   </NavLink>
@@ -109,7 +108,7 @@ export default function SlideNavbar() {
               </ul>
             </li>
 
-            <li className="sidebar-item ">
+            <li className="sidebar-item">
               <NavLink
                 to="/"
                 className="NavBody sidebar-link collapsed has-dropdown"
@@ -118,28 +117,28 @@ export default function SlideNavbar() {
                 aria-expanded="false"
                 aria-controls="Staff"
               >
-                <i class="fa-solid fa-users"></i>
+                <i className="fa-solid fa-users"></i>
                 <span>Staff</span>
               </NavLink>
-              <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
               <ul
                 id="Staff"
                 className="sidebar-dropdown list-unstyled collapse"
                 data-bs-parent="#sidebar"
               >
-                <li className="sidebar-item ">
+                <li className="sidebar-item">
                   <NavLink to="/" className="NavBody sidebar-link">
                     Add Staff
                   </NavLink>
                 </li>
-                <li className="sidebar-item ">
+                <li className="sidebar-item">
                   <NavLink to="/" className="NavBody sidebar-link">
                     Manage Staff
                   </NavLink>
                 </li>
               </ul>
             </li>
-            <li className="sidebar-item ">
+
+            <li className="sidebar-item">
               <NavLink
                 to="/"
                 className="NavBody sidebar-link collapsed has-dropdown"
@@ -148,28 +147,28 @@ export default function SlideNavbar() {
                 aria-expanded="false"
                 aria-controls="Salary"
               >
-                <i class="fa-solid fa-sack-dollar"></i>
+                <i className="fa-solid fa-sack-dollar"></i>
                 <span>Salary</span>
               </NavLink>
-              <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
               <ul
                 id="Salary"
                 className="sidebar-dropdown list-unstyled collapse"
                 data-bs-parent="#sidebar"
               >
-                <li className="sidebar-item ">
+                <li className="sidebar-item">
                   <NavLink to="/" className="NavBody sidebar-link">
                     Add Salary
                   </NavLink>
                 </li>
-                <li className="sidebar-item ">
+                <li className="sidebar-item">
                   <NavLink to="/" className="NavBody sidebar-link">
                     Manage Salary
                   </NavLink>
                 </li>
               </ul>
             </li>
-            <li className="sidebar-item ">
+
+            <li className="sidebar-item">
               <NavLink
                 to="/"
                 className="NavBody sidebar-link collapsed has-dropdown"
@@ -178,21 +177,20 @@ export default function SlideNavbar() {
                 aria-expanded="false"
                 aria-controls="Leave"
               >
-                <i class="fa-solid fa-share"></i>
+                <i className="fa-solid fa-share"></i>
                 <span>Leave</span>
               </NavLink>
-              <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
               <ul
                 id="Leave"
                 className="sidebar-dropdown list-unstyled collapse"
                 data-bs-parent="#sidebar"
               >
-                <li className="sidebar-item ">
+                <li className="sidebar-item">
                   <NavLink to="/" className="NavBody sidebar-link">
                     Apply Leave
                   </NavLink>
                 </li>
-                <li className="sidebar-item ">
+                <li className="sidebar-item">
                   <NavLink to="/" className="NavBody sidebar-link">
                     Leave History
                   </NavLink>
@@ -200,8 +198,8 @@ export default function SlideNavbar() {
               </ul>
             </li>
           </ul>
-          <div className="sidebar-footer">
           <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
+          <div className="sidebar-footer">
             <NavLink to="/" className="NavBody sidebar-link">
               <i className="lni lni-exit"></i>
               <span>Logout</span>

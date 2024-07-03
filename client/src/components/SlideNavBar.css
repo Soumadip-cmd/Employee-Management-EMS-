@@ -158,3 +158,9 @@ a.sidebar-link:hover {
     color: #ffffff; /* Change this to your desired color */
     opacity: 1; /* Ensures the color is fully applied */
   }
+  .sidebar-nav .sidebar-item + .sidebar-item {
+    border-top: 1px solid #586682b0; /* Separator line */
+    
+    
+  }
+  
