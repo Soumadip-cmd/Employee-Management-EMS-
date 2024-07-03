@@ -11,8 +11,8 @@ const NavBar = () => {
           className="float-start fw-bold"
           style={{ fontFamily: '"Playwrite US Modern", cursive' }}
         >
-          <span className="text-danger">Employee</span>{" "}
-          <span className="text-primary">Management</span>
+          <span className=" opacity-80" style={{color:'#f55757'}}>Employee</span>{" "}
+          <span className="text-info">Management</span>
         </span>
         {/* <span className="float-end text-white mx-2 px-2 py-1" style={{border:'1px solid white', borderRadius:'50%',cursor:'pointer'}}><i className=" fa-regular fa-user fa"></i></span> */}
 
