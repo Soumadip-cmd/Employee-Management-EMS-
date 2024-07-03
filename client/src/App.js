@@ -7,13 +7,14 @@ import {
 import Test from './components/Test';
 import SlideNavbar from './components/SlideNavbar';
 import NavBar from './NavBar';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   const router = createBrowserRouter([
     
     {
       path: "/ssk",
-      element: <><SlideNavbar/><NavBar/></>,
+      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
     },
     {
       path: "/",
