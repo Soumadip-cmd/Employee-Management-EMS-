@@ -30,7 +30,7 @@ const Dashboard = () => {
           </div>
           <div className="col-sm-12 col-md-6 col-lg-3">
             <Card
-              number="18"
+              number="24"
               category="Staff"
               cardbgcolor="rgb(88 13 51)"
               pageLink="/manageStaff"
@@ -38,7 +38,7 @@ const Dashboard = () => {
           </div>
           <div className="col-sm-12 col-md-6 col-lg-3">
             <Card
-              number="18"
+              number="5"
               category="Leave Requests"
               cardbgcolor="#c70d0d"
               pageLink="/leaveHistory"
