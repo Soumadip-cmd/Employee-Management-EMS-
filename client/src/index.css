@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+US+Modern:wght@100..400&display=swap');
 body{
   background-position: center;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-size: cover;
   background-color: #c2b3b3db;
 }
