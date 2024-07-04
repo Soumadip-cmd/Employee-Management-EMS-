@@ -88,7 +88,7 @@ export default function AddSalary() {
               </label>
 
               <select className="form-control" style={{ border: "1px solid" }}>
-                <option disabled defaultValue={"--Department Name--"}>
+                <option disabled selected default Value={"--Department Name--"}>
                   --Department Name--
                 </option>
                 <option>Backend developement</option>
