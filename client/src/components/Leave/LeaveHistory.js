@@ -88,7 +88,7 @@ export default function LeaveHistory() {
                 <td>1</td>
                 <td>Somereason</td>
                 <td>22-1-24</td>
-                <td>1-2-24</td>
+                <td className=" d-flex border-0" style={{width:'max-content'}}>1-2-24</td>
                 <td>
                   <span className="badge bg-success text-white">Approved</span>
                 </td>

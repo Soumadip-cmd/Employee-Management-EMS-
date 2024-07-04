@@ -40,10 +40,10 @@ export default function StaffLeave() {
                   <NavLink to="/" className=" text-dark fw-semibold text-decoration-none">Home</NavLink>
                 </li>
                 <li className="breadcrumb-item active fw-semibold text-decoration-underline" aria-current="page">
-                  History
+                  Staff's Leave
                 </li>
                 <li className="breadcrumb-item">
-                  <NavLink to="/applyLeave" className=" text-dark fw-semibold text-decoration-none">ApplyLeave</NavLink>
+                  <NavLink to="/leaveHistory" className=" text-dark fw-semibold text-decoration-none">History</NavLink>
                 </li>
               </ol>
             </nav>

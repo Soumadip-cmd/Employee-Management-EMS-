@@ -101,7 +101,7 @@ export default function ManageStaff() {
                 <td>8965321459</td>
                 <td>souma@mail.com</td>
                 <td>05-02-2004</td>
-                <td>05-07-2024</td>
+                <td className=" d-flex border-0" style={{width:'max-content'}}>05-07-2024</td>
                 <td>G.T. Road (278/B/4)</td>
                 <td>
                   Kolkata</td>
