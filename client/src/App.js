@@ -14,6 +14,8 @@ import ManageSalary from './components/Salary/ManageSalary';
 import AddSalary from './components/Salary/AddSalary';
 import AddDepartment from './components/Department/AddDepartment';
 import ManageDepartment from './components/Department/ManageDepartment';
+import AddStaff from './components/Staff/Add Staff';
+import ManageStaff from './components/Staff/ManageStaff';
 
 function App() {
   const router = createBrowserRouter([
@@ -32,11 +34,11 @@ function App() {
     },
     {
       path: "/addStaff",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      element: <><NavBar/><AddStaff/></>,
     },
     {
       path: "/manageStaff",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      element: <><NavBar/><ManageStaff/></>,
     },
     {
       path: "/addSalary",

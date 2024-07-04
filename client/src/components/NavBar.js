@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -7,13 +8,14 @@ const NavBar = () => {
         className=" d-flex justify-content-between px-2 align-items-center "
         style={{ background: "#112a47", height: "50px",position:'fixed',zIndex:'20',width:'100%' }}
       >
-        <span
-          className="float-start fw-bold"
+        <NavLink
+        to='/'
+          className="float-start fw-bold text-decoration-none"
           style={{ fontFamily: '"Playwrite US Modern", cursive' }}
         >
           <span className=" opacity-80" style={{color:'#f55757'}}>Employee</span>{" "}
           <span className="text-info">Management</span>
-        </span>
+        </NavLink>
         {/* <span className="float-end text-white mx-2 px-2 py-1" style={{border:'1px solid white', borderRadius:'50%',cursor:'pointer'}}><i className=" fa-regular fa-user fa"></i></span> */}
 
         <div className="flex-shrink-0 dropdown mx-2 mx-lg-3">
