@@ -30,12 +30,13 @@
     height: 100%;
     position: fixed;
     z-index: 1000;
-    background-color: #0e2238;
     display: flex;
     flex-direction: column;
     list-style: none;
     top: 50px;
     bottom: 0;
+    background: scroll;
+    background-color: #0e2238;
     /* overflow: scroll; */
 }
 @media screen and (max-width: 765px) {
