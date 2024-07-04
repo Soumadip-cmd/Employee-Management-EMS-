@@ -105,7 +105,7 @@ export default function ApplyLeave() {
               />
             </div>
             <div className="mb-3">
-              <b>Description</b>
+              <b>Description(Brief)</b>
               <span style={{ color: "red" }}>*</span>
               <textarea
                 className="form-control"
