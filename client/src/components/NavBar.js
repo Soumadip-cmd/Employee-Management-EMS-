@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className=" d-flex justify-content-between px-2 align-items-center "
+        className=" d-flex justify-content-between ps-4 pe-2 align-items-center "
         style={{ background: "#112a47", height: "50px",position:'fixed',zIndex:'20',width:'100%' }}
       >
         <NavLink
