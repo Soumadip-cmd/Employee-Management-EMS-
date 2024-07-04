@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargeDevice(window.innerWidth >= 992);
+      setIsLargeDevice(window.innerWidth >= 1300);
     };
     window.addEventListener('resize', handleResize);
     return () => {
