@@ -16,6 +16,8 @@ import AddDepartment from './components/Department/AddDepartment';
 import ManageDepartment from './components/Department/ManageDepartment';
 import AddStaff from './components/Staff/Add Staff';
 import ManageStaff from './components/Staff/ManageStaff';
+import Login from './components/Authentication/Login';
+import SignUp from './components/Authentication/SignUp';
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +25,14 @@ function App() {
     {
       path: "/",
       element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+    },
+    {
+      path: "/login",
+      element: <><Login/></>,
+    },
+    {
+      path: "/signup",
+      element: <><SignUp/></>,
     },
     {
       path: "/addDepartment",
