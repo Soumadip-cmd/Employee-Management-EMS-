@@ -92,7 +92,7 @@ export default function LeaveHistory() {
                 <td>
                   <span className="badge bg-success text-white">Approved</span>
                 </td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, earum laborum minus aliquid atque quod beatae fuga magnam a explicabo nesciunt iste saepe placeat dicta possimus amet architecto! Quia?</td>
+                <td>Covid-19</td>
                 <td>20-12-23</td>
               </tr>
             </tbody>
