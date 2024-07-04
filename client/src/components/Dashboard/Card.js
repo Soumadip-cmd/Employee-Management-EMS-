@@ -8,7 +8,7 @@ export default function Card(props) {
   return (
     <>
       <div className="container">
-        <div className="card card-responsive mb-4 " >
+        <div className="card card-responsive mb-4 rounded-4 " >
           <div className="card-body " style={{background:`${cardbgcolor}`}}>
             <h2 className="card-title" style={{fontWeight:'800'}}>{number}</h2>
             <p className="card-text">{category}</p>
