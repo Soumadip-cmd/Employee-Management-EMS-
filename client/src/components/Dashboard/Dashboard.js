@@ -10,7 +10,7 @@ const Dashboard = () => {
     <div className=" special mt-5 ms-2">
       <div className="container p-3 ">
         <span style={{ fontSize: "2em", fontWeight: "600" }}>Dashboard </span>
-        <span style={{ fontSize: "1em" }}>Control panel</span>
+        <span style={{ fontSize: "1em" }}> Control panel</span>
       </div>
       <hr
         style={{

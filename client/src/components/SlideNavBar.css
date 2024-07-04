@@ -52,7 +52,7 @@
   /* Media query for larger screens */
   @media screen and (min-width: 1020px) {
     #sidebar {
-      height: 93.5%; /* Adjust height for larger screens */
+      height: 93.7%; /* Adjust height for larger screens */
     }
   }
   

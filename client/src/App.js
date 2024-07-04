@@ -8,6 +8,12 @@ import Test from './components/Test';
 import SlideNavbar from './components/SlideNavbar';
 import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard/Dashboard';
+import ApplyLeave from './components/Leave/ApplyLeave';
+import LeaveHistory from './components/Leave/LeaveHistory';
+import ManageSalary from './components/Salary/ManageSalary';
+import AddSalary from './components/Salary/AddSalary';
+import AddDepartment from './components/Department/AddDepartment';
+import ManageDepartment from './components/Department/ManageDepartment';
 
 function App() {
   const router = createBrowserRouter([
@@ -18,11 +24,11 @@ function App() {
     },
     {
       path: "/addDepartment",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      element: <><NavBar/><AddDepartment/></>,
     },
     {
       path: "/manageDepartment",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      element: <><NavBar/><ManageDepartment/></>,
     },
     {
       path: "/addStaff",
@@ -34,19 +40,19 @@ function App() {
     },
     {
       path: "/addSalary",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      element: <><NavBar/><AddSalary/></>,
     },
     {
       path: "/manageSalary",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      element: <><NavBar/><ManageSalary/></>,
     },
     {
       path: "/applyLeave",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      element: <><NavBar/><ApplyLeave/></>,
     },
     {
       path: "/leaveHistory",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      element: <><NavBar/><LeaveHistory/></>,
     },
     {
       path: "/login",
