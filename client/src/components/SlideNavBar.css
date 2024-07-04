@@ -27,7 +27,7 @@
     width: 70px;
     min-width: 70px;
     transition: all .25s ease-in-out;
-    height: 100%;
+    height: auto;
     position: fixed;
     z-index: 1000;
     display: flex;
@@ -39,25 +39,7 @@
     background-color: #0e2238;
     /* overflow: scroll; */
 }
-@media screen and (max-width: 765px) {
-    #sidebar {
-      height: 94.7%; /* Adjust height for smaller screens */
-    }
-  }
-  
-  /* Media query for medium screens */
-  @media screen and (min-width: 766px) and (max-width: 1019px) {
-    #sidebar {
-      height: 96.2%; /* Adjust height for medium screens */
-    }
-  }
-  
-  /* Media query for larger screens */
-  @media screen and (min-width: 1020px) {
-    #sidebar {
-      height: 93.7%; /* Adjust height for larger screens */
-    }
-  }
+
   
 
 #sidebar.expand {
