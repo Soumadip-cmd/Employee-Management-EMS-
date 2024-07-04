@@ -18,7 +18,7 @@ const Dashboard = () => {
           bottom: "29px",
         }}
       />
-      <div className="container my-2">
+      <div className="container my-2 ">
         <div className="row" style={{ transform: "translateY(-19px)" }}>
           <div className="col-sm-6 col-md-6 col-lg-3">
             <Card
