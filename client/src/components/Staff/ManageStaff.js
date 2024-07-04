@@ -95,7 +95,7 @@ export default function ManageStaff() {
               <tr>
                 <td>1</td>
                 <td>Soumadip santra</td>
-                <td><img src="https://placeholder.co/32x32" alt="img-Profile" /></td>
+                <td className="d-flex justify-content-center align-items-center"><img src="https://placeholder.co/32x32" alt="img-Profile" /></td>
                 <td>Web Developement</td>
                 <td>Male</td>
                 <td>8965321459</td>
