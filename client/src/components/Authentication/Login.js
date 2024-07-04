@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import './login.css'
 const Login = () => {
   return (
-    <div className=' d-flex justify-content-center align-items-center flex-column ' style={{height:'100vh'}}>
+    <div className='stylishBG d-flex justify-content-center align-items-center flex-column ' style={{height:'100vh'}}>
       <div className="form-container">
       <p className="title">Welcome back</p>
       <form className="form">
