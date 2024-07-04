@@ -27,7 +27,7 @@
     width: 70px;
     min-width: 70px;
     transition: all .25s ease-in-out;
-    height: auto;
+    height: 100%;
     position: fixed;
     z-index: 1000;
     display: flex;
