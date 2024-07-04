@@ -74,7 +74,8 @@ export default function StaffLeave() {
           <table className="table table-bordered tablestyle table-striped" >
             <thead>
               <tr>
-                <th>#</th>
+                <th>#</th
+ <th>Name</th>
                 <th>Reason</th>
                 <th  className="" >From</th>
                 <th >To</th>
@@ -86,6 +87,7 @@ export default function StaffLeave() {
             <tbody>
               <tr>
                 <td>1</td>
+<td>William Smith</td>
                 <td>Somereason</td>
                 <td >22-1-24</td>
                 <td >1-2-24</td>
