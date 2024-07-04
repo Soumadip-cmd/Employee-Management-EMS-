@@ -197,6 +197,11 @@ export default function SlideNavbar() {
                     Leave History
                   </NavLink>
                 </li>
+                <li className="sidebar-item">
+                  <NavLink to="/Staffleave" className="NavBody sidebar-link">
+                    Staff's Leave
+                  </NavLink>
+                </li>
               </ul>
             </li>
           </ul>

@@ -17,6 +17,7 @@ import AddStaff from './components/Staff/Add Staff';
 import ManageStaff from './components/Staff/ManageStaff';
 import Login from './components/Authentication/Login';
 import SignUp from './components/Authentication/SignUp';
+import StaffLeave from './components/Leave/StaffLeave';
 
 function App() {
   const [isLargeDevice, setIsLargeDevice] = useState(window.innerWidth >= 1300);
@@ -57,6 +58,16 @@ function App() {
           {isLargeDevice && <SlideNavbar />}
           <NavBar />
           <AddDepartment />
+        </>
+      ),
+    },
+    {
+      path: '/Staffleave',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <StaffLeave/>
         </>
       ),
     },
