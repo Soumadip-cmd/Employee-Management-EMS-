@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
-  
-} from "react-router-dom";
+} from 'react-router-dom';
 import Test from './components/Test';
 import SlideNavbar from './components/SlideNavbar';
 import NavBar from './components/NavBar';
@@ -20,74 +19,124 @@ import Login from './components/Authentication/Login';
 import SignUp from './components/Authentication/SignUp';
 
 function App() {
+  const [isLargeDevice, setIsLargeDevice] = useState(window.innerWidth >= 1300);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeDevice(window.innerWidth >= 992);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const router = createBrowserRouter([
-    
     {
-      path: "/",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
+      path: '/',
+      element: (
+        <>
+          { <SlideNavbar />}
+          <NavBar />
+          <Dashboard />
+        </>
+      ),
     },
     {
-      path: "/login",
-      element: <><Login/></>,
+      path: '/login',
+      element: <Login />,
     },
     {
-      path: "/signup",
-      element: <><SignUp/></>,
+      path: '/signup',
+      element: <SignUp />,
     },
     {
-      path: "/addDepartment",
-      element: <><NavBar/><AddDepartment/></>,
+      path: '/addDepartment',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <AddDepartment />
+        </>
+      ),
     },
     {
-      path: "/manageDepartment",
-      element: <><NavBar/><ManageDepartment/></>,
+      path: '/manageDepartment',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <ManageDepartment />
+        </>
+      ),
     },
     {
-      path: "/addStaff",
-      element: <><NavBar/><AddStaff/></>,
+      path: '/addStaff',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <AddStaff />
+        </>
+      ),
     },
     {
-      path: "/manageStaff",
-      element: <><NavBar/><ManageStaff/></>,
+      path: '/manageStaff',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <ManageStaff />
+        </>
+      ),
     },
     {
-      path: "/addSalary",
-      element: <><NavBar/><AddSalary/></>,
+      path: '/addSalary',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <AddSalary />
+        </>
+      ),
     },
     {
-      path: "/manageSalary",
-      element: <><NavBar/><ManageSalary/></>,
+      path: '/manageSalary',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <ManageSalary />
+        </>
+      ),
     },
     {
-      path: "/applyLeave",
-      element: <><NavBar/><ApplyLeave/></>,
+      path: '/applyLeave',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <ApplyLeave />
+        </>
+      ),
     },
     {
-      path: "/leaveHistory",
-      element: <><NavBar/><LeaveHistory/></>,
+      path: '/leaveHistory',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <LeaveHistory />
+        </>
+      ),
     },
     {
-      path: "/login",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
-    },
-    {
-      path: "/",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
-    },
-    {
-      path: "/",
-      element: <><SlideNavbar/><NavBar/><Dashboard/></>,
-    },
-    {
-      path: "/test",
-      element: <><Test/></>,
+      path: '/test',
+      element: <Test />,
     },
   ]);
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  )
+
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
