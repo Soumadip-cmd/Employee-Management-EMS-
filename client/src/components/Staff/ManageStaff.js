@@ -95,7 +95,7 @@ export default function ManageStaff() {
               <tr>
                 <td>1</td>
                 <td>Soumadip santra</td>
-                <td className=""><img className =" rounded-2 " src="https://placehold.co/64x64" alt="img-Profile" /></td>
+                <td className="text-center"><img className =" rounded-2 " src="https://placehold.co/64x64" alt="img-Profile" /></td>
                 <td>Web Developement</td>
                 <td>Male</td>
                 <td>8965321459</td>

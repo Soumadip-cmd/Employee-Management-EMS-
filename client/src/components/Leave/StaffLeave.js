@@ -106,6 +106,7 @@ export default function StaffLeave() {
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>Photo</th>
                   <th>Reason</th>
                   <th className="">From</th>
                   <th>To</th>
@@ -118,6 +119,7 @@ export default function StaffLeave() {
                 <tr>
                   <td>1</td>
                   <td>William Smith</td>
+                  <td className="text-center"><img className ="  rounded-2 " src="https://placehold.co/64x64" alt="img-Profile" /></td>
                   <td>Somereason</td>
                   <td>22-1-24</td>
                   <td>1-2-24</td>
