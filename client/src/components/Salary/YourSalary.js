@@ -66,13 +66,13 @@ export default function ManageSalary() {
         <div className="p-6  text-dark">
           <div className="container max-w-4xl mx-auto  text-dark rounded-lg shadow-md">
             <div className="py-4 border-bottom">
-              <h1 className="h3 mb-0">Salary Management</h1>
+              <h1 className="h3 mb-0">Your Paid Salary</h1>
             </div>
             <div
               className="p-4 bg-white  rounded-top rounded-bottom-1 shadow"
               style={{ borderTop: "5px solid #004dffe8" }}
             >
-              <h2 className="h4 mb-4">View Salary</h2>
+              <h2 className="h4 mb-4"> Salary</h2>
               <div className="d-flex justify-content-between align-items-center mb-4">
                 <div className="d-flex align-items-center gap-2">
                   <label htmlFor="entries" className="form-label  fs-6">
@@ -111,23 +111,16 @@ export default function ManageSalary() {
                       <th>Department</th>
                       <th>Salary</th>
 
-                      <th>Action</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>1</td>
-                      <td>Mr. hisernBerg</td>
+                      <td>Mr. Soumadip Santra</td>
                       <td>Backend Development</td>
-                      <td>$2.5M</td>
-                      <td className="py-2 px-4 ">
-                        <span className="badge text-bg-success mx-1 px-2">
-                          Edit
-                        </span>
-                        <span className="badge text-bg-danger mx-1 px-2">
-                          Delete
-                        </span>
-                      </td>
+                      <td>$2 M</td>
+                      
                     </tr>
                   </tbody>
                 </table>

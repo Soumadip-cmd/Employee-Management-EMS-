@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import ApplyLeave from './components/Leave/ApplyLeave';
 import LeaveHistory from './components/Leave/LeaveHistory';
 import ManageSalary from './components/Salary/ManageSalary';
+import YourSalary from './components/Salary/YourSalary';
 import AddSalary from './components/Salary/AddSalary';
 import AddDepartment from './components/Department/AddDepartment';
 import ManageDepartment from './components/Department/ManageDepartment';
@@ -118,6 +119,16 @@ function App() {
           {isLargeDevice && <SlideNavbar />}
           <NavBar />
           <ManageSalary />
+        </>
+      ),
+    },
+    {
+      path: '/yoursalary',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <YourSalary/>
         </>
       ),
     },

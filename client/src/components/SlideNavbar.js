@@ -163,6 +163,11 @@ export default function SlideNavbar() {
                   </NavLink>
                 </li>
                 <li className="sidebar-item">
+                  <NavLink to="/yoursalary" className="NavBody sidebar-link">
+                    Your Salary
+                  </NavLink>
+                </li>
+                <li className="sidebar-item">
                   <NavLink to="/manageSalary" className="NavBody sidebar-link">
                     Manage Salary
                   </NavLink>
