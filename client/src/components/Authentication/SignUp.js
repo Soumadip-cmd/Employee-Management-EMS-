@@ -12,6 +12,7 @@ const SignUp = () => {
         <input type="text" className="input" placeholder="Last Name"/>
         <input type="email" className="input" placeholder="Email"/>
         <input type="password" className="input" placeholder="Password"/>
+        <input type="text" className="input" placeholder="Admin-Id"/>
         <p className="page-link">
           <span className="page-link-label">Forgot Password?</span>
         </p>

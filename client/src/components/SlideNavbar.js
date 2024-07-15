@@ -205,6 +205,35 @@ export default function SlideNavbar() {
                 </li>
               </ul>
             </li>
+            <li className="sidebar-item">
+              <NavLink
+                
+                className="NavBody sidebar-link collapsed has-dropdown"
+                data-bs-toggle="collapse"
+                data-bs-target="#Admin"
+                aria-expanded="false"
+                aria-controls="Admin"
+              >
+                <i class="fas fa-user-shield"></i>
+                <span>Admin</span>
+              </NavLink>
+              <ul
+                id="Admin"
+                className="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li className="sidebar-item">
+                  <NavLink to="/addAdmin" className="NavBody sidebar-link">
+                    Add Admin
+                  </NavLink>
+                </li>
+                <li className="sidebar-item">
+                  <NavLink to="/manageAdmin" className="NavBody sidebar-link">
+                    Manage Admin
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
           </ul>
           <hr className=" border-1 text-white m-0" style={{ background: "#586682b0" }}/>
           <div className="sidebar-footer">

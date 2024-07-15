@@ -19,6 +19,8 @@ import ManageStaff from './components/Staff/ManageStaff';
 import Login from './components/Authentication/Login';
 import SignUp from './components/Authentication/SignUp';
 import StaffLeave from './components/Leave/StaffLeave';
+import AddAdmin from './components/Admin/AddAdmin';
+import ManageAdmin from './components/Admin/ManageAdmin';
 
 function App() {
   const [isLargeDevice, setIsLargeDevice] = useState(window.innerWidth >= 1300);
@@ -59,6 +61,26 @@ function App() {
           {isLargeDevice && <SlideNavbar />}
           <NavBar />
           <AddDepartment />
+        </>
+      ),
+    },
+    {
+      path: '/addAdmin',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <AddAdmin/>
+        </>
+      ),
+    },
+    {
+      path: '/manageAdmin',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <ManageAdmin/>
         </>
       ),
     },
