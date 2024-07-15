@@ -162,11 +162,7 @@ export default function SlideNavbar() {
                     Add Salary
                   </NavLink>
                 </li>
-                <li className="sidebar-item">
-                  <NavLink to="/yoursalary" className="NavBody sidebar-link">
-                    Your Salary
-                  </NavLink>
-                </li>
+                
                 <li className="sidebar-item">
                   <NavLink to="/manageSalary" className="NavBody sidebar-link">
                     Manage Salary
@@ -192,21 +188,21 @@ export default function SlideNavbar() {
                 className="sidebar-dropdown list-unstyled collapse"
                 data-bs-parent="#sidebar"
               >
-                <li className="sidebar-item">
+                {/* <li className="sidebar-item">
                   <NavLink to="/applyLeave" className="NavBody sidebar-link">
                     Apply Leave
                   </NavLink>
-                </li>
+                </li> */}
                 <li className="sidebar-item">
                   <NavLink to="/leaveHistory" className="NavBody sidebar-link">
                     Leave History
                   </NavLink>
                 </li>
-                <li className="sidebar-item">
+                {/* <li className="sidebar-item">
                   <NavLink to="/Staffleave" className="NavBody sidebar-link">
                     Staff's Leave
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
             </li>
           </ul>
