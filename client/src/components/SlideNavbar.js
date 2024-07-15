@@ -193,16 +193,16 @@ export default function SlideNavbar() {
                     Apply Leave
                   </NavLink>
                 </li> */}
-                <li className="sidebar-item">
+                {/* <li className="sidebar-item">
                   <NavLink to="/leaveHistory" className="NavBody sidebar-link">
                     Leave History
                   </NavLink>
-                </li>
-                {/* <li className="sidebar-item">
+                </li> */}
+                <li className="sidebar-item">
                   <NavLink to="/Staffleave" className="NavBody sidebar-link">
                     Staff's Leave
                   </NavLink>
-                </li> */}
+                </li>
               </ul>
             </li>
           </ul>
