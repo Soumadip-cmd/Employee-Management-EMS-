@@ -47,7 +47,7 @@ const deleteLeaveRequest =require('../controllers/Leave/DeleteLeave');
 const ApproveLeave=require('../controllers/Leave/ApproveLeaveRequest');
 const rejectLeave=require('../controllers/Leave/RejectLeaveRequest');
 const OtherLeaveStatus=require('../controllers/Leave/OtherLeaveApproveStatus')
-
+const adminController=require('../controllers/ManageAdmin')
 
 
 //Salary Related Endpoints
@@ -71,6 +71,14 @@ router.post('/password',checkPassword)
 //check admin
 router.post('/admin',authenticated,checkAdmin)
 
+// List all admins
+router.get('/admins', authenticated, adminController.listAdmins);
+
+// Update admin details
+router.put('/admins/:adminId', authenticated, adminController.updateAdmin);
+
+// Delete an admin
+router.delete('/admins/:adminId', authenticated, adminController.deleteAdmin);
 
 
 // Staff Endpoints Starts
