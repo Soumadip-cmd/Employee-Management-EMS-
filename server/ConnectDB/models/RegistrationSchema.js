@@ -40,7 +40,10 @@ const RegistrationSchema = new mongoose.Schema({
     },
     smsOtp: {
         type: String
-    }
+    },
+    phone:{
+    type: String
+    },
 });
 
 const RegistrationModel = mongoose.model("Registration", RegistrationSchema);

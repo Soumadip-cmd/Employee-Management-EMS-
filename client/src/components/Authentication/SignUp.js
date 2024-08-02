@@ -10,6 +10,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phone, setPhone] = useState(''); 
   const navigate=useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,10 +23,12 @@ const SignUp = () => {
         email,
         password,
         confirmPassword,
+        phone 
       });
 
       if (response.data.success) {
         localStorage.setItem('userEmail', email);
+        localStorage.setItem('userPhone', phone); 
 
         toast.success(response.data.message, {
           duration: 2000,
@@ -118,6 +121,14 @@ const SignUp = () => {
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            className="input"
+            placeholder="Phone Number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
           />
           <button type="submit" className="form-btn">Sign Up</button>
