@@ -6,6 +6,18 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./ConnectDB/db');
 const router = require('./routes/routes');
 const PORT = process.env.PORT || 5800;
+const fileUpload = require('express-fileupload');
+
+app.use(fileUpload());
+
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 dotenv.config();
 
 // Update CORS configuration
