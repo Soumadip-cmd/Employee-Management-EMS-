@@ -6,7 +6,7 @@ const UserRegistration=require('../controllers/UserRegistration')
 const checkEmail=require('.././controllers/checkEmail')
 const checkPassword=require('.././controllers/checkPassword')
 const checkAdmin=require("../controllers/checkAdmin");
-
+const authenticated=require('../helpers/Authentication')
 
 //razorpay payment gateway
 const paymentController=require('../RazorPay-Payment-Gateway/paymentController')
@@ -69,7 +69,7 @@ router.post('/email',checkEmail)
 //Check Password
 router.post('/password',checkPassword)
 //check admin
-router.post('/admin',checkAdmin)
+router.post('/admin',authenticated,checkAdmin)
 
 
 

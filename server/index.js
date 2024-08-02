@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 // API Endpoints
-app.use('/api', router);
+app.use('/api/v1', router);
 
 connectDB().then(() => {
     app.listen(PORT, () => {
