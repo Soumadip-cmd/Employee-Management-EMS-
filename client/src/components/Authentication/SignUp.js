@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -10,7 +10,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const navigate=useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -25,6 +25,8 @@ const SignUp = () => {
       });
 
       if (response.data.success) {
+        localStorage.setItem('userEmail', email);
+
         toast.success(response.data.message, {
           duration: 2000,
           position: 'top-center',
@@ -38,6 +40,7 @@ const SignUp = () => {
             'aria-live': 'polite',
           },
         });
+        navigate('/verify-email');
       } else {
         toast.error(response.data.message, {
           duration: 2000,

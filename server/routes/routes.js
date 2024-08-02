@@ -7,15 +7,16 @@ const checkEmail=require('.././controllers/checkEmail')
 const checkPassword=require('.././controllers/checkPassword')
 const checkAdmin=require("../controllers/checkAdmin");
 const authenticated=require('../helpers/Authentication')
-
+const otpController = require('../controllers/otpController');
 //razorpay payment gateway
 const paymentController=require('../RazorPay-Payment-Gateway/paymentController')
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
 
-
-
+//OTP routes
+router.post('/verify-otp', otpController.verifyOtp);
+router.post('/resend-otp',otpController.sendOtp)
 
 
 //staff related end points

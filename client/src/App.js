@@ -21,7 +21,7 @@ import SignUp from './components/Authentication/SignUp';
 import StaffLeave from './components/Leave/StaffLeave';
 import AddAdmin from './components/Admin/AddAdmin';
 import ManageAdmin from './components/Admin/ManageAdmin';
-
+import VerifyOTP from './components/Authentication/VerifyOTP';
 function App() {
   const [isLargeDevice, setIsLargeDevice] = useState(window.innerWidth >= 1300);
 
@@ -81,6 +81,18 @@ function App() {
           {isLargeDevice && <SlideNavbar />}
           <NavBar />
           <ManageAdmin/>
+        </>
+      ),
+    },
+
+
+    {
+      path: '/verify-email',
+      element: (
+        <>
+          {isLargeDevice && <SlideNavbar />}
+          <NavBar />
+          <VerifyOTP/>
         </>
       ),
     },

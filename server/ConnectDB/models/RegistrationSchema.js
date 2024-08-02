@@ -1,4 +1,6 @@
-const mongoose=require('mongoose')
+// models/RegistrationSchema.js
+const mongoose = require('mongoose');
+
 const RegistrationSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -8,23 +10,38 @@ const RegistrationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email:{
-        type:String,
-        unique:true,
-        required:[true,"Provide Email"]
-
+    email: {
+        type: String,
+        unique: true,
+        required: [true, "Provide Email"]
     },
-    role:{
-    type:String,
-    default:"User",
-    // required:[true,"Provide your Role "],
+    role: {
+        type: String,
+        default: "User",
     },
-    password:{
-        type:String,
+    password: {
+        type: String,
+        required: [true, "Provide Password"]
+    },
+    age: {
+        type: Number,
         
-        required:[true,"Provide Password"]
     },
-   
-})
-const RegistrationModel=mongoose.model("Registration",RegistrationSchema)
-module.exports=RegistrationModel
+    emailVerified: {
+        type: Boolean,
+        default: false
+    },
+    phoneVerified: {
+        type: Boolean,
+        default: false
+    },
+    emailOtp: {
+        type: String
+    },
+    smsOtp: {
+        type: String
+    }
+});
+
+const RegistrationModel = mongoose.model("Registration", RegistrationSchema);
+module.exports = RegistrationModel;
