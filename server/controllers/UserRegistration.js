@@ -1,22 +1,23 @@
+
 // const UserModel = require('../ConnectDB/models/RegistrationSchema');
 // const bcrypt = require('bcrypt');
 
 // const UserRegistration = async (req, res) => {
 //   try {
-//     const { email, password, role, confirmpassword } = req.body;
+//     const { email, password, role, confirmPassword } = req.body; // Corrected to match the provided JSON
 
 //     // Check if the email already exists
 //     const checkEmail = await UserModel.findOne({ email });
 //     if (checkEmail) {
-//       return res.json({
+//       return res.status(400).json({ // Use 400 for bad request errors
 //         message: "Email already exists. Please use a different email.",
 //         error: true,
 //       });
 //     }
 
-//     // Check if password and confirm password match
-//     if (password !== confirmpassword) {
-//       return res.json({
+//     // Check if password and confirmPassword match
+//     if (password !== confirmPassword) {
+//       return res.status(400).json({ // Use 400 for bad request errors
 //         message: "Passwords do not match.",
 //         error: true,
 //       });
@@ -24,8 +25,8 @@
 
 //     // Check if the role is admin
 //     if (role === 'admin') {
-//       return res.json({
-//         message: "Admin can't register. Only users can register.",
+//       return res.status(403).json({ // Use 403 for forbidden access
+//         message: "Admin role is not allowed during registration.",
 //         error: true,
 //       });
 //     }
@@ -34,7 +35,7 @@
 //     const salt = await bcrypt.genSalt(10);
 //     const hashPassword = await bcrypt.hash(password, salt);
 
-//     // Create payload without confirmpassword
+//     // Create payload without confirmPassword
 //     const payload = {
 //       email,
 //       role,
@@ -45,14 +46,15 @@
 //     const newUser = new UserModel(payload);
 //     const newUserSave = await newUser.save();
 
-//     return res.json({
+//     return res.status(201).json({ // Use 201 for successful creation
 //       message: "User registered successfully.",
 //       success: true,
 //       data: newUserSave,
 //     });
 //   } catch (error) {
+//     console.error("Error in User Registration:", error); // Improved error logging
 //     return res.status(500).json({
-//       message: error.message || error,
+//       message: error.message || "An unexpected error occurred.",
 //       error: true,
 //     });
 //   }
@@ -64,12 +66,12 @@ const bcrypt = require('bcrypt');
 
 const UserRegistration = async (req, res) => {
   try {
-    const { email, password, role, confirmPassword } = req.body; // Corrected to match the provided JSON
+    const { email, password, confirmPassword, firstName, lastName, role } = req.body;
 
     // Check if the email already exists
     const checkEmail = await UserModel.findOne({ email });
     if (checkEmail) {
-      return res.status(400).json({ // Use 400 for bad request errors
+      return res.status(400).json({
         message: "Email already exists. Please use a different email.",
         error: true,
       });
@@ -77,7 +79,7 @@ const UserRegistration = async (req, res) => {
 
     // Check if password and confirmPassword match
     if (password !== confirmPassword) {
-      return res.status(400).json({ // Use 400 for bad request errors
+      return res.status(400).json({
         message: "Passwords do not match.",
         error: true,
       });
@@ -85,7 +87,7 @@ const UserRegistration = async (req, res) => {
 
     // Check if the role is admin
     if (role === 'admin') {
-      return res.status(403).json({ // Use 403 for forbidden access
+      return res.status(403).json({
         message: "Admin role is not allowed during registration.",
         error: true,
       });
@@ -97,6 +99,8 @@ const UserRegistration = async (req, res) => {
 
     // Create payload without confirmPassword
     const payload = {
+      firstName,
+      lastName,
       email,
       role,
       password: hashPassword,
@@ -105,14 +109,15 @@ const UserRegistration = async (req, res) => {
     // Save new user
     const newUser = new UserModel(payload);
     const newUserSave = await newUser.save();
+    console.log(newUserSave)
 
-    return res.status(201).json({ // Use 201 for successful creation
+    return res.status(201).json({
       message: "User registered successfully.",
       success: true,
       data: newUserSave,
     });
   } catch (error) {
-    console.error("Error in User Registration:", error); // Improved error logging
+    console.error("Error in User Registration:", error);
     return res.status(500).json({
       message: error.message || "An unexpected error occurred.",
       error: true,
